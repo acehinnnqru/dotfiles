@@ -53,6 +53,7 @@ return packer.startup(function(use)
     use "EdenEast/nightfox.nvim"
     use 'folke/tokyonight.nvim'
     use 'ellisonleao/gruvbox.nvim'
+    use 'projekt0n/github-nvim-theme'
     -- bufferline
     use "akinsho/bufferline.nvim"
     -- status line

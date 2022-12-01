@@ -40,8 +40,3 @@ require 'nvim-treesitter.configs'.setup {
 
 require 'nvim-treesitter'.setup{}
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldnestmax = 9
-vim.opt.foldminlines = 3
-

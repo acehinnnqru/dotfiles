@@ -34,3 +34,7 @@ keymap('', '<leader>sl', ':HopLine<cr>', opts)
 
 -- disable some keymaps
 keymap("n", "<A-CR>", "<Nop>", opts)
+
+-- ufo
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)

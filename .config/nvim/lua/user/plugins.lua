@@ -123,6 +123,8 @@ return packer.startup(function(use)
     use "folke/todo-comments.nvim"
     -- outline
     use "simrat39/symbols-outline.nvim"
+    -- fold
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
     -- languages support
     -- Rust

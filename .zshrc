@@ -150,12 +150,6 @@ zinit load starship/starship
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 
-alias vim=nvim
-#if [[ $ITERM_PROFILE == 'HotKey' ]]; then
-#    echo this is a hotkey window
-#else
-#    eval "$(zellij setup --generate-auto-start zsh)"
-#fi
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
@@ -177,3 +171,7 @@ alias lt='exa --tree --level=2'
 export PNPM_HOME="/Users/acehinnnqru/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# personal aliases
+alias vim=nvim
+alias c=clear

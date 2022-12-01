@@ -1,0 +1,2 @@
+[includeIf "gitdir:~/ws/r/github.com/"]
+    path = ~/ws/r/github.com/.gitconfig

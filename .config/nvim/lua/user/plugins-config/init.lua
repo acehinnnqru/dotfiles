@@ -43,11 +43,6 @@ require("transparent").setup({
 
 require('lualine').setup {}
 require("bufferline").setup {
-    highlights = {
-        fill = {
-            bg = '#1F252A'
-        }
-    },
     options = {
         diagnostics = "nvim_lsp",
         show_tab_indicators = true,

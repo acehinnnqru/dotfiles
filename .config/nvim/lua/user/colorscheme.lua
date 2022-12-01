@@ -31,5 +31,5 @@ require("github-theme").setup({
     function_style = "italic",
     variable_style = "italic",
     dark_sidebar = false,
-    -- other config
+    transparent = true,
 })

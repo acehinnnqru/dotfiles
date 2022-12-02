@@ -125,7 +125,7 @@ return packer.startup(function(use)
     -- outline
     use "simrat39/symbols-outline.nvim"
     -- fold
-    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
     -- languages support
     -- Rust

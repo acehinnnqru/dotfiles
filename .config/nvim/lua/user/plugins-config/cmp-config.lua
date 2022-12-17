@@ -15,12 +15,12 @@ cmp.setup({
         end
     },
     sources = {
-        { name = "luasnip" },
-        { name = "path" },
         { name = "nvim_lsp" },
-        { name = "buffer" },
         { name = "lsp_signature" },
         { name = "cmp_nvim_lsp_signature_help"},
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
         { name = "orgmode" },
     },
     window = {

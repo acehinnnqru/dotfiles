@@ -25,6 +25,8 @@ if not status_ok then
     return
 end
 
+pcall(require, "impatient")
+
 -- set packer to use a popup window
 packer.init {
     display = {
@@ -50,9 +52,6 @@ return packer.startup(function(use)
     -- tranprency
     use "xiyaowong/nvim-transparent"
     -- colorscheme
-    use "EdenEast/nightfox.nvim"
-    use 'folke/tokyonight.nvim'
-    use 'ellisonleao/gruvbox.nvim'
     use 'projekt0n/github-nvim-theme'
     -- bufferline
     use "akinsho/bufferline.nvim"
@@ -64,6 +63,8 @@ return packer.startup(function(use)
         'nmac427/guess-indent.nvim',
         config = function() require('guess-indent').setup {} end,
     }
+    -- quickfix window enhance
+    use {'kevinhwang91/nvim-bqf', ft = 'qf'}
     -- welcome page
     use "goolord/alpha-nvim"
     -- eazy motion
@@ -83,6 +84,7 @@ return packer.startup(function(use)
     -- highlighting
     use "nvim-treesitter/nvim-treesitter"
     use 'nvim-treesitter/nvim-treesitter-context'
+    use 'norcalli/nvim-colorizer.lua'
     -- pairs
     use "windwp/nvim-autopairs"
     -- commentary
@@ -120,6 +122,7 @@ return packer.startup(function(use)
     use "MunifTanjim/prettier.nvim"
     -- tag edit
     use "kylechui/nvim-surround"
+    use "windwp/nvim-ts-autotag"
     -- toto comments
     use "folke/todo-comments.nvim"
     -- outline

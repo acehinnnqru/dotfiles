@@ -23,7 +23,6 @@ require("mason-lspconfig").setup({
         "gopls",
         "rust_analyzer",
         "pyright",
-        "tsserver",
         "cssls",
         "html",
         "jsonls",

@@ -14,8 +14,9 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- buffers navigation
-keymap("n", "<leader>bc", ":bdelete<CR>", opts)
-keymap("n", "<leader>bd", ":bufdo bd<CR>", opts)
+keymap("n", "<leader>bd", ":bdelete<CR>", opts)
+keymap("n", "<leader>bp", ":bprevious<CR>", opts)
+keymap("n", "<leader>bn", ":bnext<CR>", opts)
 
 -- telescope plugin keymaps
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)

@@ -39,9 +39,9 @@ require("symbols-outline").setup()
 require 'nvim-autopairs'.setup {}
 require 'nvim-surround'.setup {}
 
--- [[ require("transparent").setup({ ]]
--- [[     enable = true, ]]
--- [[ }) ]]
+require("transparent").setup({
+     enable = true,
+})
 
 require('lualine').setup {}
 require("bufferline").setup {

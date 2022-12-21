@@ -49,6 +49,8 @@ yabai -m rule --add app="^Numi$" manage=off
 yabai -m rule --add app="^Shottr$" manage=off
 yabai -m rule --add app="^Kap$" manage=off
 yabai -m rule --add app="^Speedtest$" manage=off
+yabai -m rule --add app="^ffplay$" manage=off
+yabai -m rule --add app="^pieces$" manage=off
 
 # space label
 yabai -m rule --

@@ -19,11 +19,12 @@ keymap("n", "<leader>bp", ":bprevious<CR>", opts)
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 
 -- telescope plugin keymaps
-keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-keymap("n", "<leader>fa", "<cmd>lua require('telescope.builtin').find_files({hidden=true,ignore=true})<cr>", opts)
-keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>fa", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope  live_grep<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope file_browser<CR>", opts)
 
@@ -37,5 +38,5 @@ keymap('', '<leader>sl', ':HopLine<cr>', opts)
 keymap("n", "<A-CR>", "<Nop>", opts)
 
 -- ufo
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+keymap('n', 'zR', ":lua require('ufo').openAllFolds", opts)
+keymap('n', 'zM', ":lua require('ufo').closeAllFolds", opts)

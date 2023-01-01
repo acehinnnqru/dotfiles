@@ -1,12 +1,9 @@
-require "impatient"
-
 require "user.plugins-config.alpha"
 require "user.plugins-config.nvim-treesitter"
 require "user.plugins-config.nvim-web-devicons"
 require "user.plugins-config.cmp-config"
 require "user.plugins-config.hop"
 require "user.plugins-config.telescope"
-require("user.plugins-config.orgmode")
 
 -- show blank lines
 vim.opt.list = true

@@ -33,7 +33,7 @@ yabai -m config right_padding                45
 yabai -m config window_gap                   5
 
 # apps to not manage (ignore)
-yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^QQ*" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
@@ -51,7 +51,9 @@ yabai -m rule --add app="^Kap$" manage=off
 yabai -m rule --add app="^Speedtest$" manage=off
 yabai -m rule --add app="^ffplay$" manage=off
 yabai -m rule --add app="^pieces$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Dictionary$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
 
 # space label
-yabai -m rule --
 echo "yabai configuration loaded.."

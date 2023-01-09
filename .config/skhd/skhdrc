@@ -31,7 +31,3 @@ alt - e : yabai -m window --toggle split
 # balance size of windows
 alt - b : yabai -m space --balance
 
-# app shortcuts
-alt - return: open -a alacritty
-alt - c: open -a "Google Chrome"
-

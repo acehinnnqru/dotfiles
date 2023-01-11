@@ -6,6 +6,8 @@ local python_root_files = {
     'requirements.txt',
     'Pipfile',
     'pyrightconfig.json',
+    '.venv',
+    'venv',
 }
 
 return {

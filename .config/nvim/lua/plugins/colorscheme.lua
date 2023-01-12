@@ -9,8 +9,8 @@ return {
                 flavour = "mocha",
                 styles = {
                     comments = { "italic" },
-                    conditionals = { "italic" },
-                    loops = {},
+                    conditionals = {},
+                    loops = { "italic" },
                     functions = { "italic" },
                     keywords = { "italic" },
                     strings = {},

@@ -1,17 +1,30 @@
 return {
-	{
-		"projekt0n/github-nvim-theme",
-		config = function()
-			require("github-theme").setup({
-				theme_style = "dark",
-				msg_area_style = "italic",
-				comment_style = "italic",
-				keyword_style = "italic",
-				function_style = "italic",
-				variable_style = "italic",
-				dark_sidebar = false,
-				transparent = true,
-			})
-		end,
-	},
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        lazy = false,
+        config = function()
+            require("catppuccin").setup({
+                flavour = "mocha",
+                styles = {
+                    comments = { "italic" },
+                    conditionals = { "italic" },
+                    loops = {},
+                    functions = { "italic" },
+                    keywords = { "italic" },
+                    strings = {},
+                    variables = { "italic" },
+                    numbers = {},
+                    booleans = { "italic" },
+                    properties = { "italic" },
+                    types = { "italic" },
+                    operators = { "italic" },
+                },
+                transparent_background = true,
+            })
+
+            vim.cmd.colorscheme "catppuccin"
+        end,
+    }
 }

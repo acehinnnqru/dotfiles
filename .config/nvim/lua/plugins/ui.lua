@@ -29,6 +29,7 @@ return {
 
 		opts = {
 			options = {
+                theme = "auto",
 				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 			},
 		}

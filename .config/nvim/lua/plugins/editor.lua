@@ -4,22 +4,16 @@ return {
         lazy = true,
     },
     {
-        "nvim-telescope/telescope-file-browser.nvim",
-        lazy = true,
-    },
-    {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
-        version = false,
         keys = {
-            {"n", "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file in project" },
-            {"n", "<leader>fa", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", desc = "Find file in all files" },
-            {"n", "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find text in project" },
-            {"n", "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find text in buffers" },
-            {"n", "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-            {"n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-            {"n", "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find project" },
-            {"n", "<leader>fs", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
+            {"<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file in project" },
+            {"<leader>fa", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", desc = "Find file in all files" },
+            {"<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find text in project" },
+            {"<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find text in buffers" },
+            {"<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+            {"<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+            {"<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find project" },
         },
         opts = {
             extensions = {
@@ -44,9 +38,9 @@ return {
             }
         },
         config = function(plugin, opts)
+            require("project_nvim")
             require("telescope").setup(opts)
             require("telescope").load_extension("projects")
-            require("telescope").load_extension("file_browser")
         end,
     }
 

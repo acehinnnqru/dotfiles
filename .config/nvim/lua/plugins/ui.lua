@@ -15,7 +15,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			options = {
-				diagnostics = "nvim_lsp",
+				-- diagnostics = "nvim_lsp",
 				show_tab_indicators = true,
 				show_close_icon = false,
 			}
@@ -28,14 +28,8 @@ return {
 		event = "VeryLazy", 
 
 		opts = {
-			sections = {
-				lualine_x = {
-					{
-						require("lazy.status").updates,
-						cond = require("lazy.status").has_updates,
-						color = { fg = "#ff9e64" },
-					},
-				},
+			options = {
+				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 			},
 		}
 
@@ -74,13 +68,20 @@ return {
 
 			dashboard.section.footer.val = footer()
 
-			dashboard.section.footer.opts.hl = "Type"
-			dashboard.section.header.opts.hl = "Include"
+			dashboard.section.footer.opts.hl = "Comment"
+			dashboard.section.header.opts.hl = "String"
 			dashboard.section.buttons.opts.hl = "Keyword"
 
 			dashboard.opts.opts.noautocmd = true
 
 			alpha.setup(dashboard.opts)
 		end,
+	},
+
+	{
+		"kyazdani42/nvim-web-devicons",
+		opts = {
+			default = true,
+		}
 	}
 }

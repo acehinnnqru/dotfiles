@@ -1,4 +1,6 @@
 return {
+	{ "simrat39/rust-tools.nvim", lazy = true },
+
 	-- modified treesitter config
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -10,7 +12,7 @@ return {
 	-- correctly setup lspconfig
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "simrat39/rust-tools.nvim" },
+		-- dependencies = { "simrat39/rust-tools.nvim" },
 		opts = {
 			-- make sure mason installs the server
 			servers = {

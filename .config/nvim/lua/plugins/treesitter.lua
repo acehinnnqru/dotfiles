@@ -16,7 +16,7 @@ return {
                 "javascript", "html", "css", "typescript", "vue", "tsx",
 
                 -- other languages
-                "rust", "lua", 
+                "rust",
                 "go", "gomod",
 
                 -- org filetypes
@@ -41,7 +41,7 @@ return {
             }
         },
 
-        config = function(plugin, opts)
+        config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
     },

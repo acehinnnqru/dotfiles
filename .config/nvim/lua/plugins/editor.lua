@@ -1,5 +1,6 @@
 return {
 	-- telescope
+    -- FIXME: Telescope diagnostics not working, help to fix
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",

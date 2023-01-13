@@ -11,8 +11,9 @@ return {
         },
         opts = {
             servers = {},
+            setup = {},
         },
-        config = function(plugin, opts)
+        config = function(_, opts)
             -- setup formatting and keymaps
             require("plugins.lsp.apis").on_attach(function(client, buffer)
                 require("plugins.lsp.format").on_attach(client, buffer)
@@ -27,11 +28,7 @@ return {
                 severity_sort = true,
             })
 
-            local next = next
             local servers = opts.servers
-            if next(servers) == nil then
-                do return end
-            end
             local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
             require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
@@ -60,10 +57,12 @@ return {
         cmd = "Mason",
         keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
         opts = {
-            ensure_installed = {},
+            ensure_installed = {
+                "stylua"
+            },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
-        config = function(plugin, opts)
+        config = function(_, opts)
             require("mason").setup(opts)
             local mr = require("mason-registry")
             for _, tool in ipairs(opts.ensure_installed) do
@@ -80,6 +79,8 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         event = "BufReadPre",
         dependencies = { "mason.nvim" },
-        opts = {},
+        opts = {
+            sources = {},
+        },
     },
 }

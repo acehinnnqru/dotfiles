@@ -8,7 +8,7 @@ return {
                 -- config filetypes
                 "json", "markdown", "yaml", "toml",
                 "gitignore",
-                
+
                 -- script languages
                 "bash", "python", "vim", "sql",
 
@@ -39,6 +39,15 @@ return {
             context_commentstring = {
                 enable = true,
             }
-        }
+        },
+
+        config = function(plugin, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
     }
 }

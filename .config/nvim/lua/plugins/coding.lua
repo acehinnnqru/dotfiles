@@ -115,4 +115,20 @@ return {
 			require("mini.comment").setup(opts)
 		end,
 	},
+
+	-- pairs
+	{
+		"windwp/nvim-autopairs",
+		event = "VeryLazy",
+        config = function (_, opts)
+            require("nvim-autopairs").setup(opts)
+        end
+	},
+	{
+		"kylechui/nvim-surround",
+        event = "VeryLazy",
+        config = function (_, opts)
+            require("nvim-surround").setup(opts)
+        end
+	},
 }

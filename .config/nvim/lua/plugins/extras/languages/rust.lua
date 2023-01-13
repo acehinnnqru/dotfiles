@@ -12,7 +12,6 @@ return {
 	-- correctly setup lspconfig
 	{
 		"neovim/nvim-lspconfig",
-		-- dependencies = { "simrat39/rust-tools.nvim" },
 		opts = {
 			-- make sure mason installs the server
 			servers = {

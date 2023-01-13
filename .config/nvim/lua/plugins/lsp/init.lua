@@ -20,14 +20,6 @@ return {
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
 
-			-- diagnostics
-			vim.diagnostic.config({
-				underline = true,
-				update_in_insert = false,
-				virtual_text = { spacing = 4, prefix = "●" },
-				severity_sort = true,
-			})
-
 			local servers = opts.servers
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

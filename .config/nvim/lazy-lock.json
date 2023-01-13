@@ -14,17 +14,20 @@
   "lsp_signature.nvim": { "branch": "master", "commit": "1979f1118e2b38084e7c148f279eed6e9300a342" },
   "lualine.nvim": { "branch": "master", "commit": "0050b308552e45f7128f399886c86afefc3eb988" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "3751eb5c56c67b51e68a1f4a0da28ae74ab771c1" },
-  "mason.nvim": { "branch": "main", "commit": "4d734aee41efce4f1a4be7619ad040b53237042e" },
+  "mason.nvim": { "branch": "main", "commit": "20436198aa1ef8c38e6ba59155e96177778891a3" },
+  "mini.comment": { "branch": "main", "commit": "a0f543e7846f67d10cbed5f2dce72eb26d0ca96b" },
   "neodev.nvim": { "branch": "main", "commit": "0e3f5e763639951f96f9acbdc9f52a9fedf91b46" },
   "null-ls.nvim": { "branch": "main", "commit": "915558963709ea17c5aa246ca1c9786bfee6ddb4" },
   "nvim-cmp": { "branch": "main", "commit": "11a95792a5be0f5a40bab5fc5b670e5b1399a939" },
   "nvim-lspconfig": { "branch": "master", "commit": "f7ebb0fed4b952c77bb5827db030405f2d6cd4e7" },
   "nvim-transparent": { "branch": "main", "commit": "6816751e3d595b3209aa475a83b6fbaa3a5ccc98" },
-  "nvim-treesitter": { "branch": "master", "commit": "9a257d989a526c413a28c252c4ec9113a7d35a28" },
+  "nvim-treesitter": { "branch": "master", "commit": "51d220e0bd8922caabcb3e5de936fc599a1bd210" },
   "nvim-treesitter-context": { "branch": "master", "commit": "cacee4828152dd3a83736169ae61bbcd29a3d213" },
+  "nvim-ts-context-commentstring": { "branch": "main", "commit": "4a42b30376c1bd625ab5016c2079631d531d797a" },
   "nvim-web-devicons": { "branch": "master", "commit": "6c38926351372ea87034dec26182b62c835ff3bc" },
   "plenary.nvim": { "branch": "master", "commit": "1c7e3e6b0f4dd5a174fcea9fda8a4d7de593b826" },
   "rust-tools.nvim": { "branch": "master", "commit": "df584e84393ef255f5b8cbd709677d6a3a5bf42f" },
   "telescope.nvim": { "branch": "master", "commit": "1ba7278cf08da8048e7f589ef6b65a39fd3e4dbf" },
-  "todo-comments.nvim": { "branch": "main", "commit": "077c59586d9d0726b0696dc5680eb863f4e04bc5" }
+  "todo-comments.nvim": { "branch": "main", "commit": "077c59586d9d0726b0696dc5680eb863f4e04bc5" },
+  "trouble.nvim": { "branch": "main", "commit": "83ec606e7065adf134d17f4af6bae510e3c491c1" }
 }

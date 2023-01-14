@@ -120,15 +120,44 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
-        config = function (_, opts)
-            require("nvim-autopairs").setup(opts)
-        end
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
+		end,
 	},
+
+	-- surround
 	{
 		"kylechui/nvim-surround",
-        event = "VeryLazy",
-        config = function (_, opts)
-            require("nvim-surround").setup(opts)
-        end
+		event = "VeryLazy",
+		config = function(_, opts)
+			require("nvim-surround").setup(opts)
+		end,
+	},
+
+	--fold
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		opts = {
+			open_fold_hl_timeout = 0,
+			provider_selector = function(_, _, _)
+				return { "treesitter", "indent" }
+			end,
+		},
+		config = function(_, opts)
+			vim.o.foldcolumn = "0"
+			-- Using ufo provider need a large value, feel free to decrease the value
+			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+
+			require("ufo").setup(opts)
+		end,
+	},
+
+	-- quick fix
+	{
+		"kevinhwang91/nvim-bqf",
+		ft = { "qf" },
 	},
 }

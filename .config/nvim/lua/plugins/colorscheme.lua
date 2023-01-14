@@ -6,7 +6,7 @@ return {
         lazy = false,
         config = function()
             require("catppuccin").setup({
-                flavour = "mocha",
+                flavour = "macchiato",
                 styles = {
                     comments = { "italic" },
                     conditionals = {},
@@ -21,7 +21,6 @@ return {
                     types = { "italic" },
                     operators = { "italic" },
                 },
-                transparent_background = true,
             })
 
             vim.cmd.colorscheme "catppuccin"

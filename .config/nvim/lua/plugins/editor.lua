@@ -35,12 +35,17 @@ return {
 		cmd = "Telescope",
 		version = false,
 		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file in project" },
-			{
-				"<leader>fa",
-				"<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",
-				desc = "Find file in all files",
-			},
+			{ "<leader>/", telescope("live_grep"), desc = "Find in Files (Grep)" },
+			{ "<leader><space>", telescope("files"), desc = "Find Files (root dir)" },
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			{ "<leader>ff", telescope("files"), desc = "Find Files (root dir)" },
+			{ "<leader>fF", telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			-- { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file in project" },
+			-- {
+			-- 	"<leader>fa",
+			-- 	"<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",
+			-- 	desc = "Find file in all files",
+			-- },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find text in project" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find text in buffers" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },

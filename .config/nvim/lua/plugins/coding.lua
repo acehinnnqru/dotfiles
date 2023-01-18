@@ -68,7 +68,14 @@ return {
 			"petertriho/cmp-git",
 		},
 		opts = function()
+			local has_words_before = function()
+				unpack = unpack or table.unpack
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0
+					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			end
 			local cmp = require("cmp")
+			-- autopairs setup
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
@@ -99,6 +106,7 @@ return {
 				}),
 			})
 
+			local luasnip = require("luasnip")
 			return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
@@ -112,9 +120,26 @@ return {
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					---@diagnostic disable-next-line: missing-parameter
-					["<Tab>"] = cmp.mapping.complete(),
+					-- ["<Tab>"] = cmp.mapping.complete(),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+						if cmp.visible() then
+							local entry = cmp.get_selected_entry()
+							if not entry then
+								cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+							else
+								cmp.confirm()
+							end
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						elseif has_words_before() then
+							cmp.complete()
+                        else
+                            fallback()
+						end
+					end, { "i", "s", "c" }),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },

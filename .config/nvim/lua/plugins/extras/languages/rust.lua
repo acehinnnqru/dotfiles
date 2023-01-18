@@ -9,6 +9,15 @@ return {
 		end,
 	},
 
+
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			table.insert(opts.ensure_installed, "rust-analyzer")
+			return opts
+		end,
+	},
+
 	-- correctly setup lspconfig
 	{
 		"neovim/nvim-lspconfig",
@@ -43,6 +52,17 @@ return {
 						if client.name == "rust_analyzer" then
 							local rt = require("rust-tools")
 
+							local rust_opts = {
+								server = vim.tbl_deep_extend("force", {}, opts, opts.server or {}),
+								tools = { -- rust-tools options
+									-- options same as lsp hover / vim.lsp.util.open_floating_preview()
+									hover_actions = {
+										-- whether the hover action window gets automatically focused
+										auto_focus = true,
+									},
+								},
+							}
+                            rt.setup(rust_opts)
                             -- stylua: ignore start
 							vim.keymap.set( "n", "K", rt.hover_actions.hover_actions, { desc = "Hover Action", buffer = buffer })
 							vim.keymap.set( "n", "<leader>em", rt.expand_macro.expand_macro, { desc = "Expand Macro", buffer = buffer })
@@ -56,17 +76,6 @@ return {
 							-- stylua: ignore end
 						end
 					end)
-					local rust_opts = {
-						server = vim.tbl_deep_extend("force", {}, opts, opts.server or {}),
-						tools = { -- rust-tools options
-							-- options same as lsp hover / vim.lsp.util.open_floating_preview()
-							hover_actions = {
-								-- whether the hover action window gets automatically focused
-								auto_focus = true,
-							},
-						},
-					}
-					require("rust-tools").setup(rust_opts)
 					return true
 				end,
 			},

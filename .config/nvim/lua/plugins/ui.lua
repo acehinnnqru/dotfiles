@@ -93,4 +93,8 @@ return {
 			space_char_blankline = " ",
 		},
 	},
+    {
+        "nmac427/guess-indent.nvim",
+        event = "BufReadPre",
+    }
 }

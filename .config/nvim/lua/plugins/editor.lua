@@ -22,7 +22,6 @@ end
 
 return {
 	-- telescope
-	-- FIXME: Telescope lsp integrations not working, help to fix
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		lazy = true,

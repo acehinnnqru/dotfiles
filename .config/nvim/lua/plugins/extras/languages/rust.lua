@@ -9,7 +9,6 @@ return {
 		end,
 	},
 
-
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
@@ -62,7 +61,7 @@ return {
 									},
 								},
 							}
-                            rt.setup(rust_opts)
+							rt.setup(rust_opts)
                             -- stylua: ignore start
 							vim.keymap.set( "n", "K", rt.hover_actions.hover_actions, { desc = "Hover Action", buffer = buffer })
 							vim.keymap.set( "n", "<leader>em", rt.expand_macro.expand_macro, { desc = "Expand Macro", buffer = buffer })
@@ -76,6 +75,7 @@ return {
 							-- stylua: ignore end
 						end
 					end)
+					require("lspconfig").rust_analyzer.setup({})
 					return true
 				end,
 			},

@@ -163,7 +163,6 @@ return {
 				["<leader>g"] = { name = "+git" },
 				["<leader>gh"] = { name = "+hunk" },
 				["<leader>h"] = { name = "+help" },
-				["<leader>n"] = { name = "+noice" },
 				["<leader>o"] = { name = "+open" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },

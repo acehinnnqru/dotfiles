@@ -1,41 +1,4 @@
-return {
-	{
-		"xiyaowong/nvim-transparent",
-		event = "VimEnter",
-		config = function()
-			require("transparent").setup({
-				enable = true,
-			})
-		end,
-	},
-
-	-- bufferline
-	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		opts = {
-			options = {
-				diagnostics = "nvim_lsp",
-				show_tab_indicators = false,
-				show_close_icon = false,
-			},
-		},
-	},
-
-	-- status line
-	{
-
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-
-		opts = {
-			options = {
-				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
-			},
-		},
-	},
-
-	-- welcome page
+return 
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
@@ -74,27 +37,5 @@ return {
 
 			alpha.setup(dashboard.opts)
 		end,
-	},
+	}
 
-	{
-		"kyazdani42/nvim-web-devicons",
-		opts = {
-			default = true,
-		},
-	},
-
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufReadPre",
-		opts = {
-			filetype_exclude = { "help", "alpha", "dashboard", "lazy" },
-			show_trailing_blankline_indent = false,
-			show_end_of_line = false,
-			space_char_blankline = " ",
-		},
-	},
-    {
-        "nmac427/guess-indent.nvim",
-        event = "BufReadPre",
-    }
-}

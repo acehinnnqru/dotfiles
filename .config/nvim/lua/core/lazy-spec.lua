@@ -1,9 +1,9 @@
 return {
     spec = {
         { import = "plugins" },
-        { import = "plugins.extras.languages.lua" },
-        { import = "plugins.extras.languages.json" },
-        { import = "plugins.extras.languages.rust" },
+        { import = "languages.lua" },
+        { import = "languages.json" },
+        { import = "languages.rust" },
     },
 }
 

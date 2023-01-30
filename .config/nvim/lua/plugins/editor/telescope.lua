@@ -15,6 +15,12 @@ local telescope = function(builtin, opts)
 			else
 				builtin = "find_files"
 			end
+		elseif builtin == "man_pages" then
+			opts = {
+				prompt_title = "   Find man pages ",
+				sections = { "ALL" },
+				man_cmd = { "apropos", ".*" },
+			}
 		end
 		require("telescope.builtin")[builtin](opts)
 	end
@@ -41,7 +47,7 @@ return {
 		{ "<leader>hf", "<cmd>Telescope filetypes<cr>", desc = "File Types" },
 		{ "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
 		{ "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-		{ "<leader>hm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+		{ "<leader>hm", telescope("man_pages"), desc = "Man Pages" },
 		{ "<leader>ho", "<cmd>Telescope vim_options<cr>", desc = "Options" },
 		{ "<leader>hs", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
 		{ "<leader>ht", "<cmd>Telescope builtin<cr>", desc = "Telescope Builtin" },
@@ -92,6 +98,7 @@ return {
 				end,
 			},
 		},
+		man_cmd = { "apropos", ".*" },
 	},
 	config = function(_, opts)
 		require("telescope").setup(opts)

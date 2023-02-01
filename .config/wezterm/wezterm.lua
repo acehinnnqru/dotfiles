@@ -4,8 +4,8 @@ return {
 	color_scheme = "Catppuccin Macchiato",
 	font = wezterm.font_with_fallback({
 		{
-			family = "Cascadia Code",
-			style = "Italic",
+			family = "Consolas",
+			-- style = "Italic",
 		},
 
 		{

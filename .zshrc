@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git autojump autoswitch_virtualenv tmux aliases)
+plugins=(git autoswitch_virtualenv tmux aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,6 +29,12 @@ eval "$(fnm env --use-on-cd)"
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# just
+alias j=just
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -84,3 +90,4 @@ export PATH="$PNPM_HOME:$PATH"
 # personal aliases
 alias vim=nvim
 alias c=clear
+export EDITOR="nvim"

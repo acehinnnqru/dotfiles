@@ -7,6 +7,20 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "macchiato",
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+					loops = {},
+					functions = { "italic" },
+					keywords = { "italic" },
+					strings = {},
+					variables = {},
+					numbers = {},
+					booleans = { "italic" },
+					properties = {},
+					types = {},
+					operators = {},
+				},
 			})
 
 			vim.cmd.colorscheme("catppuccin")

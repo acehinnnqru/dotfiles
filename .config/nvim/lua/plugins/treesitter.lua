@@ -26,10 +26,6 @@ return {
 				"vue",
 				"tsx",
 
-				-- other languages
-				"go",
-				"gomod",
-
 				-- other
 				"comment",
 				"regex",

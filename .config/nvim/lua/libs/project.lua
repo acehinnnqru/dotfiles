@@ -1,6 +1,6 @@
 local M = {}
 
-M.root_patterns = { ".git", "/lua" }
+M.root_patterns = { ".git", "lua" }
 
 -- returns the root directory based on:
 -- * lsp workspace folders

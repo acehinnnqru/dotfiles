@@ -64,18 +64,17 @@ return {
 							rt.setup(rust_opts)
                             -- stylua: ignore start
 							vim.keymap.set( "n", "K", rt.hover_actions.hover_actions, { desc = "Hover Action", buffer = buffer })
-							vim.keymap.set( "n", "<leader>em", rt.expand_macro.expand_macro, { desc = "Expand Macro", buffer = buffer })
-							vim.keymap.set( "n", "<leader>pm", rt.parent_module.parent_module, { desc = "Parent Module", buffer = buffer })
-							vim.keymap.set( "n", "<leader>run", rt.runnables.runnables, { desc = "Runnables", buffer = buffer })
-							vim.keymap.set( "n", "<leader>md", "RustMoveItemDown", { desc = "Move Item Down", buffer = buffer })
-							vim.keymap.set( "n", "<leader>mu", "RustMoveItemUp", { desc = "Move Item Up", buffer = buffer })
-							vim.keymap.set( "n", "<leader>jl", rt.join_lines.join_lines, { desc = "Join Lines", buffer = buffer })
-							vim.keymap.set( "n", "<leader>ihe", rt.inlay_hints.enable, { desc = "Inlay Hints Enable", buffer = buffer })
-							vim.keymap.set( "n", "<leader>ihd", rt.inlay_hints.disable, { desc = "Inlay Hints Disable", buffer = buffer })
+							vim.keymap.set( "n", "<leader>cem", rt.expand_macro.expand_macro, { desc = "Expand Macro", buffer = buffer })
+							vim.keymap.set( "n", "<leader>cpm", rt.parent_module.parent_module, { desc = "Parent Module", buffer = buffer })
+							vim.keymap.set( "n", "<leader>cmd", "RustMoveItemDown", { desc = "Move Item Down", buffer = buffer })
+							vim.keymap.set( "n", "<leader>cmu", "RustMoveItemUp", { desc = "Move Item Up", buffer = buffer })
+							vim.keymap.set( "n", "<leader>cjl", rt.join_lines.join_lines, { desc = "Join Lines", buffer = buffer })
+							vim.keymap.set( "n", "<leader>che", rt.inlay_hints.enable, { desc = "Inlay Hints Enable", buffer = buffer })
+							vim.keymap.set( "n", "<leader>chd", rt.inlay_hints.disable, { desc = "Inlay Hints Disable", buffer = buffer })
 							-- stylua: ignore end
 						end
 					end)
-					require("lspconfig").rust_analyzer.setup({})
+					require("lspconfig").rust_analyzer.setup(opts)
 					return true
 				end,
 			},

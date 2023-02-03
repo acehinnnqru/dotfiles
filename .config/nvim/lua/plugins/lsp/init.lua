@@ -4,7 +4,7 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = {
-			{ "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+			{ "folke/neodev.nvim", lazy = true, opts = { experimental = { pathStrict = true } } },
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
@@ -46,7 +46,7 @@ return {
 	-- lsp signiture
 	{
 		"ray-x/lsp_signature.nvim",
-        dependencies = { "neovim/nvim-lspconfig" },
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			-- handlers
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })

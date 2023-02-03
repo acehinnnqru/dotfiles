@@ -21,6 +21,7 @@ return {
 			["<leader>h"] = { name = "+help" },
 			["<leader>o"] = { name = "+open" },
 			["<leader>q"] = { name = "+quit/session" },
+			["<leader>r"] = { name = "+restart/reload" },
 			["<leader>s"] = { name = "+search" },
 			["<leader>t"] = { name = "+toggle" },
 			["<leader>x"] = { name = "+diagnostics/quickfix" },

@@ -5,11 +5,14 @@ return {
 	font = wezterm.font_with_fallback({
 		{
 			family = "Consolas",
-			-- style = "Italic",
 		},
 
 		{
 			family = "Hack Nerd Font Mono",
+		},
+
+		{
+			family = "PingFang SC",
 		},
 	}),
 	font_size = 13.5,

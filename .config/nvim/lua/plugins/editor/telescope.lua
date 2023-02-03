@@ -1,6 +1,3 @@
--- this will return a function that calls telescope.
--- cwd will defautlt to lazyvim.util.get_root
--- for `files`, git_files or find_files will be chosen depending on .git
 local project_lib = require("libs.project")
 local telescope = function(builtin, opts)
 	local params = { builtin = builtin, opts = opts }

@@ -90,4 +90,5 @@ export PATH="$PNPM_HOME:$PATH"
 # personal aliases
 alias vim=nvim
 alias c=clear
+alias tm=tmuxinator
 export EDITOR="nvim"

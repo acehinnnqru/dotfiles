@@ -19,6 +19,7 @@ return {
 			["<leader>g"] = { name = "+git" },
 			["<leader>gh"] = { name = "+hunk" },
 			["<leader>h"] = { name = "+help" },
+			["<leader>j"] = { name = "+jump" },
 			["<leader>o"] = { name = "+open" },
 			["<leader>q"] = { name = "+quit/session" },
 			["<leader>r"] = { name = "+restart/reload" },

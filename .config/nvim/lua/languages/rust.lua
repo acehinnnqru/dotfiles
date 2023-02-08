@@ -1,5 +1,5 @@
 return {
-	{ "simrat39/rust-tools.nvim", lazy = true },
+	{ "simrat39/rust-tools.nvim", lazy = true, ft = { "rs", "rust" } },
 
 	-- modified treesitter config
 	{
@@ -17,11 +17,9 @@ return {
 		end,
 	},
 
-	-- correctly setup lspconfig
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
-			-- make sure mason installs the server
 			servers = {
 				rust_analyzer = {
 					settings = {
@@ -50,18 +48,6 @@ return {
 					require("plugins.lsp.apis").on_attach(function(client, buffer)
 						if client.name == "rust_analyzer" then
 							local rt = require("rust-tools")
-
-							local rust_opts = {
-								server = vim.tbl_deep_extend("force", {}, opts, opts.server or {}),
-								tools = { -- rust-tools options
-									-- options same as lsp hover / vim.lsp.util.open_floating_preview()
-									hover_actions = {
-										-- whether the hover action window gets automatically focused
-										auto_focus = true,
-									},
-								},
-							}
-							rt.setup(rust_opts)
                             -- stylua: ignore start
 							vim.keymap.set( "n", "K", rt.hover_actions.hover_actions, { desc = "Hover Action", buffer = buffer })
 							vim.keymap.set( "n", "<leader>cem", rt.expand_macro.expand_macro, { desc = "Expand Macro", buffer = buffer })
@@ -74,7 +60,17 @@ return {
 							-- stylua: ignore end
 						end
 					end)
-					require("lspconfig").rust_analyzer.setup(opts)
+
+					local rt = require("rust-tools")
+					local rust_opts = {
+						server = vim.tbl_deep_extend("force", {}, opts, opts.server or {}),
+						tools = {
+							hover_actions = {
+								auto_focus = true,
+							},
+						},
+					}
+					rt.setup(rust_opts)
 					return true
 				end,
 			},

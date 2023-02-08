@@ -3,18 +3,18 @@ local config_path = vim.fn.stdpath("config") .. "/lua/"
 local M = {}
 
 local trim_slash = function(p)
-    while string.sub(p, -1, -1) == "/" do
+	while string.sub(p, -1, -1) == "/" do
 		p = string.sub(p, 1, -2)
 	end
 
-    while string.sub(p, 1, 1) == "/" do
+	while string.sub(p, 1, 1) == "/" do
 		p = string.sub(p, 2, -1)
 	end
-    return p
+	return p
 end
 
 function M.load_dir(path)
-    path = trim_slash(path)
+	path = trim_slash(path)
 
 	local item_prefix = string.gsub(path, "/", ".") .. "."
 	local dir_handle = vim.loop.fs_scandir(config_path .. path)
@@ -31,11 +31,14 @@ function M.load_dir(path)
 		if item:match("^%s*$") or item:match("init") then
 			goto continue
 		end
-		table.insert(items, require(item_prefix .. item))
+		local p = require(item_prefix .. item)
+		if p ~= nil and p ~= {} then
+			table.insert(items, p)
+		end
 
 		::continue::
 	end
-    return items
+	return items
 end
 
 return M

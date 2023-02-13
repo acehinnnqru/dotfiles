@@ -85,13 +85,25 @@ return {
 		end,
 	},
 
-	-- formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufReadPre",
-		dependencies = { "mason.nvim" },
+		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-			sources = {},
+            sources = {},
+        },
+	},
+
+	{
+		"jay-babu/mason-null-ls.nvim",
+        event="BufReadPre",
+		dependencies = {
+			"jose-elias-alvarez/null-ls.nvim",
+			"williamboman/mason.nvim",
+		},
+		opts = {
+			automatic_setup = true,
+            ensure_installed = {},
 		},
 	},
 }

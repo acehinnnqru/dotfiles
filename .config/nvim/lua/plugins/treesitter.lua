@@ -14,7 +14,6 @@ return {
 
 				-- script languages
 				"bash",
-				"python",
 				"vim",
 				"sql",
 

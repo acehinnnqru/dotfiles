@@ -8,10 +8,13 @@ return {
 	},
 
 	{
-		"williamboman/mason.nvim",
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"jose-elias-alvarez/null-ls.nvim",
+			"williamboman/mason.nvim",
+		},
 		opts = function(_, opts)
-			table.insert(opts.ensure_installed, "stylua")
-			return opts
+			vim.list_extend(opts.ensure_installed, { "stylua", "mypy", "autopep8", "isort" })
 		end,
 	},
 
@@ -29,7 +32,7 @@ return {
 		opts = {
 			-- make sure mason installs the server
 			servers = {
-				sumneko_lua = {
+				lua_ls = {
 					settings = {
 						Lua = {
 							runtime = {

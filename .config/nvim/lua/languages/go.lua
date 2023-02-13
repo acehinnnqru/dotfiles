@@ -1,13 +1,20 @@
 return {
-	{ "ray-x/go.nvim", lazy = true },
-
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "go", "gomod" })
 		end,
 	},
-
+    {
+        "jay-babu/mason-null-ls.nvim",
+        dependencies = {
+            "jose-elias-alvarez/null-ls.nvim",
+            "williamboman/mason.nvim",
+        },
+        opts = function (_, opts)
+            vim.list_extend(opts.ensure_installed, {"golangci-lint", "goimports", "gofmt"})
+        end
+    },
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
@@ -15,12 +22,19 @@ return {
 			return opts
 		end,
 	},
-
-	-- correctly setup lspconfig
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		opts = function(_, opts)
+			local nls = require("null-ls")
+			table.insert(opts.sources, nls.builtins.code_actions.gomodifytags)
+			table.insert(opts.sources, nls.builtins.diagnostics.golangci_lint)
+            table.insert(opts.sources, nls.builtins.formatting.goimports)
+            table.insert(opts.sources, nls.builtins.formatting.gofmt)
+		end,
+	},
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
-			-- make sure mason installs the server
 			servers = {
 				gopls = {
 					settings = {},
@@ -28,26 +42,6 @@ return {
 			},
 			setup = {
 				gopls = function(_, opts)
-					require("plugins.lsp.apis").on_attach(function(client, buffer)
-						if client.name == "gopls" then
-							local format = function()
-								require("go.format").goimport()
-							end
-							vim.keymap.set(
-								"n",
-								"<leader>cf",
-								format,
-								{ desc = "Format Document", buffer = buffer }
-							)
-							vim.keymap.set(
-								"v",
-								"<leader>cf",
-								format,
-								{ desc = "Format Range", buffer = buffer }
-							)
-							require("go").setup()
-						end
-					end)
 					require("lspconfig").gopls.setup(opts)
 				end,
 			},

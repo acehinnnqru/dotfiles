@@ -6,6 +6,7 @@ return {
 		lazy = false,
 		config = function()
 			require("catppuccin").setup({
+                transparent = true,
 				flavour = "macchiato",
 				styles = {
 					comments = { "italic" },

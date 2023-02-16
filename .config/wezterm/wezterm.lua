@@ -15,7 +15,7 @@ return {
 			family = "PingFang SC",
 		},
 	}),
-	font_size = 13.5,
+	font_size = 14.5,
 
 	window_decorations = "RESIZE",
 

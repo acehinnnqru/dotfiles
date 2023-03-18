@@ -15,6 +15,9 @@ return {
 		config = function(_, opts)
 			-- setup formatting and keymaps
 			require("plugins.lsp.apis").on_attach(function(client, buffer)
+				if client.name == "copilot" or client.name == "null-ls" then
+					return
+				end
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
@@ -90,20 +93,20 @@ return {
 		event = "BufReadPre",
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-            sources = {},
-        },
+			sources = {},
+		},
 	},
 
 	{
 		"jay-babu/mason-null-ls.nvim",
-        event="BufReadPre",
+		event = "BufReadPre",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",
 		},
 		opts = {
 			automatic_setup = true,
-            ensure_installed = {},
+			ensure_installed = {},
 		},
 	},
 }

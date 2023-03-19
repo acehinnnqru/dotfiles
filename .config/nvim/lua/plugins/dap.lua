@@ -11,7 +11,6 @@ return {
 		vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "", linehl = "", numhl = "" })
 		vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 		vim.fn.sign_define("DapLogPoint", { text = "", texthl = "", linehl = "", numhl = "" })
-		vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "", numhl = "" })
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "dap-repl",
@@ -22,8 +21,6 @@ return {
 
 		require("which-key").register({
 			["<leader>d"] = { name = "+debug" },
-			["<leader>db"] = { name = "+breakpoints" },
-			["<leader>ds"] = { name = "+steps" },
 			["<leader>dv"] = { name = "+views" },
 		})
 
@@ -64,9 +61,9 @@ return {
 		},
 		{ "<leader>dp", '<cmd>lua require("dap").pause()<cr>', desc = "Pause" },
 		{ "<leader>fdc", "<cmd>Telescope dap configurations<cr>", desc = "Run" },
-		{ "<leader>di", '<cmd>lua require("dap").step_into()<cr>', desc = "step Into" },
-		{ "<leader>dg", '<cmd>lua require("dap").step_over()<cr>', desc = "Step Over" },
-		{ "<leader>do", '<cmd>lua require("dap").step_out()<cr>', desc = "Step Out" },
+		{ "<F7>", '<cmd>lua require("dap").step_into()<cr>', desc = "step Into" },
+		{ "<F8>", '<cmd>lua require("dap").step_over()<cr>', desc = "Step Over" },
+		{ "<F9>", '<cmd>lua require("dap").step_out()<cr>', desc = "Step Out" },
 		{ "<leader>dx", '<cmd>lua require("dap").terminate()<cr>', desc = "Terminate" },
 		{
 			"<leader>dvf",

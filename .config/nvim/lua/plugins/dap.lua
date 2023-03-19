@@ -5,6 +5,8 @@ return {
 		{ "rcarriga/nvim-dap-ui", config = true },
 		{ "theHamsta/nvim-dap-virtual-text", config = true },
 		{ "jbyuki/one-small-step-for-vimkind" },
+        { "williamboman/mason.nvim"},
+        { "jay-babu/mason-nvim-dap.nvim", config = true, opts = {ensure_installed={}}},
 	},
 	config = function()
 		vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })

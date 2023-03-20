@@ -5,7 +5,7 @@ function M.on_attach(client, buffer)
 
 	self:map("<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 	self:map("<leader>cl", "LspInfo", { desc = "Lsp Info" })
-	self:map("<leader>xd", "Telescope diagnostics", { desc = "Telescope Diagnostics" })
+	self:map("<leader>xx", vim.diagnostic.setqflist, { desc = "Telescope Diagnostics" })
 	self:map("gd", "lua vim.lsp.buf.definition()", { desc = "Goto Definition" })
 	self:map("gr", "lua vim.lsp.buf.references()", { desc = "References" })
 	self:map("gD", "lua vim.lsp.buf.declaration()", { desc = "Goto Declaration" })

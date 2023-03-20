@@ -92,3 +92,4 @@ alias vim=nvim
 alias c=clear
 alias tm=tmuxinator
 export EDITOR="nvim"
+export GPG_TTY=$(tty)

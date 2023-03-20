@@ -14,7 +14,7 @@ return {
 			"williamboman/mason.nvim",
 		},
 		opts = function(_, opts)
-			vim.list_extend(opts.ensure_installed, { "stylua", "mypy", "autopep8", "isort" })
+			vim.list_extend(opts.ensure_installed, { "stylua" })
 		end,
 	},
 
@@ -26,12 +26,12 @@ return {
 		end,
 	},
 
-    {
-        "jay-babu/mason-nvim-dap.nvim",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "stylua", "jq" })
-        end,
-    },
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, { "stylua", "jq" })
+		end,
+	},
 
 	-- correctly setup lspconfig
 	{

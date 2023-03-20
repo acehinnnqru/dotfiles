@@ -42,4 +42,3 @@ vim.keymap.set("v", ">", ">gv")
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-

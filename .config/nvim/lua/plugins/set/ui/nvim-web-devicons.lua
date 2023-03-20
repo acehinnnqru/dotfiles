@@ -1,8 +1,6 @@
-return 
-	{
-		"kyazdani42/nvim-web-devicons",
-		opts = {
-			default = true,
-		},
-	}
-
+return {
+	"kyazdani42/nvim-web-devicons",
+	opts = {
+		default = true,
+	},
+}

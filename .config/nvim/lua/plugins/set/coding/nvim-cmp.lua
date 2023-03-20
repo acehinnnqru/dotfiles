@@ -115,7 +115,7 @@ return {
 						nvim_lsp_signature_help = "[Signature]",
 						lsp_signature = "[Signature]",
 						cmdline = "[Vim Command]",
-                        copilit = "[Copilot]"
+						copilit = "[Copilot]",
 					})[entry.source.name]
 					return item
 				end,

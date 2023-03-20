@@ -8,7 +8,7 @@ local user_opts = {
 	-- utils options
 	clipboard = "unnamedplus", -- support system clipboard
 	cmdheight = 1, -- set command line height
-	completeopt = { "menu", "menuone", },
+	completeopt = { "menu", "menuone" },
 	conceallevel = 0, -- show * markup for bold and italic
 	mouse = "a", -- enable mouse mode
 	showtabline = 2,
@@ -27,7 +27,7 @@ local user_opts = {
 	fileencoding = "utf-8",
 	undofile = true,
 	updatetime = 300,
-    joinspaces = false,
+	joinspaces = false,
 	writebackup = false,
 	cursorline = true,
 	cursorcolumn = true,

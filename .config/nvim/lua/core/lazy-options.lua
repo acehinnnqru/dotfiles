@@ -1,5 +1,5 @@
 return {
-    defaults = {
-        lazy = true,
-    },
+	defaults = {
+		lazy = true,
+	},
 }

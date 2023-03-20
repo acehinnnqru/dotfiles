@@ -10,7 +10,7 @@ return {
 			pre_save_cmds = {
 				function()
 					require("neo-tree.sources.manager").close_all()
-                    require("dapui").close()
+					require("dapui").close()
 					vim.notify("closed all")
 				end,
 			},

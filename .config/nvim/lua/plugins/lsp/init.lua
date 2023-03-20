@@ -1,12 +1,33 @@
 return {
 	-- lsp config
 	{
+		"williamboman/mason-lspconfig.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+		},
+		opts = {
+			ensure_installed = {},
+		},
+		config = true,
+	},
+	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = {
 			{ "folke/neodev.nvim", lazy = true, opts = { experimental = { pathStrict = true } } },
 			"mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			{
+				"j-hui/fidget.nvim",
+				config = function()
+					require("fidget").setup({
+						window = {
+							blend = 0,
+						},
+					})
+				end,
+			},
 		},
 		opts = {
 			servers = {},
@@ -71,9 +92,7 @@ return {
 		cmd = "Mason",
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 		opts = {
-			ensure_installed = {
-				"stylua",
-			},
+			ensure_installed = {},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
 		config = function(_, opts)

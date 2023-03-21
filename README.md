@@ -9,5 +9,5 @@ My dotfiles in use. Including configs for tmux, zsh, neovim and alacritty.
 
 # Screenshots
 
-![tmux & nvim](./screenshots/SCR-20221217-sma.png "tmux & nvim")
+![tmux & nvim](./screenshots/screenshot.png "tmux & nvim")
 

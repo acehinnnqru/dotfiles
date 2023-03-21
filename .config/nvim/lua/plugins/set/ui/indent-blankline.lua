@@ -1,6 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	event = "BufReadPre",
+	event = "BufReadPost",
 	opts = {
 		filetype_exclude = { "help", "alpha", "dashboard", "lazy" },
 		show_trailing_blankline_indent = false,

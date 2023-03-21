@@ -19,6 +19,7 @@ return {
 	},
 	opts = function()
 		local cmp = require("cmp")
+
 		-- autopairs setup
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -33,7 +34,6 @@ return {
 		})
 
 		-- command line completion
-		--
 		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = {

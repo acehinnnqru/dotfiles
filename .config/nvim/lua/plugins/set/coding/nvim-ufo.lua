@@ -1,5 +1,6 @@
 return {
 	"kevinhwang91/nvim-ufo",
+	event = "VeryLazy",
 	dependencies = { "kevinhwang91/promise-async" },
 	opts = {
 		open_fold_hl_timeout = 0,

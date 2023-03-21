@@ -2,8 +2,7 @@ return {
 	"xiyaowong/nvim-transparent",
 	event = "VimEnter",
 	config = function()
-		require("transparent").setup({
-			enable = true,
-		})
+		require("transparent").setup({})
+		vim.g.transparent_enabled = true
 	end,
 }

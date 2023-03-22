@@ -21,11 +21,6 @@ return {
 			end,
 		})
 
-		require("which-key").register({
-			["<leader>d"] = { name = "+debug" },
-			["<leader>dv"] = { name = "+views" },
-		})
-
 		local dap = require("dap")
 		dap.configurations.lua = {
 			{

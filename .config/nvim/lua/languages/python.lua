@@ -1,12 +1,14 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "python" })
 		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",
@@ -17,6 +19,7 @@ return {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			table.insert(opts.sources, nls.builtins.diagnostics.flake8)
@@ -27,6 +30,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+        event = "VeryLazy",
 		opts = {
 			servers = {
 				pyright = {

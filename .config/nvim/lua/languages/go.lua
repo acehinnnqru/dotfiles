@@ -1,12 +1,14 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "go", "gomod" })
 		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",
@@ -17,6 +19,7 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
+		event = "VeryLazy",
 		opts = function(_, opts)
 			table.insert(opts.ensure_installed, "gopls")
 			return opts
@@ -24,6 +27,7 @@ return {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		event = "VeryLazy",
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			table.insert(opts.sources, nls.builtins.code_actions.gomodifytags)
@@ -32,18 +36,20 @@ return {
 			table.insert(opts.sources, nls.builtins.formatting.gofmt)
 		end,
 	},
-
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		event = "VeryLazy",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, { "delve" })
+		end,
+	},
 	{
 		"leoluz/nvim-dap-go",
+		lazy = true,
 		dependencies = {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-dap-ui",
-			{
-				"jay-babu/mason-nvim-dap.nvim",
-				opts = function(_, opts)
-					vim.list_extend(opts.ensure_installed, { "delve" })
-				end,
-			},
+			"jay-babu/mason-nvim-dap.nvim",
 		},
 		ft = "go",
 		config = true,
@@ -51,6 +57,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
+		event = "VeryLazy",
 		opts = {
 			servers = {
 				gopls = {

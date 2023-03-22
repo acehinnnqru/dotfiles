@@ -1,12 +1,14 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "javascript", "html", "css", "typescript" })
 		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",
@@ -17,6 +19,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			table.insert(opts.ensure_installed, "tsserver")
 			table.insert(opts.ensure_installed, "html")
@@ -26,6 +29,7 @@ return {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			table.insert(opts.sources, nls.builtins.formatting.prettier)
@@ -33,6 +37,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+        event = "VeryLazy",
 		opts = {
 			servers = {
 				tsserver = {

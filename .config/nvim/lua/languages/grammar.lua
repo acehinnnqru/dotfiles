@@ -1,6 +1,7 @@
 return {
 	{
 		"jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",

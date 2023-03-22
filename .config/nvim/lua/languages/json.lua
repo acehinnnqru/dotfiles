@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "json", "json5", "jsonc" })
 		end,
@@ -8,6 +9,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
+        event = "VeryLazy",
 		opts = {
 			servers = {
 				jsonls = {

@@ -2,7 +2,7 @@ return {
 	-- lsp config
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = "VeryLazy",
+        event = "VeryLazy",
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
@@ -14,9 +14,9 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = "BufReadPost",
+        event = "VeryLazy",
 		dependencies = {
-			{ "folke/neodev.nvim", lazy = true, opts = { experimental = { pathStrict = true } } },
+			{ "folke/neodev.nvim", event = "VeryLazy", opts = { experimental = { pathStrict = true } } },
 			"mason.nvim",
 			{
 				"j-hui/fidget.nvim",
@@ -70,7 +70,7 @@ return {
 	-- lsp signiture
 	{
 		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
+        event = "VeryLazy",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			-- handlers
@@ -90,8 +90,8 @@ return {
 	-- cmdline tools and lsp servers
 	{
 		"williamboman/mason.nvim",
+        event = "VeryLazy",
 		cmd = "Mason",
-		event = "VeryLazy",
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 		opts = {
 			ensure_installed = {},
@@ -111,7 +111,7 @@ return {
 
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		event = "VeryLazy",
+        event = "VeryLazy",
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			sources = {},
@@ -120,7 +120,7 @@ return {
 
 	{
 		"jay-babu/mason-null-ls.nvim",
-		event = "VeryLazy",
+        event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",

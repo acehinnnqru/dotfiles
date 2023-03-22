@@ -2,6 +2,7 @@ return {
 	-- Extend auto completion
 	{
 		"hrsh7th/nvim-cmp",
+        event = "InsertEnter",
 		dependencies = {
 			{
 				"Saecki/crates.nvim",
@@ -21,6 +22,7 @@ return {
 	-- modified treesitter config
 	{
 		"nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "rust", "ron", "toml" })
 		end,
@@ -28,6 +30,7 @@ return {
 
 	{
 		"williamboman/mason.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			table.insert(opts.ensure_installed, "rust-analyzer")
 			table.insert(opts.ensure_installed, "codelldb")
@@ -37,6 +40,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
+        event = "VeryLazy",
 		dependencies = { "simrat39/rust-tools.nvim" },
 		opts = {
 			servers = {

@@ -2,6 +2,7 @@ return {
 	-- modified treesitter config
 	{
 		"nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "lua" })
 		end,
@@ -9,6 +10,7 @@ return {
 
 	{
 		"jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"williamboman/mason.nvim",
@@ -20,6 +22,7 @@ return {
 
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			table.insert(opts.sources, nls.builtins.formatting.stylua)
@@ -28,6 +31,7 @@ return {
 
 	{
 		"jay-babu/mason-nvim-dap.nvim",
+        event = "VeryLazy",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, { "stylua", "jq" })
 		end,
@@ -36,6 +40,7 @@ return {
 	-- correctly setup lspconfig
 	{
 		"neovim/nvim-lspconfig",
+        event = "VeryLazy",
 		opts = {
 			-- make sure mason installs the server
 			servers = {

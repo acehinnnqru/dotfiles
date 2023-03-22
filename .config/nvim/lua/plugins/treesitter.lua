@@ -2,7 +2,8 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		event = "BufReadPost",
+        lazy = true,
+		-- event = "BufReadPost",
 		opts = {
 			ensure_installed = {
 				-- config filetypes
@@ -52,7 +53,8 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufReadPost",
+		-- event = "BufReadPost",
+        lazy = true,
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }

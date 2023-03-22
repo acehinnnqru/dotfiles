@@ -11,6 +11,7 @@ return {
 				function()
 					require("neo-tree.sources.manager").close_all()
 					require("dapui").close()
+                    vim.cmd "cclose"
 					vim.notify("closed all")
 				end,
 			},

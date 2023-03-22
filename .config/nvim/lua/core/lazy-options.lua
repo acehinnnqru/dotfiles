@@ -6,4 +6,7 @@ return {
 		enabled = false,
 		notify = false,
 	},
+    performence = {
+        cache = true,
+    }
 }

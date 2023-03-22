@@ -1,7 +1,6 @@
 return {
 	"phaazon/hop.nvim",
 	branch = "v2",
-	event = "VeryLazy",
 	config = function(_, opts)
 		require("hop").setup(opts)
 	end,

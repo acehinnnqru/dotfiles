@@ -1,6 +1,5 @@
 return {
 	"echasnovski/mini.comment",
-	event = "VeryLazy",
     keys = { "gc", "gcc" },
 	opts = {
 		hooks = {

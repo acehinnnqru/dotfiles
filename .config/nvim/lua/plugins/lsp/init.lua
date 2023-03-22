@@ -70,7 +70,7 @@ return {
 	-- lsp signiture
 	{
 		"ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
+        event = { "CursorHold", "InsertEnter" },
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			-- handlers

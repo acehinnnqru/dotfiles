@@ -6,6 +6,10 @@ return {
 			diagnostics = "nvim_lsp",
 			show_tab_indicators = false,
 			show_close_icon = false,
+			separator_style = {
+				"",
+				"",
+			},
 		},
 	},
 }

@@ -1,10 +1,10 @@
 return {
 	"mfussenegger/nvim-dap",
-	event = "VeryLazy",
+	lazy = true,
 	dependencies = {
-		{ "rcarriga/nvim-dap-ui", config = true },
-		{ "theHamsta/nvim-dap-virtual-text", config = true },
-		{ "jbyuki/one-small-step-for-vimkind" },
+		{ "rcarriga/nvim-dap-ui", lazy = true, config = true },
+		{ "theHamsta/nvim-dap-virtual-text", lazy = true, config = true },
+		{ "jbyuki/one-small-step-for-vimkind", lazy = true },
 		{ "williamboman/mason.nvim" },
 		{ "jay-babu/mason-nvim-dap.nvim", event = "VeryLazy", config = true, opts = { ensure_installed = {} } },
 	},

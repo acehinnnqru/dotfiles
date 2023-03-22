@@ -80,6 +80,9 @@ return {
 									augroup END
 								]])
 							end,
+							inlay_hint = {
+								auto = false,
+							},
 						},
 						server = {
 							settings = {

@@ -6,14 +6,14 @@ local configs = {}
 configs.color_scheme = "Catppuccin Macchiato"
 -- window padding
 configs.window_padding = {
-	left = 10,
-	right = 10,
-	top = 10,
-	bottom = 10,
+    left = '1cell',
+    right = '1cell',
+    top = '0.5cell',
+    bottom = '0.5cell',
 }
 
 -- opacity
-configs.window_background_opacity = 0.80
+configs.window_background_opacity = 0.70
 
 -- tab bar
 configs.window_decorations = "RESIZE"

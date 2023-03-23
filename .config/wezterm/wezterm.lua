@@ -13,7 +13,7 @@ configs.window_padding = {
 }
 
 -- opacity
-configs.window_background_opacity = 0.70
+configs.window_background_opacity = 0.75
 
 -- tab bar
 configs.window_decorations = "RESIZE"

@@ -12,22 +12,25 @@ return {
 		},
 		config = true,
 	},
+    {
+        "j-hui/fidget.nvim",
+        event = "VeryLazy",
+        priority  = 1000,
+        config = function()
+            require("fidget").setup({
+                window = {
+                    blend = 0,
+                },
+            })
+        end,
+    },
 	{
 		"neovim/nvim-lspconfig",
         event = "VeryLazy",
 		dependencies = {
 			{ "folke/neodev.nvim", event = "VeryLazy", opts = { experimental = { pathStrict = true } } },
 			"mason.nvim",
-			{
-				"j-hui/fidget.nvim",
-				config = function()
-					require("fidget").setup({
-						window = {
-							blend = 0,
-						},
-					})
-				end,
-			},
+			"j-hui/fidget.nvim",
 		},
 		opts = {
 			servers = {},

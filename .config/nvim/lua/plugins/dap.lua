@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
+    lazy = true,
 	dependencies = {
 		{ "rcarriga/nvim-dap-ui", lazy = true, config = true },
 		{ "theHamsta/nvim-dap-virtual-text", lazy = true, config = true },

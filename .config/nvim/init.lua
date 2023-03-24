@@ -29,3 +29,6 @@ require("lazy").setup(plugins, opts)
 
 -- init core
 require("au.core")
+
+-- key to call Lazy interface
+vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })

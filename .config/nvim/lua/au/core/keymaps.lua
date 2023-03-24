@@ -3,6 +3,11 @@ return {
     {"n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true }},
     {"n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }},
 
+    -- as we have set the clipboard to system clipboard,
+    --     but it is so annoying when x/X/<Del> will access the clipboard too.
+    {"n", "x", "\"_x", { noremap = true }},
+    {"n", "X", "\"_X", { noremap = true }},
+
     -- window navigation
     {"n", "<C-h>", "<C-w>h", { desc = "Go to left window" }},
     {"n", "<C-j>", "<C-w>j", { desc = "Go to lower window" }},

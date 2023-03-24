@@ -26,3 +26,6 @@ local lazy_options = {
 
 -- setup lazy
 require("lazy").setup(plugins, opts)
+
+-- init core
+require("au.core")

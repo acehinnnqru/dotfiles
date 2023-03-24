@@ -28,9 +28,34 @@ return {
     -- enable undofile
     undofile = true,
 
-    -- editor behaviors
+    --- editor behaviors
     joinspaces = false,
     writebackup = false,
+
+    -- updatetime(millisecond), usage:
+    -- 1. CursorHold event time count
+    -- 2. The save interval of the swap file
+    updatetime = 300,
+
+    -- indent
+    smartindent = true,
+    -- this is used for (un)indenting
+    shiftwidth = 4,
+    -- default tab equal space count
+    tabstop = 4,
+    -- default expand tab into spaces
+    expandtab = true,
+
+    -- shortmess (refer to :h shortmess)
+    shortmess = "atI",
+    showmode = false,
+
+    -- for command line completion
+    wildmode = "longest:full,full",
+
+    -- appearance
+    -- support true color
+    termguicolors = true,
 
     -- gutter options
     number = true,

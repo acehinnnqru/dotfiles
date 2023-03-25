@@ -1,3 +1,18 @@
+-- init core options and keymaps
+require("au.core")
+
+
+local env = require("au.env")
+
+-- only load core options and keymaps if in minimal mode.
+-- set minimal mode:
+--      1. write a file `local_env.lua` in ./lua/au/ and put `return {minimal=true}` in it.
+--      2. using an env variable, `NVIM_MINIMAL`, to open nvim like `NVIM_MINIMAL=1 nvim`
+if env.minimal then
+    return
+end
+
+
 -- install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -6,52 +21,51 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
         lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
 
-local env = require("au.env")
-
-local function get_lazy_spec(specs)
-    local s = {}
-    for k, v in ipairs(specs) do
-        s[k] = { import = v }
+-- determine plugins to load based on current environment.
+--      enviroment choices: nvim, vscode, gui
+local lazy_plugins = function()
+    local gen = function(specs)
+        local s = {}
+        for k, v in ipairs(specs) do
+            s[k] = { import = v }
+        end
+        return s
     end
-    return s
-end
 
-local lazy_specs = {}
-if env.minimal then
-    lazy_specs.spec = get_lazy_spec({ "au.plugins.minimal", })
-else
     local e = env.environment
+    local plugins = {}
     if e == "nvim" then
-        lazy_specs.spec = get_lazy_spec({ "au.plugins.minimal", "au.plugins.extends" })
+        plugins.spec = gen({ "au.plugins.minimal", "au.plugins.extends" })
     elseif e == "vscode" then
-        lazy_specs.spec = {}
+        plugins.spec = {}
     elseif e == "gui" then
-        lazy_specs.spec = {}
+        plugins.spec = {}
     end
+
+    return plugins
 end
 
-local lazy_options = {
-    install = {
-        missing = true,
-	    colorscheme = {},
-    },
-    change_detection = {
-        enabled = false,
-	    notify = false,
+local lazy_options = function()
+    return {
+        install = {
+            missing = true,
+            colorscheme = {},
+        },
+        change_detection = {
+            enabled = false,
+            notify = false,
+        }
     }
-}
-
--- init core
-require("au.core")
+end
 
 -- key to call Lazy interface
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- setup lazy
-require("lazy").setup(lazy_specs, lazy_options)
+require("lazy").setup(lazy_plugins(), lazy_options())

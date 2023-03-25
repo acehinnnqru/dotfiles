@@ -12,4 +12,11 @@ return {
 		event = "InsertEnter",
 		config = true,
     },
+
+    -- comment plugin
+    {
+		"echasnovski/mini.comment",
+		keys = { "gc", "gcc" },
+		config = true,
+    },
 }

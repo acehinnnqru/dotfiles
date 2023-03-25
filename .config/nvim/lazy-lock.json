@@ -5,5 +5,6 @@
   "lualine.nvim": { "branch": "master", "commit": "e99d733e0213ceb8f548ae6551b04ae32e590c80" },
   "nord.nvim": { "branch": "master", "commit": "be318c83a233cb877ba08faa15380a54241272b1" },
   "nvim-autopairs": { "branch": "master", "commit": "e755f366721bc9e189ddecd39554559045ac0a18" },
+  "nvim-surround": { "branch": "main", "commit": "056f69ed494198ff6ea0070cfc66997cfe0a6c8b" },
   "nvim-web-devicons": { "branch": "master", "commit": "95b1e300699be8eb6b5be1758a9d4d69fe93cc7f" }
 }

@@ -30,4 +30,11 @@ function M.set_keymaps(keymaps, opts)
   end
 end
 
+function M.set_g_opts(opts)
+    local g = vim.g
+    for k, v in pairs(opts) do
+        g[k] = v
+    end
+end
+
 return M

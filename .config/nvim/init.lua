@@ -30,6 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 -- determine plugins to load based on current environment.
 --      enviroment choices: nvim, vscode, gui
 local lazy_plugins = function()
+    -- generate specs
     local gen = function(specs)
         local s = {}
         for k, v in ipairs(specs) do

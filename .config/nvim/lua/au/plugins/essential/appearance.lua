@@ -39,7 +39,7 @@ return {
     -- status line
     {
         "nvim-lualine/lualine.nvim",
-        event = "UiEnter",
+        event = "VeryLazy",
         opts = function()
             local theme = require("lualine.themes.nord")
             theme.normal.c.bg = nil
@@ -60,14 +60,11 @@ return {
                     globalstatus = true,
                     component_separators = { left = "", right = "" },
                     section_separators = { left = "", right = "" },
-                    disabled_filetypes = {
-                        statusline = { "alpha", "lazy", "NeoTree" },
-                    }
                 },
                 sections = {
                     lualine_a = {},
                     lualine_b = {},
-                    lualine_c = { "filename", diff, "diagnostics" },
+                    lualine_c = { "filename", diff, diagnostics },
                     lualine_x = {},
                     lualine_y = {},
                     lualine_z = {},

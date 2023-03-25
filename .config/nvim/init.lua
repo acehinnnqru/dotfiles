@@ -39,14 +39,12 @@ local lazy_plugin_specs = function()
         return s
     end
 
-    local e = env.environment
+    local pm = env.plugin_mode
     local specs = {}
-    if e == "nvim" then
+    if pm == "essential" then
+        specs = gen({ "au.plugins.essential" })
+    elseif pm == "pro" then
         specs = gen({ "au.plugins.essential", "au.plugins.pro" })
-    elseif e == "vscode" then
-        specs = {}
-    elseif e == "gui" then
-        specs = {}
     end
 
     return specs

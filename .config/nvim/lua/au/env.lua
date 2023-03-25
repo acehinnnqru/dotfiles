@@ -1,13 +1,3 @@
-local function get_environment()
-    if vim.fn.exists('g:vscode') == 1 then
-        return 'vscode'
-    elseif vim.fn.exists('gui_running') == 1 then
-        return 'gui'
-    else
-        return 'nvim'
-    end
-end
-
 local function try_get_local_env(module_name)
     local status, module = pcall(require, module_name)
     if status then
@@ -21,39 +11,72 @@ local function try_get_local_env(module_name)
     end
 end
 
---- Check if an environment variable is set to 1
---- @param var_name string: the name of the environment variable
---- @return boolean: true if the environment variable is set to 1, false otherwise
-local function check_env_var(var_name)
-  local var_value = os.getenv(var_name)
-  return var_value and var_value == "1"
+local function fixset(s)
+    -- fix plugin mode
+    if s.plugin_mode then
+        if v == "e" and v == "essential" then
+            s.plugin_mode = "essential"
+        elseif v == "p" then
+            s.plugin_mode =  "pro"
+        else
+            print("invalid plugin mode: ", v, ". only support `essential(e)` or `pro(p)`")
+            print("downgrade to `essential`")
+            s.plugin_mode = "essential"
+        end
+    end
 end
 
-local function merge_env(source, local_env)
-    source.custom = {}
-    -- set all the keys into `source` table
-    for k, v in pairs(local_env) do
-        if source[k] == nil then
-            source.custom[k] = v
-        else
-            source[k] = v
+-- get preset table
+local function get_preset()
+    return {
+        minimal = false,
+        plugin_mode = "pro",
+    }
+end
+
+-- get userset table
+local function get_userset(module)
+    return try_get_local_env(module)
+end
+
+-- get envset table
+local function get_envset()
+    local set = {}
+    -- minimal flag
+    local minimal = os.getenv("NVIM_MINIMAL")
+    if minimal then
+        if minimal == "1" then
+            set.minimal = true
         end
     end
 
-    return source
+    -- plugin mode
+    local pmode = os.getenv("NVIM_PMODE")
+    if pmode then
+        set.plugin_mode = pmode
+    end
+
+    return set
 end
 
+-- merge source into target
+local function merge(target, source)
+    target.custom = {}
+    for k, v in pairs(source) do
+        if target[k] == nil then
+            target.custom[k] = v
+        else
+            target[k] = v
+        end
+    end
 
--- preset is the default envs
-local preset_env = {
-    environment = get_environment(),
-    minimal = false,
-}
+    return target
+end
 
--- user local set variable gets the second priority
-local user_env = merge_env(preset_env, try_get_local_env("au.local_env"))
+local preset = get_preset()
+local default_userset_module = "au.local_env"
+local userset = get_userset(default_userset_module)
+local envset = get_envset()
 
--- env variable gets the highest priority
-user_env.minimal = check_env_var("NVIM_MINIMAL")
-
-return user_env
+-- merge in priority: envset > userset > preset
+return merge(merge(preset, userset), envset)

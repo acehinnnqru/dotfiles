@@ -35,4 +35,29 @@ return {
 			alpha.setup(dashboard.opts)
 		end,
 	},
+
+    -- status line
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "UiEnter",
+        opts = {
+            options = {
+                theme = "nord",
+                globalstatus = true,
+                component_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
+                disabled_filetypes = {
+                    statusline = { "alpha", "lazy", },
+                }
+            },
+            sections = {
+                lualine_a = {},
+                lualine_b = { "filename", },
+                lualine_c = { "diff", "diagnostics" },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {},
+            }
+        }
+    }
 }

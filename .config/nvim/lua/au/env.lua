@@ -13,18 +13,21 @@ local function try_get_local_env(module_name)
     if status then
         if type(module) == 'table' then
             return module
+        else
+            return {}
         end
     else
         return {}
     end
-
-    return {}
 end
 
-local basic_env = {
-    environment = get_environment(),
-    minimal = false,
-}
+--- Check if an environment variable is set to 1
+--- @param var_name string: the name of the environment variable
+--- @return boolean: true if the environment variable is set to 1, false otherwise
+local function check_env_var(var_name)
+  local var_value = os.getenv(var_name)
+  return var_value and var_value == "1"
+end
 
 local function merge_env(source, local_env)
     source.custom = {}
@@ -40,4 +43,16 @@ local function merge_env(source, local_env)
     return source
 end
 
-return merge_env(basic_env, try_get_local_env("au.local_env"))
+-- preset is the default envs
+local preset_env = {
+    environment = get_environment(),
+    minimal = false,
+}
+
+-- user local set variable gets the second priority
+local user_env = merge_env(preset_env, try_get_local_env("au.local_env"))
+
+-- env variable gets the highest priority
+user_env.minimal = check_env_var("NVIM_MINIMAL")
+
+return user_env

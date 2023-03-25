@@ -2,8 +2,6 @@ local wezterm = require("wezterm")
 local configs = {}
 
 -- appearance options
--- color_scheme
-configs.color_scheme = "Catppuccin Macchiato"
 -- window padding
 configs.window_padding = {
     left = '1cell',
@@ -13,7 +11,7 @@ configs.window_padding = {
 }
 
 -- opacity
-configs.window_background_opacity = 0.60
+configs.window_background_opacity = 0.80
 
 -- tab bar
 configs.window_decorations = "RESIZE"

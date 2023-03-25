@@ -40,24 +40,39 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         event = "UiEnter",
-        opts = {
-            options = {
-                theme = "nord",
-                globalstatus = true,
-                component_separators = { left = "", right = "" },
-                section_separators = { left = "", right = "" },
-                disabled_filetypes = {
-                    statusline = { "alpha", "lazy", },
-                }
-            },
-            sections = {
-                lualine_a = {},
-                lualine_b = { "filename", },
-                lualine_c = { "diff", "diagnostics" },
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {},
+        opts = function()
+            local theme = require("lualine.themes.nord")
+            theme.normal.c.bg = nil
+            local diff = {
+                "diff",
+                colored = true,
+                always_visible = false,
             }
-        }
+            local diagnostics = {
+                "diagnostics",
+                colored = true,
+                update_in_insert = false,
+                always_visible = false,
+            }
+            return {
+                options = {
+                    theme = theme,
+                    globalstatus = true,
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                    disabled_filetypes = {
+                        statusline = { "alpha", "lazy", "NeoTree" },
+                    }
+                },
+                sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "filename", diff, "diagnostics" },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
+                }
+            }
+        end
     }
 }

@@ -29,7 +29,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- determine plugins to load based on current environment.
 --      enviroment choices: nvim, vscode, gui
-local lazy_plugins = function()
+local lazy_plugin_specs = function()
     -- generate specs
     local gen = function(specs)
         local s = {}
@@ -40,20 +40,21 @@ local lazy_plugins = function()
     end
 
     local e = env.environment
-    local plugins = {}
+    local specs = {}
     if e == "nvim" then
-        plugins.spec = gen({ "au.plugins.minimal", "au.plugins.extends" })
+        specs = gen({ "au.plugins.essential", "au.plugins.pro" })
     elseif e == "vscode" then
-        plugins.spec = {}
+        specs = {}
     elseif e == "gui" then
-        plugins.spec = {}
+        specs = {}
     end
 
-    return plugins
+    return specs
 end
 
 local lazy_options = function()
     return {
+        spec = lazy_plugin_specs(),
         install = {
             missing = true,
             colorscheme = {},
@@ -69,4 +70,4 @@ end
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- setup lazy
-require("lazy").setup(lazy_plugins(), lazy_options())
+require("lazy").setup(lazy_options())

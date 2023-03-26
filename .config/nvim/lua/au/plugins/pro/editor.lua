@@ -18,21 +18,34 @@ return {
 		"kevinhwang91/nvim-ufo",
 		event = "VeryLazy",
 		dependencies = { "kevinhwang91/promise-async" },
-		opts = {
-			open_fold_hl_timeout = 0,
-			provider_selector = function(_, _, _)
-                return { "indent" }
-			end,
-		},
-		config = function(_, opts)
+        init = function()
 			vim.o.foldcolumn = "0"
 
 			-- using ufo provider need a large value, feel free to decrease the value
 			vim.o.foldlevel = 99
 			vim.o.foldlevelstart = 99
 			vim.o.foldenable = true
+        end,
+		opts = {
+			open_fold_hl_timeout = 0,
+			provider_selector = function(_, _, _)
+                return { "indent" }
+			end,
+		},
+		config =true,
+    },
 
-			require("ufo").setup(opts)
+    {
+		"rmagatti/auto-session",
+        lazy = false,
+		init = function()
+			vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 		end,
-	},
+        opts = {
+            log_level = "error",
+            auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+            pre_save_cmds = {},
+        },
+		config = true,
+    },
 }

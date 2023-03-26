@@ -6,6 +6,9 @@ return {
     -- unix
     clipboard = "unnamedplus",
 
+    -- set conceal level
+    conceallevel = 0,
+
     -- search options
     hlsearch = true,
     ignorecase = true,

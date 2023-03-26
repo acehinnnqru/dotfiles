@@ -1,6 +1,7 @@
 --- this module contains some enhanced tools that will boost your workflow.
 -- including telescope, tree-sitter and stuff.
 
+-- telescope cmd wrapping
 local telescope = function(builtin, opts)
 	local params = { builtin = builtin, opts = opts }
 	return function()
@@ -47,7 +48,7 @@ return {
 			{ "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
 			{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
 
-            -- find
+            -- search
 			{ "<leader>sf", telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
 			{ "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
 			{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Grep in Buffer" },
@@ -70,6 +71,12 @@ return {
 				}),
 				desc = "Goto Symbol",
 			},
+            { "<leader>sq", "<cmd>Telescope quickfixhistory", desc = "quickfix history" },
+
+            -- git
+            { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Git Commits" },
+            { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
+            { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status" },
 
             -- help
 			{ "<leader>ha", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
@@ -84,11 +91,10 @@ return {
 		opts = {
 			extensions = {
 				fzf = {
-					fuzzy = true, -- false will only do exact matching
-					override_generic_sorter = true, -- override the generic sorter
-					override_file_sorter = true, -- override the file sorter
-					-- the default case_mode is "smart_case"
-					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
 				},
 			},
 			defaults = {},

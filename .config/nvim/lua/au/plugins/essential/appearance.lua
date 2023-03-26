@@ -36,9 +36,29 @@ return {
 		end,
 	},
 
+    -- color scheme
+    {
+        "shaunsingh/nord.nvim",
+        event = "VeryLazy",
+        config = function(opts)
+            require("au.utils").set_g_opts(
+                {
+                    nord_contrast = false,
+                    nord_borders = false,
+                    nord_disable_background = true,
+                    nord_italic = true,
+                    nord_uniform_diff_background = true,
+                    nord_bold = true,
+                }
+            )
+            require('nord').set()
+        end
+    },
+
     -- status line
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = { "shaunsingh/nord.nvim" },
         event = "VeryLazy",
         opts = function()
             local theme = require("lualine.themes.nord")

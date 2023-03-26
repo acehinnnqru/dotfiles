@@ -34,6 +34,7 @@ return {
 		config =true,
     },
 
+    -- session using for store work status
     {
 		"rmagatti/auto-session",
         lazy = false,
@@ -47,4 +48,32 @@ return {
         },
 		config = true,
     },
+
+    -- todo comments
+    -- keywords: TODO/FIXME/PERF/NOTE/TEST
+    -- usage: using `{keyword}: {text}`
+    {
+		"folke/todo-comments.nvim",
+        event = "VeryLazy",
+		cmd = { "TodoQuickFix", "TodoTelescope" },
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next todo comment",
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Previous todo comment",
+			},
+			{ "<leader>xt", "<cmd>TodoQuickFix<cr>", desc = "Todo Trouble" },
+			{ "<leader>xT", "<cmd>TodoTelescope<cr>", desc = "Todo Telescope" },
+		},
+		config = true,
+	},
 }

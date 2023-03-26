@@ -176,6 +176,7 @@ return {
 
     {
         "stevearc/aerial.nvim",
+        dependencies = { "neovim/nvim-lspconfig", "nvim-treesitter/nvim-treesitter" },
         lazy = true,
         cmd = { "AerialToggle", "AerialClose", "AerialCloseAll" },
         opts = {
@@ -185,7 +186,7 @@ return {
             end
         },
         keys = {
-            { "<leader>ta", "<cmd>AerialToggle<cr>", desc = "Toggle Aerial Window" }
+            { "<leader>co", "<cmd>AerialToggle<cr>", desc = "Toggle Aerial(Code Outline) Window " }
         }
     }
 }

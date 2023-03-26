@@ -85,5 +85,8 @@ return {
 				},
 			},
 		},
+        config = function()
+            vim.cmd("highlight! NeoTreeTitleBar guibg=#89b3b3")
+        end
 	},
 }

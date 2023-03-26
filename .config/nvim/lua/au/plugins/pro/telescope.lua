@@ -1,6 +1,3 @@
---- this module contains some enhanced tools that will boost your workflow.
--- including telescope, tree-sitter and stuff.
-
 -- telescope cmd wrapping
 local telescope = function(builtin, opts)
 	local params = { builtin = builtin, opts = opts }
@@ -35,6 +32,7 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		build = "make",
 	},
+
     -- telescope
     {
 		"nvim-telescope/telescope.nvim",

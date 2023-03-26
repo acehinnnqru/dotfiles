@@ -43,7 +43,7 @@ return {
 		end,
         opts = {
             log_level = "error",
-            auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+            auto_session_suppress_dirs = { "~/", "/" },
             pre_save_cmds = {
                 -- close all neo-tree window before saving session
                 function() require("neo-tree.sources.manager").close_all() end,
@@ -52,6 +52,10 @@ return {
             },
         },
 		config = true,
+        keys = {
+            { "<leader>qs", "<cmd>SaveSession<cr>", desc = "Save Session" },
+            { "<leader>qd", "<cmd>DeleteSession<cr>", desc = "Delete Session" },
+        },
     },
 
     -- todo comments
@@ -76,8 +80,8 @@ return {
 				end,
 				desc = "Previous todo comment",
 			},
-			{ "<leader>xt", "<cmd>TodoQuickFix<cr>", desc = "Todo Trouble" },
-			{ "<leader>xT", "<cmd>TodoTelescope<cr>", desc = "Todo Telescope" },
+			{ "<leader>xt", "<cmd>TodoQuickFix<cr>", desc = "Todo QuickFix" },
+			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Todo Telescope" },
 		},
 		config = true,
 	},
@@ -110,5 +114,39 @@ return {
                 }, { buffer = buffer })
 			end,
 		},
+	},
+
+    -- which key
+    {
+		"folke/which-key.nvim",
+		lazy = true,
+		keys = { "<leader>" },
+		opts = {
+			plugins = { spelling = true },
+			key_labels = { ["<leader>"] = "SPC" },
+		},
+		config = function(_, opts)
+			local wk = require("which-key")
+			wk.setup(opts)
+			wk.register({
+				mode = { "n", "v" },
+				["]"] = { name = "+next" },
+				["["] = { name = "+prev" },
+				["<leader>b"] = { name = "+buffer" },
+				["<leader>c"] = { name = "+code" },
+				["<leader>f"] = { name = "+find" },
+				["<leader>g"] = { name = "+git" },
+				["<leader>gh"] = { name = "+hunk" },
+				["<leader>h"] = { name = "+help" },
+				["<leader>j"] = { name = "+jump" },
+				["<leader>q"] = { name = "+quit/session" },
+				["<leader>r"] = { name = "+restart/reload" },
+				["<leader>t"] = { name = "+toggle" },
+				["<leader>x"] = { name = "+quickfix" },
+				["<leader>w"] = { name = "+windows" },
+				["<leader>d"] = { name = "+debug" },
+				["<leader>dv"] = { name = "+views" },
+			})
+		end,
 	},
 }

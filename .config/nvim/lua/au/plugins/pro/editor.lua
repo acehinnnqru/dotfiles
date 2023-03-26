@@ -83,9 +83,6 @@ return {
 		event = "VeryLazy",
 		opts = {
 			current_line_blame = true,
-			current_line_blame_opts = {
-				delay = 100,
-			},
 			on_attach = function(buffer)
 				local gs = package.loaded.gitsigns
                 require("au.utils").set_keymaps({

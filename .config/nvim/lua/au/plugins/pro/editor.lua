@@ -114,6 +114,10 @@ return {
                 }, { buffer = buffer })
 			end,
 		},
+        config = function(_, opts)
+            vim.cmd("highlight! GitSignsCurrentLineBlame gui=italic")
+            require("gitsigns").setup(opts)
+        end
 	},
 
     -- which key

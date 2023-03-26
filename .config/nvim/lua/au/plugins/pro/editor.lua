@@ -2,7 +2,6 @@ return {
     -- quick jump everywhere
     {
 		"phaazon/hop.nvim",
-        lazy = false,
 		branch = "v2",
 		config = true,
         keys = {

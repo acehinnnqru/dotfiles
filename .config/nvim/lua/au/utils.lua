@@ -84,11 +84,6 @@ function M.get_root()
 	return root
 end
 
----@param plugin string
-function M.has_plugin(plugin)
-  return require("lazy.core.config").plugins[plugin] ~= nil
-end
-
 function M.lsp_on_attach(on_attach)
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)

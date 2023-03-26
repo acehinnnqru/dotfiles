@@ -7,6 +7,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+            "L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"f3fora/cmp-spell",
@@ -18,10 +19,8 @@ return {
             local utils = require("au.utils")
 
 			-- autopairs setup
-            if utils.has_plugin("nvim-autopairs") then
-                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-                cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-            end
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			-- command line completion
 			cmp.setup.cmdline({ "/", "?" }, {
@@ -111,6 +110,24 @@ return {
 				},
 			}
 		end,
+	},
+
+    -- lua snip
+    {
+		"L3MON4D3/LuaSnip",
+		event = "InsertEnter",
+		dependencies = {
+            {
+                "rafamadriz/friendly-snippets",
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+                end,
+            }
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
 	},
 
     -- copilot support

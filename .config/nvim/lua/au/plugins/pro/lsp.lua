@@ -89,6 +89,8 @@ return {
             -- bridge between mason and lspconfig
 			"williamboman/mason-lspconfig.nvim",
 			"j-hui/fidget.nvim",
+            "jose-elias-alvarez/null-ls.nvim",
+            "jay-babu/mason-null-ls.nvim",
 		},
 		opts = {
 			servers = {},
@@ -150,6 +152,26 @@ return {
 				end
 			end
 		end,
+	},
+
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+        event = "VeryLazy",
+		opts = {
+            sources = {},
+        },
+	},
+
+    {
+		"jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
+		dependencies = {
+			"jose-elias-alvarez/null-ls.nvim",
+			"williamboman/mason.nvim",
+		},
+		opts = {
+            ensure_installed = {},
+        },
 	},
 
     -- show lsp progress

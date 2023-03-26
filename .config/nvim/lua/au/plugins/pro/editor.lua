@@ -44,7 +44,12 @@ return {
         opts = {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-            pre_save_cmds = {},
+            pre_save_cmds = {
+                -- close all neo-tree window before saving session
+                function() require("neo-tree.sources.manager").close_all() end,
+                -- close all quickfix window before saving session
+                function() vim.cmd("cclose") end,
+            },
         },
 		config = true,
     },

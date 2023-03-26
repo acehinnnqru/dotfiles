@@ -45,20 +45,12 @@ return {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "/" },
             pre_save_cmds = {
-                -- close all some plugins before saving session
-                function()
-                    local has = require("au.utils").has_plugin
-                    -- close neo-tree
-                    if has("neo-tree") then
-                        require("neo-tree.sources.manager").close_all()
-                    end
-                    -- close arial
-                    if has("aerial") then 
-                        vim.cmd("AerialCloseAll")
-                    end
-                end,
+                -- close some plugins before saving session
+                -- close neo-tree
+                function() require("neo-tree.sources.manager").close_all() end,
                 -- close all quickfix window before saving session
                 function() vim.cmd("cclose") end,
+                function() vim.cmd("AerialCloseAll") end,
             },
         },
 		config = true,

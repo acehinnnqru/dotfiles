@@ -37,20 +37,22 @@ return {
 	},
 
     -- color scheme
+    -- this should setup at first
     {
         "shaunsingh/nord.nvim",
-        event = "VeryLazy",
+        lazy = false,
+        priority = 1000,
+        init = function()
+            require("au.utils").set_g_opts({
+                nord_contrast = false,
+                nord_borders = false,
+                nord_disable_background = true,
+                nord_italic = true,
+                nord_uniform_diff_background = true,
+                nord_bold = true,
+            })
+        end,
         config = function(opts)
-            require("au.utils").set_g_opts(
-                {
-                    nord_contrast = false,
-                    nord_borders = false,
-                    nord_disable_background = true,
-                    nord_italic = true,
-                    nord_uniform_diff_background = true,
-                    nord_bold = true,
-                }
-            )
             require('nord').set()
         end
     },
@@ -58,7 +60,6 @@ return {
     -- status line
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "shaunsingh/nord.nvim" },
         event = "VeryLazy",
         opts = function()
             local theme = require("lualine.themes.nord")

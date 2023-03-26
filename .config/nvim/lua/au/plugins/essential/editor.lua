@@ -16,8 +16,11 @@ return {
     -- comment plugin
     {
 		"echasnovski/mini.comment",
-		keys = { "gc", "gcc" },
-		config = true,
+        event = "VeryLazy",
+        version = false,
+		config = function(_, opts)
+            require("mini.comment").setup(opts)
+        end
     },
 
     -- indent

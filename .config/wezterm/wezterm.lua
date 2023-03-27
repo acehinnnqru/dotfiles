@@ -3,7 +3,7 @@ local configs = {}
 
 -- appearance options
 -- color scheme
-configs.color_scheme = "nord"
+configs.color_scheme = "nordfox"
 -- window padding
 configs.window_padding = {
     left = '1cell',
@@ -13,7 +13,7 @@ configs.window_padding = {
 }
 
 -- opacity
-configs.window_background_opacity = 0.93
+configs.window_background_opacity = 0.95
 
 -- tab bar
 configs.window_decorations = "RESIZE"

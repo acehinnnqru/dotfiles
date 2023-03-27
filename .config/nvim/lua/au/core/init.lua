@@ -9,4 +9,3 @@ local utils = require("au.utils")
 utils.set_vim_opts(require("au.core.options"))
 -- set core keymaps
 utils.set_keymaps(require("au.core.keymaps"))
-

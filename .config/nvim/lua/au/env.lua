@@ -1,7 +1,7 @@
 local function try_get_local_env(module_name)
     local status, module = pcall(require, module_name)
     if status then
-        if type(module) == 'table' then
+        if type(module) == "table" then
             return module
         else
             return {}
@@ -17,7 +17,7 @@ local function fixset(s)
         if v == "e" and v == "essential" then
             s.plugin_mode = "essential"
         elseif v == "p" then
-            s.plugin_mode =  "pro"
+            s.plugin_mode = "pro"
         else
             print("invalid plugin mode: ", v, ". only support `essential(e)` or `pro(p)`")
             print("downgrade to `essential`")

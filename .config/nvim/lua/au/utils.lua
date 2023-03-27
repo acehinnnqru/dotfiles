@@ -17,17 +17,17 @@ local keymap_set = vim.keymap.set
 -- @usage set_keymaps({{'n', '<leader>f', ':Telescope find_files<CR>'}, {'n', '<leader>g', ':Telescope live_grep<CR>'}}, {noremap=true, silent=true})
 --
 function M.set_keymaps(keymaps, opts)
-  for _, map in ipairs(keymaps) do
-    local mode, lhs, rhs, options
-    if #map == 3 then
-      mode, lhs, rhs = unpack(map)
-    elseif #map == 4 then
-      mode, lhs, rhs, options = unpack(map)
-    else
-      error("Invalid keymap: " .. vim.inspect(map))
+    for _, map in ipairs(keymaps) do
+        local mode, lhs, rhs, options
+        if #map == 3 then
+            mode, lhs, rhs = unpack(map)
+        elseif #map == 4 then
+            mode, lhs, rhs, options = unpack(map)
+        else
+            error("Invalid keymap: " .. vim.inspect(map))
+        end
+        keymap_set(mode, lhs, rhs, vim.tbl_extend("force", options or {}, opts or {}))
     end
-    keymap_set(mode, lhs, rhs, vim.tbl_extend("force", options or {}, opts or {}))
-  end
 end
 
 function M.set_g_opts(opts)
@@ -37,7 +37,7 @@ function M.set_g_opts(opts)
     end
 end
 
-M.root_patterns = { ".git", "lua" }
+M.root_patterns = { ".git" }
 
 -- returns the root directory based on:
 -- * lsp workspace folders
@@ -47,57 +47,57 @@ M.root_patterns = { ".git", "lua" }
 ---@return string
 function M.get_root()
     ---@type string?
-	local path = vim.api.nvim_buf_get_name(0)
-	path = path ~= "" and vim.loop.fs_realpath(path) or nil
-	---@type string[]
-	local roots = {}
-	if path then
-		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-			local workspace = client.config.workspace_folders
-			local paths = workspace
-					and vim.tbl_map(function(ws)
-						return vim.uri_to_fname(ws.uri)
-					end, workspace)
-				or client.config.root_dir and { client.config.root_dir }
-				or {}
-			for _, p in ipairs(paths) do
-				local r = vim.loop.fs_realpath(p)
-				if path:find(r, 1, true) then
-					roots[#roots + 1] = r
-				end
-			end
-		end
-	end
+    local path = vim.api.nvim_buf_get_name(0)
+    path = path ~= "" and vim.loop.fs_realpath(path) or nil
+    ---@type string[]
+    local roots = {}
+    if path then
+        for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+            local workspace = client.config.workspace_folders
+            local paths = workspace
+                    and vim.tbl_map(function(ws)
+                        return vim.uri_to_fname(ws.uri)
+                    end, workspace)
+                or client.config.root_dir and { client.config.root_dir }
+                or {}
+            for _, p in ipairs(paths) do
+                local r = vim.loop.fs_realpath(p)
+                if path:find(r, 1, true) then
+                    roots[#roots + 1] = r
+                end
+            end
+        end
+    end
     -- sort by length
-	table.sort(roots, function(a, b)
-		return #a > #b
-	end)
-	---@type string?
-	local root = roots[1]
-	if not root then
-		path = path and vim.fs.dirname(path) or vim.loop.cwd()
-		---@type string?
-		root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
-		root = root and vim.fs.dirname(root) or vim.loop.cwd()
-	end
-	---@cast root string
-	return root
+    table.sort(roots, function(a, b)
+        return #a > #b
+    end)
+    ---@type string?
+    local root = roots[1]
+    if not root then
+        path = path and vim.fs.dirname(path) or vim.loop.cwd()
+        ---@type string?
+        root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
+        root = root and vim.fs.dirname(root) or vim.loop.cwd()
+    end
+    ---@cast root string
+    return root
 end
 
 function M.lsp_on_attach(on_attach)
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function(args)
-			local buffer = args.buf
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			on_attach(client, buffer)
-		end,
-	})
+    vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+            local buffer = args.buf
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            on_attach(client, buffer)
+        end,
+    })
 end
 
 function M.has_words_before()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 return M

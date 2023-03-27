@@ -1,7 +1,6 @@
 -- init core options and keymaps
 require("au.core")
 
-
 local env = require("au.env")
 
 -- only load core options and keymaps if in minimal mode.
@@ -11,7 +10,6 @@ local env = require("au.env")
 if env.minimal then
     return
 end
-
 
 -- install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -44,7 +42,7 @@ local lazy_plugin_specs = function()
     if pm == "essential" then
         specs = gen({ "au.plugins.essential" })
     elseif pm == "pro" then
-        specs = gen({ "au.plugins.essential", "au.plugins.pro" })
+        specs = gen({ "au.plugins.essential", "au.plugins.pro", "au.plugins.langs" })
     end
 
     return specs
@@ -60,7 +58,7 @@ local lazy_options = function()
         change_detection = {
             enabled = false,
             notify = false,
-        }
+        },
     }
 end
 

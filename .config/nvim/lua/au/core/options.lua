@@ -63,4 +63,7 @@ return {
     -- gutter options
     number = true,
     relativenumber = true,
+
+    -- show signcolumn
+    signcolumn = "yes",
 }

@@ -29,7 +29,7 @@
   "mini.comment": { "branch": "main", "commit": "f045998636c6fd746297220b8c692bf1e91568cb" },
   "neo-tree.nvim": { "branch": "v2.x", "commit": "20c2f2f5ba083bbb1e37b8bc3d590621434f31e9" },
   "neodev.nvim": { "branch": "main", "commit": "7330427f9f71ac5aaa2d1a4c22ccd3914434e289" },
-  "nord.nvim": { "branch": "master", "commit": "fab04b2dd4b64f4b1763b9250a8824d0b5194b8f" },
+  "nightfox.nvim": { "branch": "main", "commit": "4b73c9d0995eb1a43e284534b97a543ca21c5c77" },
   "nui.nvim": { "branch": "main", "commit": "0dc148c6ec06577fcf06cbab3b7dac96d48ba6be" },
   "null-ls.nvim": { "branch": "main", "commit": "0180603b6f3cee40f83c6fc226b9ac5f85e691c4" },
   "nvim-autopairs": { "branch": "master", "commit": "e755f366721bc9e189ddecd39554559045ac0a18" },

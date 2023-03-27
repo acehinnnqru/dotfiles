@@ -50,6 +50,7 @@ end
 
 local lazy_options = function()
     return {
+        lazy = true,
         spec = lazy_plugin_specs(),
         install = {
             missing = true,

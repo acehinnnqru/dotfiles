@@ -78,5 +78,8 @@ local default_userset_module = "au.local_env"
 local userset = get_userset(default_userset_module)
 local envset = get_envset()
 
+fixset(userset)
+fixset(envset)
+
 -- merge in priority: envset > userset > preset
 return merge(merge(preset, userset), envset)

@@ -86,7 +86,6 @@ return {
             },
         },
         config = function(_, opts)
-            vim.cmd("highlight! NeoTreeTitleBar guibg=#89b3b3")
             require("neo-tree").setup(opts)
         end,
     },

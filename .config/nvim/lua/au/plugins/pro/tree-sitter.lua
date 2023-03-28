@@ -77,7 +77,7 @@ return {
                 opts = {}
             end
             if opts.provider_selector then
-                table.extend(opts.provider_selector, "treesitter")
+                table.insert(opts.provider_selector, "treesitter")
             end
 
             return opts

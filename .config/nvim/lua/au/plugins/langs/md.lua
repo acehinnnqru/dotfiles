@@ -20,18 +20,6 @@ return {
         },
     },
 
-    {
-        "rmagatti/auto-session",
-        opts = function(_, opts)
-            if opts.pre_save_cmds then
-                table.insert(opts.pre_save_cmds, function()
-                    vim.cmd("MarkdownPreviewStop")
-                end)
-            end
-            return opts
-        end,
-    },
-
     -- modified treesitter config
     {
         "nvim-treesitter/nvim-treesitter",

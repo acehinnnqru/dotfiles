@@ -13,7 +13,8 @@ end
 
 local function fixset(s)
     -- fix plugin mode
-    if s.plugin_mode then
+    local v = s.plugin_mode
+    if v then
         if v == "e" and v == "essential" then
             s.plugin_mode = "essential"
         elseif v == "p" then

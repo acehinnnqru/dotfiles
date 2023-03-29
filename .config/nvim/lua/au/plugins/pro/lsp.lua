@@ -20,15 +20,15 @@ function KM.on_attach(client, buffer)
     local self = KM.new(client, buffer)
 
     -- code cmds
-    self:map("<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+    self:map("<leader>cd", "lua vim.diagnostic.open_float()", { desc = "Line Diagnostics" })
     self:map("<leader>cl", "LspInfo", { desc = "Lsp Info" })
     self:map("<leader>ca", "CodeActionMenu", { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
     self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
     self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
-    self:map("<leader>cr", vim.lsp.buf.rename, { desc = "Rename", has = "rename" })
+    self:map("<leader>cr", "lua vim.lsp.buf.rename()", { desc = "Rename", has = "rename" })
 
     -- diagnostic
-    self:map("<leader>xx", vim.diagnostic.setqflist, { desc = "View Diagnostics in quickfix" })
+    self:map("<leader>xx", "lua vim.diagnostic.setqflist()", { desc = "View Diagnostics in quickfix" })
     self:map("]d", KM.diagnostic_goto(true), { desc = "Next Diagnostic" })
     self:map("[d", KM.diagnostic_goto(false), { desc = "Prev Diagnostic" })
     self:map("]e", KM.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -43,8 +43,8 @@ function KM.on_attach(client, buffer)
     self:map("gI", "lua vim.lsp.buf.implementation()", { desc = "Goto Implementation" })
     self:map("gT", "lua vim.lsp.buf.type_definition()", { desc = "Goto Type Definition" })
 
-    self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
-    self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
+    self:map("K", "lua vim.lsp.buf.hover()", { desc = "Hover" })
+    self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help", has = "signatureHelp" })
 
     self:map("<leader>rl", "LspRestart", { desc = "Restart Lsp", mode = { "n" } })
 end
@@ -141,7 +141,6 @@ return {
         opts = {
             ensure_installed = {},
         },
-        ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(_, opts)
             require("mason").setup(opts)
             local mr = require("mason-registry")
@@ -201,6 +200,26 @@ return {
             require("fidget").setup(opts)
         end,
     },
+
+    -- lsp signiture
+	{
+		"ray-x/lsp_signature.nvim",
+        event = { "CursorHold", "InsertEnter" },
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			-- handlers
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+			vim.lsp.handlers["textDocument/signatureHelp"] =
+				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
+			-- lsp signature configs
+			local signature_config = {
+				bind = true,
+				handler_opts = { border = "rounded" },
+			}
+			require("lsp_signature").setup(signature_config)
+		end,
+	},
 
     -- code actions enhanced
     {

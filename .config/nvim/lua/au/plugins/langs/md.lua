@@ -1,11 +1,5 @@
 return {
     {
-        "lukas-reineke/headlines.nvim",
-        ft = "markdown",
-        config = true,
-    },
-
-    {
         "iamcco/markdown-preview.nvim",
         build = function()
             vim.fn["mkdp#util#install"]()

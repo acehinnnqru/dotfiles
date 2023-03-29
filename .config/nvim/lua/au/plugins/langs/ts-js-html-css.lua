@@ -47,7 +47,7 @@ return {
             },
             setup = {
                 tsserver = function(_, opts)
-                    require("plugins.lsp.apis").on_attach(function(client, _)
+                    require("au.utils").lsp_on_attach(function(client, _)
                         if client.name == "tsserver" then
                             client.server_capabilities.documentFormattingProvider = false
                             client.server_capabilities.documentRangeFormattingProvider = false

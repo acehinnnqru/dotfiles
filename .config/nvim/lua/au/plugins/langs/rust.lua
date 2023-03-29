@@ -22,7 +22,6 @@ return {
     -- modified treesitter config
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "VeryLazy",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, { "rust", "ron", "toml" })
         end,

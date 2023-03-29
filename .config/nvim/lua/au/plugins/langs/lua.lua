@@ -22,7 +22,6 @@ return {
 
     {
         "jose-elias-alvarez/null-ls.nvim",
-        event = "VeryLazy",
         opts = function(_, opts)
             local nls = require("null-ls")
             table.insert(opts.sources, nls.builtins.formatting.stylua)

@@ -37,7 +37,7 @@ function KM.on_attach(client, buffer)
     self:map("[w", KM.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
 
     -- goto
-    self:map("gd", "lua vim.lsp.buf.definition()", { desc = "Goto Definition" })
+    self:map("gd", KM.definition_goto(), { desc = "Goto Definition" })
     self:map("gr", "lua vim.lsp.buf.references()", { desc = "References" })
     self:map("gD", "lua vim.lsp.buf.declaration()", { desc = "Goto Declaration" })
     self:map("gI", "lua vim.lsp.buf.implementation()", { desc = "Goto Implementation" })
@@ -69,6 +69,16 @@ function KM:map(lhs, rhs, opts)
         ---@diagnostic disable-next-line: no-unknown
         { silent = true, buffer = self.buffer, expr = opts.expr, desc = opts.desc }
     )
+end
+
+function KM.definition_goto()
+    local function on_list(options)
+      vim.fn.setqflist({}, ' ', options)
+      vim.api.nvim_command('cfirst')
+    end
+    return function ()
+        vim.lsp.buf.definition({ on_list = on_list })
+    end
 end
 
 function KM.diagnostic_goto(next, severity)

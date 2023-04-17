@@ -1,3 +1,10 @@
+require("au.utils").set_g_opts(
+    {
+        python3_host_prog = "/opt/homebrew/bin/python3",
+        python_host_prog = "/opt/homebrew/opt/python@3.10/libexec/bin/python",
+    }
+)
+
 return {
     {
         "nvim-treesitter/nvim-treesitter",
@@ -31,8 +38,8 @@ return {
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            ignore = { "W391" },
-                            maxLineLength = 100,
+                            ignore = { "W391", "E501" },
+                            maxLineLength = 120,
                         },
                     },
                 },

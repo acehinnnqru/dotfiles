@@ -1,13 +1,4 @@
 return {
-    -- modified treesitter config
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "lua" })
-            return opts
-        end,
-    },
-
     {
         "jay-babu/mason-null-ls.nvim",
         dependencies = {

@@ -9,7 +9,6 @@ return {
                 "gitignore",
                 "comment",
                 "regex",
-                "help",
             },
             sync_install = false,
             highlight = {

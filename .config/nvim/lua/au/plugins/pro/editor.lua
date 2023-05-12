@@ -34,6 +34,7 @@ return {
     -- session using for store work status
     {
         "rmagatti/auto-session",
+        tag = "v2.0.1",
         lazy = false,
         init = function()
             vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

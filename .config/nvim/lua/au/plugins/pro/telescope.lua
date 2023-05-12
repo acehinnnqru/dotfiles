@@ -69,7 +69,7 @@ return {
                 }),
                 desc = "Goto Symbol",
             },
-            { "<leader>sq", "<cmd>Telescope quickfixhistory", desc = "quickfix history" },
+            { "<leader>sq", "<cmd>Telescope quickfixhistory<cr>", desc = "quickfix history" },
 
             -- git
             { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Git Commits" },

@@ -1,14 +1,17 @@
+-- set some global options
 require("au.utils").set_g_opts({
     python3_host_prog = "/opt/homebrew/bin/python3",
 })
 
 return {
+    -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, { "python" })
         end,
     },
+    -- mason-null-ls
     {
         "jay-babu/mason-null-ls.nvim",
         dependencies = {
@@ -19,6 +22,7 @@ return {
             vim.list_extend(opts.ensure_installed, { "flake8", "autopep8", "isort" })
         end,
     },
+    -- null-ls
     {
         "jose-elias-alvarez/null-ls.nvim",
         opts = function(_, opts)
@@ -28,6 +32,7 @@ return {
             table.insert(opts.sources, nls.builtins.formatting.isort)
         end,
     },
+    -- lspconfig
     {
         "neovim/nvim-lspconfig",
         opts = {

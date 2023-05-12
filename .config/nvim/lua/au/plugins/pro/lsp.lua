@@ -73,10 +73,10 @@ end
 
 function KM.definition_goto()
     local function on_list(options)
-      vim.fn.setqflist({}, ' ', options)
-      vim.api.nvim_command('cfirst')
+        vim.fn.setqflist({}, " ", options)
+        vim.api.nvim_command("cfirst")
     end
-    return function ()
+    return function()
         vim.lsp.buf.definition({ on_list = on_list })
     end
 end
@@ -119,6 +119,10 @@ return {
             local servers = opts.servers
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+            capabilities.textDocument.foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+            }
 
             -- installed all configured servers using mason
             require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
@@ -212,24 +216,24 @@ return {
     },
 
     -- lsp signiture
-	{
-		"ray-x/lsp_signature.nvim",
+    {
+        "ray-x/lsp_signature.nvim",
         event = { "CursorHold", "InsertEnter" },
-		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			-- handlers
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-			vim.lsp.handlers["textDocument/signatureHelp"] =
-				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+        dependencies = { "neovim/nvim-lspconfig" },
+        config = function()
+            -- handlers
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+            vim.lsp.handlers["textDocument/signatureHelp"] =
+                vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-			-- lsp signature configs
-			local signature_config = {
-				bind = true,
-				handler_opts = { border = "rounded" },
-			}
-			require("lsp_signature").setup(signature_config)
-		end,
-	},
+            -- lsp signature configs
+            local signature_config = {
+                bind = true,
+                handler_opts = { border = "rounded" },
+            }
+            require("lsp_signature").setup(signature_config)
+        end,
+    },
 
     -- code actions enhanced
     {

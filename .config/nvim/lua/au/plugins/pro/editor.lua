@@ -27,9 +27,6 @@ return {
         end,
         opts = {
             open_fold_hl_timeout = 0,
-            provider_selector = function(_, _, _)
-                return { "indent" }
-            end,
         },
         config = true,
     },

@@ -76,7 +76,6 @@ return {
                     end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "copilot" },
                     { name = "nvim_lsp" },
                     { name = "lsp_signature" },
                     { name = "luasnip" },
@@ -141,22 +140,17 @@ return {
                 auto_refresh = true,
             },
             suggestion = {
-                enabled = false,
-                auto_trigger = false,
+                enabled = true,
+                auto_trigger = true,
+                keymap = {
+                    accept = "<M-i>",
+                    accept_word = "<M-w>",
+                    accept_line = "<M-l>",
+                }
             },
         },
         config = function(_, opts)
             require("copilot").setup(opts)
-        end,
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            "zbirenbaum/copilot.lua",
-        },
-        config = function(_, opts)
-            require("copilot_cmp").setup(opts)
         end,
     },
 }

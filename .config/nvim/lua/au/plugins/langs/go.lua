@@ -12,7 +12,7 @@ return {
             "williamboman/mason.nvim",
         },
         opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "golangci-lint", "goimports", "gofmt" })
+            vim.list_extend(opts.ensure_installed, { "golangci-lint", "goimports" })
         end,
     },
     {

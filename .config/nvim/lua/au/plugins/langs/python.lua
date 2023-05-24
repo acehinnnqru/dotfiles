@@ -1,6 +1,7 @@
 -- set some global options
 require("au.utils").set_g_opts({
-    python3_host_prog = "/opt/homebrew/bin/python3",
+    python_host_prog = "/usr/bin/python3",
+    python3_host_prog = "/usr/bin/python3",
 })
 
 return {

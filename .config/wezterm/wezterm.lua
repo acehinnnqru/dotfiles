@@ -6,10 +6,10 @@ local configs = {}
 configs.color_scheme = "nordfox"
 -- window padding
 configs.window_padding = {
-    left = '1cell',
-    right = '1cell',
-    top = '0.5cell',
-    bottom = '0.5cell',
+	left = "1cell",
+	right = "1cell",
+	top = "0.5cell",
+	bottom = "0.5cell",
 }
 
 -- opacity

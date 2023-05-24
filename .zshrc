@@ -33,8 +33,8 @@ eval "$(direnv hook zsh)"
 # zoxide
 eval "$(zoxide init zsh)"
 
-# just
-alias j=just
+# fzf-tab
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -72,14 +72,13 @@ zinit light zsh-users/zsh-autosuggestions
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# general use
+# replace ls with exa
 alias ls='exa'
 alias l='exa -lbF --git'
 alias ll='exa -lbGF --git'
 alias llm='exa -lbGd --git --sort=modified'
 alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
-
 alias lt='exa --tree --level=2'
 
 # pnpm
@@ -94,3 +93,27 @@ alias c=clear
 alias tm=tmuxinator
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
+
+export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+
+# pyenv
+export PATH="$HOME/.pyenv/shims:${PATH}"
+export PYENV_ROOT="$pyenv_root"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_SHELL=zsh
+source '/opt/homebrew/Cellar/pyenv/2.3.17/completions/pyenv.zsh'
+command pyenv rehash 2>/dev/null
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")";;
+  *)
+    command pyenv "$command" "$@";;
+  esac
+}

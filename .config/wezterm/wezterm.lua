@@ -35,4 +35,11 @@ configs.font = wezterm.font_with_fallback({
 })
 configs.font_size = 15.5
 
+configs.keys = {
+	{
+		key = "t",
+		mods = "CMD",
+		action = wezterm.action.ActivateLastTab,
+	},
+}
 return configs

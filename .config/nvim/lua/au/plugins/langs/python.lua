@@ -1,7 +1,7 @@
 -- set some global options
 require("au.utils").set_g_opts({
-    python_host_prog = "/usr/bin/python3",
-    python3_host_prog = "/usr/bin/python3",
+    python_host_prog = "/Users/acehinnnqru/.pyenv/versions/neovim/bin/python",
+    python3_host_prog = "/Users/acehinnnqru/.pyenv/versions/neovim/bin/python3",
 })
 
 return {

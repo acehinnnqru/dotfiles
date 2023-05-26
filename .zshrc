@@ -1,26 +1,3 @@
-# pyenv
-export PATH="$HOME/.pyenv/shims:${PATH}"
-export PYENV_ROOT="$pyenv_root"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_SHELL=zsh
-source '/opt/homebrew/Cellar/pyenv/2.3.17/completions/pyenv.zsh'
-command pyenv rehash 2>/dev/null
-pyenv() {
-    eval "$(command pyenv init -)"
-    eval "$(command pyenv virtualenv-init -)"
-    local command
-    command="${1:-}"
-    if [ "$#" -gt 0 ]; then
-        shift
-    fi
-
-    case "$command" in
-    rehash|shell)
-    eval "$(pyenv "sh-$command" "$@")";;
-    *)
-    command pyenv "$command" "$@";;
-    esac
-}
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -29,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git autoswitch_virtualenv tmux aliases fzf-tab)
+plugins=(git tmux aliases fzf-tab)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,4 +92,3 @@ export EDITOR="nvim"
 export GPG_TTY=$(tty)
 
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
-

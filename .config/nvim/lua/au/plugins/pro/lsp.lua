@@ -101,6 +101,10 @@ return {
             "j-hui/fidget.nvim",
             "jose-elias-alvarez/null-ls.nvim",
             "jay-babu/mason-null-ls.nvim",
+            {
+                "lvimuser/lsp-inlayhints.nvim",
+                branch = "anticonceal"
+            },
         },
         opts = {
             servers = {},
@@ -113,6 +117,7 @@ return {
                     return
                 end
                 KM.on_attach(client, buffer)
+                require("lsp-inlayhints").on_attach(client, buffer)
             end)
 
             -- setup servers

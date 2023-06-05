@@ -47,6 +47,11 @@ return {
                             telemetry = {
                                 enable = false,
                             },
+                            hint = {
+                                enable = true,
+                                setType = true,
+                                arrayIndex = "Disable",
+                            },
                         },
                     },
                 },

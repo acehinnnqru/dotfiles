@@ -22,10 +22,10 @@ function KM.on_attach(client, buffer)
     -- code cmds
     self:map("<leader>cd", "lua vim.diagnostic.open_float()", { desc = "Line Diagnostics" })
     self:map("<leader>cl", "LspInfo", { desc = "Lsp Info" })
-    self:map("<leader>ca", "CodeActionMenu", { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
-    self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
-    self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
-    self:map("<leader>cr", "lua vim.lsp.buf.rename()", { desc = "Rename", has = "rename" })
+    self:map("<leader>ca", "CodeActionMenu", { desc = "Code Action", mode = { "n", "v" } })
+    self:map("<leader>cf", format, { desc = "Format Document" })
+    self:map("<leader>cf", format, { desc = "Format Range", mode = "v" })
+    self:map("<leader>cr", "lua vim.lsp.buf.rename()", { desc = "Rename" })
 
     -- diagnostic
     self:map("<leader>xx", "lua vim.diagnostic.setqflist()", { desc = "View Diagnostics in quickfix" })
@@ -44,7 +44,7 @@ function KM.on_attach(client, buffer)
     self:map("gT", "lua vim.lsp.buf.type_definition()", { desc = "Goto Type Definition" })
 
     self:map("K", "lua vim.lsp.buf.hover()", { desc = "Hover" })
-    self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help", has = "signatureHelp" })
+    self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help" })
 
     self:map("<leader>rl", "LspRestart", { desc = "Restart Lsp", mode = { "n" } })
 end
@@ -53,15 +53,8 @@ function KM.new(client, buffer)
     return setmetatable({ client = client, buffer = buffer }, { __index = KM })
 end
 
-function KM:has(cap)
-    return self.client.server_capabilities[cap .. "Provider"]
-end
-
 function KM:map(lhs, rhs, opts)
     opts = opts or {}
-    if opts.has and not self:has(opts.has) then
-        return
-    end
     vim.keymap.set(
         opts.mode or "n",
         lhs,
@@ -103,7 +96,7 @@ return {
             "jay-babu/mason-null-ls.nvim",
             {
                 "lvimuser/lsp-inlayhints.nvim",
-                branch = "anticonceal"
+                branch = "anticonceal",
             },
         },
         opts = {
@@ -117,7 +110,7 @@ return {
                     return
                 end
                 KM.on_attach(client, buffer)
-                require("lsp-inlayhints").on_attach(client, buffer)
+                require("lsp-inlayhints").on_attach(client, buffer, true)
             end)
 
             -- setup servers
@@ -151,6 +144,11 @@ return {
         end,
     },
 
+    {
+        "lvimuser/lsp-inlayhints.nvim",
+        branch = "anticonceal",
+        config = true,
+    },
     -- lsp server executable manager
     {
         "williamboman/mason.nvim",

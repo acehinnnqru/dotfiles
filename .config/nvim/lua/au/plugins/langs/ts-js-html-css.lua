@@ -12,7 +12,7 @@ return {
             "williamboman/mason.nvim",
         },
         opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "eslint_d", "prettier" })
+            vim.list_extend(opts.ensure_installed, { "eslint_d", "prettierd", "stylelint" })
         end,
     },
     {
@@ -27,7 +27,10 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         opts = function(_, opts)
             local nls = require("null-ls")
-            table.insert(opts.sources, nls.builtins.formatting.prettier)
+            table.insert(opts.sources, nls.builtins.formatting.prettierd)
+            table.insert(opts.sources, nls.builtins.code_actions.eslint_d)
+            table.insert(opts.sources, nls.builtins.formatting.stylelint)
+            return opts
         end,
     },
     {
@@ -44,6 +47,7 @@ return {
                         importModuleSpecifierPreference = "relative",
                     },
                 },
+                cssls = {},
             },
             setup = {
                 tsserver = function(_, opts)
@@ -55,7 +59,7 @@ return {
                     end)
 
                     vim.api.nvim_create_autocmd("FileType", {
-                        pattern = "html,typescript,typescriptreact,javascript,javascriptreact,css,less",
+                        pattern = "html,typescript,typescriptreact,javascript,javascriptreact,css,less,vue",
                         callback = function()
                             vim.opt_local.shiftwidth = 2
                             vim.opt_local.tabstop = 2
@@ -63,6 +67,15 @@ return {
                     })
 
                     require("lspconfig").tsserver.setup(opts)
+                end,
+                cssls = function(_, opts)
+                    local capabilities = vim.lsp.protocol.make_client_capabilities()
+                    capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+                    opts.capabilities = capabilities
+                    require("lspconfig").cssls.setup({
+                        capabilities = capabilities,
+                    })
                 end,
             },
         },

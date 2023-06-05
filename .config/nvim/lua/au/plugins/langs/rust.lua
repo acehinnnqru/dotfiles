@@ -80,7 +80,7 @@ return {
 									augroup END
 								]])
                             end,
-                            inlay_hint = {
+                            inlay_hints = {
                                 auto = false,
                             },
                         },

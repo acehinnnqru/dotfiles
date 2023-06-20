@@ -94,10 +94,6 @@ return {
             "j-hui/fidget.nvim",
             "jose-elias-alvarez/null-ls.nvim",
             "jay-babu/mason-null-ls.nvim",
-            {
-                "lvimuser/lsp-inlayhints.nvim",
-                branch = "anticonceal",
-            },
         },
         opts = {
             servers = {},
@@ -110,7 +106,11 @@ return {
                     return
                 end
                 KM.on_attach(client, buffer)
-                require("lsp-inlayhints").on_attach(client, buffer, true)
+                if not client.server_capabilities.inlayHintProvider then
+                    return
+                else
+                    vim.lsp.buf.inlay_hint(buffer)
+                end
             end)
 
             -- setup servers
@@ -144,11 +144,6 @@ return {
         end,
     },
 
-    {
-        "lvimuser/lsp-inlayhints.nvim",
-        branch = "anticonceal",
-        config = true,
-    },
     -- lsp server executable manager
     {
         "williamboman/mason.nvim",

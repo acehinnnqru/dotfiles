@@ -13,6 +13,10 @@ return {
         ---@param opts cmp.ConfigSchema
         opts = function(_, opts)
             local cmp = require("cmp")
+            if opts.window == nil then
+                opts.window = {}
+            end
+            opts.window.documentation = false
             opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
                 { name = "crates", priority = 750 },
             }))

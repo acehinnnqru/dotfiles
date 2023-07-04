@@ -109,7 +109,7 @@ return {
                 if not client.server_capabilities.inlayHintProvider then
                     return
                 else
-                    vim.lsp.buf.inlay_hint(buffer)
+                    vim.lsp.inlay_hint(buffer)
                 end
             end)
 

@@ -12,7 +12,6 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "f3fora/cmp-spell",
             "hrsh7th/cmp-cmdline",
-            "zbirenbaum/copilot-cmp",
         },
         opts = function()
             local cmp = require("cmp")
@@ -102,7 +101,6 @@ return {
                             nvim_lsp_signature_help = "[Signature]",
                             lsp_signature = "[Signature]",
                             cmdline = "[Vim Command]",
-                            copilit = "[Copilot]",
                         })[entry.source.name]
                         return item
                     end,
@@ -136,12 +134,11 @@ return {
         cmd = "Copilot",
         opts = {
             panel = {
-                enabled = false,
                 auto_refresh = true,
             },
             suggestion = {
                 enabled = true,
-                auto_trigger = true,
+                auto_trigger = false,
                 keymap = {
                     accept = "<M-i>",
                     accept_word = "<M-w>",
@@ -152,5 +149,14 @@ return {
         config = function(_, opts)
             require("copilot").setup(opts)
         end,
+        keys = {
+            {
+                "<leader>ts",
+                function ()
+                    require("copilot.suggestion").toggle_auto_trigger()
+                end,
+                desc = "Toggle Copilot Suggestion"
+            }
+        }
     },
 }

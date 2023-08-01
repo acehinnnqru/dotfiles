@@ -22,7 +22,7 @@ configs.hide_tab_bar_if_only_one_tab = true
 -- font options
 configs.font = wezterm.font_with_fallback({
 	{
-		family = "Consolas",
+		family = "Iosevka Term",
 	},
 
 	{
@@ -33,7 +33,7 @@ configs.font = wezterm.font_with_fallback({
 		family = "PingFang SC",
 	},
 })
-configs.font_size = 15.5
+configs.font_size = 14.5
 
 configs.keys = {
 	{
@@ -41,5 +41,10 @@ configs.keys = {
 		mods = "CMD",
 		action = wezterm.action.ActivateLastTab,
 	},
+    {
+        key = "Enter",
+        mods = "ALT",
+        action = wezterm.action.DisableDefaultAssignment,
+    }
 }
 return configs

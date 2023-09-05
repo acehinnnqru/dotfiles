@@ -26,4 +26,16 @@ return {
             vim.cmd("colorscheme nordfox")
         end,
     },
+
+    {
+        "xiyaowong/transparent.nvim",
+        lazy = false,
+        priority = 999,
+        opts = {
+            extra_groups = {
+                "NeoTreeFloatNormal",
+                "NormalFloat",
+            }
+        }
+    },
 }

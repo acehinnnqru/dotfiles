@@ -1,4 +1,12 @@
 return {
+    -- im-select
+    {
+        "keaising/im-select.nvim",
+        opts = {
+            set_previous_events = {},
+        },
+        event = "VeryLazy",
+    },
     -- auto pairs
     {
         "windwp/nvim-autopairs",
@@ -27,12 +35,19 @@ return {
     -- support context, line start
     {
         "lukas-reineke/indent-blankline.nvim",
+        branch = "v3",
         event = "VeryLazy",
+        config = function(_, opts)
+            require("ibl").setup(opts)
+        end,
         opts = {
             filetype_exclude = { "help", "alpha", "dashboard", "lazy" },
             show_trailing_blankline_indent = false,
             show_end_of_line = false,
             space_char_blankline = " ",
+            scope = {
+                enabled = false,
+            },
         },
     },
 
@@ -71,6 +86,7 @@ return {
             end
         end,
         opts = {
+            popup_border_style = "rounded",
             filesystem = {
                 filtered_items = {
                     hide_dotfiles = false,
@@ -80,6 +96,7 @@ return {
                 follow_current_file = true,
             },
             window = {
+                position = "float",
                 mappings = {
                     ["<space>"] = "none",
                 },

@@ -53,7 +53,9 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         local luasnip = require("luasnip")
-                        if cmp.visible() then
+                        if require("copilot.suggestion").is_visible() then
+                            require("copilot.suggestion").accept()
+                        elseif cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
@@ -84,11 +86,6 @@ return {
                     { name = "path" },
                     { name = "buffer" },
                 }),
-                experimental = {
-                    ghost_text = {
-                        hl_group = "LspCodeLens",
-                    },
-                },
                 formatting = {
                     format = function(entry, item)
                         item.kind = string.format("(%s)", item.kind)
@@ -138,12 +135,12 @@ return {
             },
             suggestion = {
                 enabled = true,
-                auto_trigger = false,
+                auto_trigger = true,
                 keymap = {
                     accept = "<M-i>",
                     accept_word = "<M-w>",
                     accept_line = "<M-l>",
-                }
+                },
             },
         },
         config = function(_, opts)
@@ -152,11 +149,11 @@ return {
         keys = {
             {
                 "<leader>ts",
-                function ()
+                function()
                     require("copilot.suggestion").toggle_auto_trigger()
                 end,
-                desc = "Toggle Copilot Suggestion"
-            }
-        }
+                desc = "Toggle Copilot Suggestion",
+            },
+        },
     },
 }

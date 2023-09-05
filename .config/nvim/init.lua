@@ -26,7 +26,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- determine plugins to load based on current environment.
---      enviroment choices: nvim, vscode, gui
+--      environment choices: nvim, vscode, gui
 local lazy_plugin_specs = function()
     -- generate specs
     local gen = function(specs)
@@ -51,6 +51,9 @@ end
 local lazy_options = function()
     return {
         lazy = true,
+        ui = {
+            border = "rounded",
+        },
         spec = lazy_plugin_specs(),
         install = {
             missing = true,

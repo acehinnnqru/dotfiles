@@ -51,6 +51,15 @@ return {
         },
     },
 
+    {
+        "chrisgrieser/nvim-early-retirement",
+        config = true,
+        event = "VeryLazy",
+        opts = {
+            minimumBufferNum = 10,
+        },
+    },
+
     -- todo comments
     -- keywords: TODO/FIXME/PERF/NOTE/TEST
     -- usage: using `{keyword}: {text}`

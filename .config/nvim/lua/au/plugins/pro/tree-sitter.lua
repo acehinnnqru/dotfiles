@@ -2,6 +2,7 @@ return {
     -- tree-sitter
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
         build = ":TSUpdate",
         event = "VeryLazy",
         opts = {

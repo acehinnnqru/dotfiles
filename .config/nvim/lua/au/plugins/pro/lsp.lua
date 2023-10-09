@@ -93,7 +93,7 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
             "jose-elias-alvarez/null-ls.nvim",
-            "jay-babu/mason-null-ls.nvim",
+            "nvimtools/none-ls.nvim",
         },
         opts = {
             servers = {},
@@ -187,7 +187,7 @@ return {
     },
 
     {
-        "jay-babu/mason-null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         event = "VeryLazy",
         dependencies = {
             "jose-elias-alvarez/null-ls.nvim",

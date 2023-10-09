@@ -35,20 +35,10 @@ return {
     -- support context, line start
     {
         "lukas-reineke/indent-blankline.nvim",
-        branch = "v3",
         event = "VeryLazy",
         config = function(_, opts)
             require("ibl").setup(opts)
         end,
-        opts = {
-            filetype_exclude = { "help", "alpha", "dashboard", "lazy" },
-            show_trailing_blankline_indent = false,
-            show_end_of_line = false,
-            space_char_blankline = " ",
-            scope = {
-                enabled = false,
-            },
-        },
     },
 
     -- neo tree instead of original netrw

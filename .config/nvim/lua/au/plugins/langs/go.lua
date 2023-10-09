@@ -6,7 +6,7 @@ return {
         end,
     },
     {
-        "jay-babu/mason-null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         dependencies = {
             "jose-elias-alvarez/null-ls.nvim",
             "williamboman/mason.nvim",

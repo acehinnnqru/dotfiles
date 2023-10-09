@@ -1,6 +1,6 @@
 return {
     {
-        "jay-babu/mason-null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, { "alex", "proselint", "misspell", "vale" })
         end,

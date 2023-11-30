@@ -92,7 +92,6 @@ return {
             -- bridge between mason and lspconfig
             "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
-            "jose-elias-alvarez/null-ls.nvim",
             "nvimtools/none-ls.nvim",
         },
         opts = {
@@ -100,6 +99,15 @@ return {
             setup = {},
         },
         config = function(_, opts)
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if client.progress then
+                        client.progress = vim.ringbuf(1000)
+                        client.progress.pending = {}
+                    end
+                end,
+            })
             -- setup keymaps on attach
             require("au.utils").lsp_on_attach(function(client, buffer)
                 if client.name == "copilot" or client.name == "null-ls" then
@@ -109,7 +117,7 @@ return {
                 if not client.server_capabilities.inlayHintProvider then
                     return
                 else
-                    vim.lsp.inlay_hint(buffer)
+                    vim.lsp.inlay_hint.enable(buffer, true)
                 end
             end)
 
@@ -179,22 +187,14 @@ return {
 
     -- null ls
     {
-        "jose-elias-alvarez/null-ls.nvim",
-        event = "VeryLazy",
-        opts = {
-            sources = {},
-        },
-    },
-
-    {
         "nvimtools/none-ls.nvim",
         event = "VeryLazy",
         dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
             "williamboman/mason.nvim",
         },
         opts = {
             ensure_installed = {},
+            sources = {},
         },
     },
 
@@ -203,12 +203,14 @@ return {
         "j-hui/fidget.nvim",
         event = "VeryLazy",
         opts = {
-            window = {
-                blend = 0,
+            notification = {
+                override_vim_notify = true,
+                window = {
+                    winblend = 0,
+                },
             },
         },
         config = function(_, opts)
-            vim.cmd("highlight! FidgetTask guifg=#616e99")
             require("fidget").setup(opts)
         end,
     },

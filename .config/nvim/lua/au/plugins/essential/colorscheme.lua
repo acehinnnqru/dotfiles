@@ -35,6 +35,9 @@ return {
             extra_groups = {
                 "NeoTreeFloatNormal",
                 "NormalFloat",
+                "LspFloatWinNormal",
+                "FloatShadow",
+                "FloatShadowThrough",
             }
         }
     },

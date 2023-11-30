@@ -7,13 +7,15 @@ return {
     },
     {
         "nvimtools/none-ls.nvim",
-
         dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
             "williamboman/mason.nvim",
         },
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, { "eslint_d", "prettierd", "stylelint" })
+            local nls = require("null-ls")
+            table.insert(opts.sources, nls.builtins.formatting.prettierd)
+            table.insert(opts.sources, nls.builtins.code_actions.eslint_d)
+            table.insert(opts.sources, nls.builtins.formatting.stylelint)
         end,
     },
     {
@@ -21,16 +23,6 @@ return {
         opts = function(_, opts)
             table.insert(opts.ensure_installed, "html")
             table.insert(opts.ensure_installed, "cssls")
-            return opts
-        end,
-    },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        opts = function(_, opts)
-            local nls = require("null-ls")
-            table.insert(opts.sources, nls.builtins.formatting.prettierd)
-            table.insert(opts.sources, nls.builtins.code_actions.eslint_d)
-            table.insert(opts.sources, nls.builtins.formatting.stylelint)
             return opts
         end,
     },

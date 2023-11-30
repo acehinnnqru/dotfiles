@@ -22,6 +22,9 @@ configs.hide_tab_bar_if_only_one_tab = true
 -- font options
 configs.font = wezterm.font_with_fallback({
 	{
+		family = "Monaspace Neon",
+	},
+	{
 		family = "Iosevka Term",
 	},
 
@@ -41,10 +44,13 @@ configs.keys = {
 		mods = "CMD",
 		action = wezterm.action.ActivateLastTab,
 	},
-    {
-        key = "Enter",
-        mods = "ALT",
-        action = wezterm.action.DisableDefaultAssignment,
-    }
+	{
+		key = "Enter",
+		mods = "ALT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 }
+
+configs.max_fps = 120
+
 return configs

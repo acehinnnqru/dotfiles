@@ -22,7 +22,8 @@ configs.hide_tab_bar_if_only_one_tab = true
 -- font options
 configs.font = wezterm.font_with_fallback({
 	{
-		family = "Monaspace Neon",
+		family = "Monaspace Argon",
+		harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "calt", "dlig" },
 	},
 	{
 		family = "Iosevka Term",

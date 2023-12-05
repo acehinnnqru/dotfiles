@@ -38,6 +38,11 @@ return {
                 "LspFloatWinNormal",
                 "FloatShadow",
                 "FloatShadowThrough",
+                "DiagnosticFloatingInfo",
+                "DiagnosticFloatingError",
+                "DiagnosticFloatingWarn",
+                "DiagnosticFloatingHint",
+                "DiagnosticFloatingOk"
             }
         }
     },

@@ -27,7 +27,7 @@ local lazy_plugin_specs = function()
         return s
     end
 
-    return gen({ "au.plugins.essential", "au.plugins.pro", "au.plugins.langs" })
+    return gen({ "au.plugins.basics", "au.plugins.langs" })
 end
 
 local lazy_options = function()

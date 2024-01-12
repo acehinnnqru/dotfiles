@@ -110,7 +110,7 @@ return {
             })
             -- setup keymaps on attach
             require("au.utils").lsp_on_attach(function(client, buffer)
-                if client.name == "copilot" or client.name == "null-ls" then
+                if client.name == "null-ls" then
                     return
                 end
                 KM.on_attach(client, buffer)
@@ -204,7 +204,6 @@ return {
         event = "VeryLazy",
         opts = {
             notification = {
-                override_vim_notify = true,
                 window = {
                     winblend = 0,
                 },

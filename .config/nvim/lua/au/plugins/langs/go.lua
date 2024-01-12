@@ -25,24 +25,6 @@ return {
         end,
     },
     {
-        "jay-babu/mason-nvim-dap.nvim",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "delve" })
-        end,
-    },
-    {
-        "leoluz/nvim-dap-go",
-        lazy = true,
-        dependencies = {
-            "mfussenegger/nvim-dap",
-            "rcarriga/nvim-dap-ui",
-            "jay-babu/mason-nvim-dap.nvim",
-        },
-        ft = "go",
-        config = true,
-    },
-
-    {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {

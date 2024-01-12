@@ -53,9 +53,7 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         local luasnip = require("luasnip")
-                        if require("copilot.suggestion").is_visible() then
-                            require("copilot.suggestion").accept()
-                        elseif cmp.visible() then
+                        if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
@@ -121,39 +119,6 @@ return {
         opts = {
             history = true,
             delete_check_events = "TextChanged",
-        },
-    },
-
-    -- copilot support
-    {
-        "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        cmd = "Copilot",
-        opts = {
-            panel = {
-                auto_refresh = true,
-            },
-            suggestion = {
-                enabled = true,
-                auto_trigger = true,
-                keymap = {
-                    accept = "<M-i>",
-                    accept_word = "<M-w>",
-                    accept_line = "<M-l>",
-                },
-            },
-        },
-        config = function(_, opts)
-            require("copilot").setup(opts)
-        end,
-        keys = {
-            {
-                "<leader>ts",
-                function()
-                    require("copilot.suggestion").toggle_auto_trigger()
-                end,
-                desc = "Toggle Copilot Suggestion",
-            },
         },
     },
 }

@@ -32,8 +32,59 @@ return {
                     return true
                 end
             end,
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["aa"] = { query = "@parameter.outer", desc = "a argument" },
+                        ["ia"] = { query = "@parameter.inner", desc = "inner part of a argument" },
+                        ["af"] = { query = "@function.outer", desc = "a function region" },
+                        ["if"] = { query = "@function.inner", desc = "inner part of a function region" },
+                        ["ac"] = { query = "@class.outer", desc = "a of a class" },
+                        ["ic"] = { query = "@class.inner", desc = "inner part of a class region" },
+                        ["al"] = { query = "@loop.outer", desc = "a loop" },
+                        ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
+                    },
+                },
+            },
+            nvim_next = {
+                enable = true,
+                textobjects = {
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                        goto_next_start = {
+                            ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
+                            ["]f"] = { query = "@function.outer", desc = "Next function start" },
+                            ["]c"] = { query = "@class.outer", desc = "Next class start" },
+                            ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+                        },
+                        goto_next_end = {
+                            ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
+                            ["]F"] = { query = "@function.outer", desc = "Next function end" },
+                            ["]C"] = { query = "@class.outer", desc = "Next class end" },
+                            ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
+                        },
+                        goto_previous_start = {
+                            ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
+                            ["[f"] = { query = "@function.outer", desc = "Previous function start" },
+                            ["[c"] = { query = "@class.outer", desc = "Previous class start" },
+                            ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
+                        },
+                        goto_previous_end = {
+                            ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
+                            ["[F"] = { query = "@function.outer", desc = "Previous function end" },
+                            ["[C"] = { query = "@class.outer", desc = "Previous class end" },
+                            ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
+                        },
+                    },
+                },
+            },
         },
         config = function(_, opts)
+            require("nvim-next.integrations").treesitter_textobjects()
+
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
@@ -54,6 +105,16 @@ return {
         "JoosepAlviste/nvim-ts-context-commentstring",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         lazy = true,
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+
+    {
+        "ghostbuster91/nvim-next",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
 
     -- re-declare mini.comment to add tree-sitter support

@@ -42,8 +42,12 @@ return {
                 "DiagnosticFloatingError",
                 "DiagnosticFloatingWarn",
                 "DiagnosticFloatingHint",
-                "DiagnosticFloatingOk"
-            }
-        }
+                "DiagnosticFloatingOk",
+            },
+        },
+        config = function(opts)
+            require("transparent").setup(opts)
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE", fg = 13487823 })
+        end,
     },
 }

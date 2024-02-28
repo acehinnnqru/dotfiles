@@ -7,7 +7,7 @@ return {
         config = function()
             require("tree-sitter-just").setup({})
         end,
-        build = ":TSInstall",
+        build = ":TSUpdate",
     },
     {
         "NoahTheDuke/vim-just",

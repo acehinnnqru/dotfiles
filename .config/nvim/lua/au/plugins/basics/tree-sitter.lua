@@ -22,9 +22,6 @@ return {
             incremental_selection = {
                 enable = true,
             },
-            context_commentstring = {
-                enable = true,
-            },
             disable = function(lang, buf)
                 local max_filesize = 100 * 1024 -- 100 KB
                 local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -86,6 +83,8 @@ return {
             require("nvim-next.integrations").treesitter_textobjects()
 
             require("nvim-treesitter.configs").setup(opts)
+            require("ts_context_commentstring").setup({})
+            vim.g.skip_ts_context_commentstring_module = true
         end,
     },
 

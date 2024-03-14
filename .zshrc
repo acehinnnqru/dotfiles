@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git tmux aliases fzf-tab)
+plugins=(git tmux aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -21,14 +21,13 @@ fi
 # completions
 fpath+=~/.zfunc
 
+autoload -Uz compinit && compinit
+
 # gvm
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # fnm
 eval "$(fnm env --use-on-cd)"
-
-# direnv
-eval "$(direnv hook zsh)"
 
 # zoxide
 eval "$(zoxide init zsh)"
@@ -64,31 +63,32 @@ zinit light starship/starship
 # zsh plugins
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# replace ls with exa
-alias ls='exa'
-alias l='exa -lbF --git'
-alias ll='exa -lbGF --git'
-alias llm='exa -lbGd --git --sort=modified'
-alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
-alias lt='exa --tree --level=2'
-
-# pnpm
-export PNPM_HOME="/Users/acehinnnqru/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# replace ls with eza
+alias ls='eza'
+alias l='eza -lbF --git'
+alias ll='eza -lbGF --git'
+alias llm='eza -lbGd --git --sort=modified'
+alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
+alias lt='eza --tree --level=2'
 
 # personal aliases
 alias vim=nvim
 alias v=nvim
 alias c=clear
-alias tm=tmuxinator
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+# ~/.tmux/plugins
+export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+# ~/.config/tmux/plugins
+export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+
+source ~/.zshrc.local

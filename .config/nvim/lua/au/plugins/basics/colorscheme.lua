@@ -26,7 +26,6 @@ return {
             vim.cmd("colorscheme nordfox")
         end,
     },
-
     {
         "xiyaowong/transparent.nvim",
         lazy = false,

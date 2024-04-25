@@ -102,9 +102,8 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    if client.progress then
-                        client.progress = vim.ringbuf(1000)
-                        client.progress.pending = {}
+                    if client == nil then
+                        return
                     end
                 end,
             })
@@ -117,7 +116,9 @@ return {
                 if not client.server_capabilities.inlayHintProvider then
                     return
                 else
-                    vim.lsp.inlay_hint.enable(buffer, true)
+                    vim.lsp.inlay_hint.enable(true, {
+                        bufnr = buffer,
+                    })
                 end
             end)
 

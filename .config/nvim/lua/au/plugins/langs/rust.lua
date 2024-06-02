@@ -41,7 +41,7 @@ return {
 
     {
         "mrcjkb/rustaceanvim",
-        version = "v3",
+        version = "^4",
         ft = { "rust" },
         command = "RustLsp",
         config = function()

@@ -86,6 +86,22 @@ return {
             { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Todo Telescope" },
         },
         config = true,
+        opts = {
+            highlight = {
+                multiline = false, -- enable multine todo comments
+                before = "", -- "fg" or "bg" or empty
+                keyword = "wide_bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+                after = "fg", -- "fg" or "bg" or empty
+                pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+                comments_only = true, -- uses treesitter to match keywords in comments only
+                max_line_len = 400, -- ignore lines longer than this
+                exclude = {}, -- list of file types to exclude highlighting
+            },
+            gui_style = {
+                fg = "NONE", -- The gui style to use for the fg highlight group.
+                bg = "BOLD", -- The gui style to use for the bg highlight group.
+            },
+        },
     },
 
     -- git signs and jump
@@ -169,6 +185,7 @@ return {
     -- better quickfix window
     {
         "kevinhwang91/nvim-bqf",
+        dependencies = { "junegunn/fzf" },
         ft = { "qf" },
     },
 

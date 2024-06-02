@@ -11,10 +11,9 @@ return {
             "williamboman/mason.nvim",
         },
         opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "eslint_d", "prettierd", "stylelint" })
+            vim.list_extend(opts.ensure_installed, { "prettierd", "stylelint" })
             local nls = require("null-ls")
             table.insert(opts.sources, nls.builtins.formatting.prettierd)
-            table.insert(opts.sources, nls.builtins.code_actions.eslint_d)
             table.insert(opts.sources, nls.builtins.formatting.stylelint)
         end,
     },

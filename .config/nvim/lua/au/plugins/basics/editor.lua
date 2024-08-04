@@ -159,25 +159,25 @@ return {
         config = function(_, opts)
             local wk = require("which-key")
             wk.setup(opts)
-            wk.register({
+            wk.add({
                 mode = { "n", "v" },
-                ["]"] = { name = "+next" },
-                ["["] = { name = "+prev" },
-                ["<leader>b"] = { name = "+buffer" },
-                ["<leader>c"] = { name = "+code" },
-                ["<leader>g"] = { name = "+git" },
-                ["<leader>gh"] = { name = "+hunk" },
-                ["<leader>h"] = { name = "+help" },
-                ["<leader>j"] = { name = "+jump" },
-                ["<leader>q"] = { name = "+quit/session" },
-                ["<leader>r"] = { name = "+restart/reload" },
-                ["<leader>s"] = { name = "+search" },
-                ["<leader>sd"] = { name = "+debug" },
-                ["<leader>t"] = { name = "+toggle" },
-                ["<leader>x"] = { name = "+quickfix" },
-                ["<leader>w"] = { name = "+windows" },
-                ["<leader>d"] = { name = "+debug" },
-                ["<leader>dv"] = { name = "+views" },
+                { "<leader>b", group = "buffer" },
+                { "<leader>c", group = "code" },
+                { "<leader>d", group = "debug" },
+                { "<leader>dv", group = "views" },
+                { "<leader>g", group = "git" },
+                { "<leader>gh", group = "hunk" },
+                { "<leader>h", group = "help" },
+                { "<leader>j", group = "jump" },
+                { "<leader>q", group = "quit/session" },
+                { "<leader>r", group = "restart/reload" },
+                { "<leader>s", group = "search" },
+                { "<leader>sd", group = "debug" },
+                { "<leader>t", group = "toggle" },
+                { "<leader>w", group = "windows" },
+                { "<leader>x", group = "quickfix" },
+                { "[", group = "prev" },
+                { "]", group = "next" },
             })
         end,
     },
@@ -275,6 +275,39 @@ return {
                 },
                 bind_to_cwd = false,
                 follow_current_file = true,
+                commands = {
+                    -- over write default 'delete' command to 'trash'.
+                    delete = function(state)
+                        local inputs = require("neo-tree.ui.inputs")
+                        local path = state.tree:get_node().path
+                        local msg = "Are you sure you want to trash " .. path
+                        inputs.confirm(msg, function(confirmed)
+                            if not confirmed then
+                                return
+                            end
+
+                            vim.fn.system({ "trash", vim.fn.fnameescape(path) })
+                            require("neo-tree.sources.manager").refresh(state.name)
+                        end)
+                    end,
+
+                    -- over write default 'delete_visual' command to 'trash' x n.
+                    delete_visual = function(state, selected_nodes)
+                        local inputs = require("neo-tree.ui.inputs")
+
+                        local count = vim.tbl_count(selected_nodes)
+                        local msg = "Are you sure you want to trash " .. count .. " files ?"
+                        inputs.confirm(msg, function(confirmed)
+                            if not confirmed then
+                                return
+                            end
+                            for _, node in ipairs(selected_nodes) do
+                                vim.fn.system({ "trash", vim.fn.fnameescape(node.path) })
+                            end
+                            require("neo-tree.sources.manager").refresh(state.name)
+                        end)
+                    end,
+                },
             },
             window = {
                 position = "float",

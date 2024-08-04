@@ -20,6 +20,7 @@ configs.window_decorations = "RESIZE"
 configs.hide_tab_bar_if_only_one_tab = true
 
 -- font options
+-- 中文测试
 configs.font = wezterm.font_with_fallback({
 	{
 		family = "Monaspace Argon",
@@ -38,6 +39,7 @@ configs.font = wezterm.font_with_fallback({
 	},
 })
 configs.font_size = 14.5
+configs.adjust_window_size_when_changing_font_size = false
 
 configs.keys = {
 	{

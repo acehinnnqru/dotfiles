@@ -32,7 +32,6 @@ return {
         priority = 999,
         opts = {
             extra_groups = {
-                "NeoTreeFloatNormal",
                 "NormalFloat",
                 "LspFloatWinNormal",
                 "FloatShadow",

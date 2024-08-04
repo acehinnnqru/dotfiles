@@ -28,7 +28,16 @@ function KM.on_attach(client, buffer)
     self:map("<leader>cr", "lua vim.lsp.buf.rename()", { desc = "Rename" })
 
     -- diagnostic
-    self:map("<leader>xx", "lua vim.diagnostic.setqflist()", { desc = "View Diagnostics in quickfix" })
+    self:map(
+        "<leader>xx",
+        "lua vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.ERROR } })",
+        { desc = "View Diagnostics in quickfix" }
+    )
+    self:map(
+        "<leader>xw",
+        "lua vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.WARN } })",
+        { desc = "View Diagnostics in quickfix" }
+    )
     self:map("]d", KM.diagnostic_goto(true), { desc = "Next Diagnostic" })
     self:map("[d", KM.diagnostic_goto(false), { desc = "Prev Diagnostic" })
     self:map("]e", KM.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -75,10 +84,14 @@ function KM.definition_goto()
 end
 
 function KM.diagnostic_goto(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    local count = next and 1 or -1
     severity = severity and vim.diagnostic.severity[severity] or nil
     return function()
-        go({ severity = severity })
+        vim.diagnostic.jump({
+            count = count,
+            float = true,
+            severity = severity,
+        })
     end
 end
 

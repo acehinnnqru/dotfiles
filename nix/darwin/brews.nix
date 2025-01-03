@@ -1,0 +1,4 @@
+[
+  "macism"
+  "trash"
+]

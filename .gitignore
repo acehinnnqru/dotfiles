@@ -2,3 +2,6 @@
 .config/tmux/plugins
 .DS_Store
 **/.python-version
+
+result
+!.envrc

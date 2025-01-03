@@ -1,0 +1,22 @@
+theme = nordfox
+
+# cursor
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = true
+
+# window conf
+window-padding-balance = true
+window-padding-x = 5
+macos-titlebar-style = hidden
+background-opacity = 0.93
+
+# font
+font-size = 14.7
+
+# quick terminal
+keybind = global:ctrl+t=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-animation-duration = 0
+
+link-url = true

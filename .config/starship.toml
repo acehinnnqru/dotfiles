@@ -1,7 +1,0 @@
-# format
-add_newline = false
-
-[character]
-success_symbol = "[](bold cyan)"
-error_symbol = "[](bold red)"
-

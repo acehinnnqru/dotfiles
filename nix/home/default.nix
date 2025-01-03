@@ -15,6 +15,7 @@
   );
 
   home.packages = with pkgs; [
+    gnupg
     git
     ## editor
     vim

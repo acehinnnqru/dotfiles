@@ -1,4 +1,5 @@
 [
   "macism"
   "trash"
+  "pinentry-mac"
 ]

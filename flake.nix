@@ -57,7 +57,7 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#{hostname}
     darwinConfigurations = {
-      "acehinnnqru" = mkDarwin {
+      "acehinnnqru-mbp" = mkDarwin {
         username = "acehinnnqru";
         hmModules = [
           ./nix/home

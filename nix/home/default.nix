@@ -33,6 +33,7 @@
     sesh
     ripgrep
     eza
+    bat
 
     # workspace
     tmux

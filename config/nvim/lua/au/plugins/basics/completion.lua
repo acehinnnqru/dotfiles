@@ -40,9 +40,11 @@ return {
 
             completion = {
                 list = { selection = "preselect" },
+                menu = { border = "padded" },
+                documentation = { window = { border = "padded" } },
             },
 
-            signature = { enabled = true },
+            signature = { enabled = true, window = { border = "single" } },
 
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`

@@ -63,7 +63,7 @@ return {
     },
 
     -- todo comments
-    -- keywords: TODO/FIXME/PERF/NOTE/TEST
+    -- keywords: `INFO|WARN|TODO|FIXME|TEST|HACK`
     -- usage: using `{keyword}: {text}`
     {
         "folke/todo-comments.nvim",
@@ -87,23 +87,10 @@ return {
             { "<leader>xt", "<cmd>TodoQuickFix<cr>", desc = "Todo QuickFix" },
             { "<leader>fx", "<cmd>TodoFzfLua<cr>", desc = "Todo FzfLua" },
         },
-        config = true,
-        opts = {
-            highlight = {
-                multiline = false, -- enable multine todo comments
-                before = "", -- "fg" or "bg" or empty
-                keyword = "wide_bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-                after = "fg", -- "fg" or "bg" or empty
-                pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-                comments_only = true, -- uses treesitter to match keywords in comments only
-                max_line_len = 400, -- ignore lines longer than this
-                exclude = {}, -- list of file types to exclude highlighting
-            },
-            gui_style = {
-                fg = "NONE", -- The gui style to use for the fg highlight group.
-                bg = "BOLD", -- The gui style to use for the bg highlight group.
-            },
-        },
+        config = function(_, opts)
+            require("todo-comments").setup(opts)
+        end,
+        opts = {},
     },
 
     -- git signs and jump
@@ -157,12 +144,7 @@ return {
     -- which key
     {
         "folke/which-key.nvim",
-        lazy = true,
-        keys = { "<leader>" },
-        opts = {
-            plugins = { spelling = true },
-            key_labels = { ["<leader>"] = "SPC" },
-        },
+        opts = {},
         config = function(_, opts)
             local wk = require("which-key")
             wk.setup(opts)
@@ -170,16 +152,14 @@ return {
                 mode = { "n", "v" },
                 { "<leader>b", group = "buffer" },
                 { "<leader>c", group = "code" },
-                { "<leader>d", group = "debug" },
                 { "<leader>dv", group = "views" },
                 { "<leader>g", group = "git" },
-                { "<leader>gh", group = "hunk" },
+                { "<leader>gh", group = "git hunk" },
                 { "<leader>h", group = "help" },
                 { "<leader>j", group = "jump" },
                 { "<leader>q", group = "quit/session" },
                 { "<leader>r", group = "restart/reload" },
-                { "<leader>s", group = "search" },
-                { "<leader>sd", group = "debug" },
+                { "<leader>f", group = "find" },
                 { "<leader>t", group = "toggle" },
                 { "<leader>w", group = "windows" },
                 { "<leader>x", group = "quickfix" },
@@ -199,16 +179,23 @@ return {
     -- im-select
     {
         "keaising/im-select.nvim",
+        lazy = false,
         opts = {
             set_previous_events = {},
         },
+        config = function(_, opts)
+            require("im_select").setup(opts)
+        end,
         event = "VeryLazy",
     },
+
     -- auto pairs
     {
-        "windwp/nvim-autopairs",
+        "echasnovski/mini.pairs",
         event = "InsertEnter",
-        config = true,
+        config = function()
+            require("mini.pairs").setup()
+        end,
     },
 
     -- surround
@@ -231,11 +218,16 @@ return {
     -- indent
     -- support context, line start
     {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "VeryLazy",
-        main = "ibl",
+        "echasnovski/mini.indentscope",
+        version = false,
+        opts = {
+            draw = {
+                animation = function() end,
+            },
+        },
         config = function(_, opts)
-            require("ibl").setup(opts)
+            opts.draw.animation = require("mini.indentscope").gen_animation.none()
+            require("mini.indentscope").setup(opts)
         end,
     },
 

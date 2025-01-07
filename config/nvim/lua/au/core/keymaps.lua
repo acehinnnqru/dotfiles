@@ -1,3 +1,5 @@
+local tools = require("au.tools")
+
 return {
     -- better up/down
     { "n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true } },
@@ -42,4 +44,7 @@ return {
 
     -- quit
     { "n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" } },
+
+    -- tools
+    { "n", "<leader>tl", tools.copy_current_location, { desc = "Copy Current Location" } },
 }

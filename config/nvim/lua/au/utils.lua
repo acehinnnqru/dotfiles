@@ -126,4 +126,33 @@ function M.exists_command(command)
     end
 end
 
+function M.set_colorscheme(theme)
+    vim.cmd("colorscheme " .. theme)
+
+    -- make some hls' guibg empty
+    local groups = {
+        -- neo-tree
+        "NeoTreeNormal",
+        "NeoTreeFloatNormal",
+
+        "NormalFloat",
+        "LspFloatWinNormal",
+        "LspInlayHint",
+        "FloatShadow",
+        "FloatShadowThrough",
+
+        -- diagnostics
+        "DiagnosticFloatingInfo",
+        "DiagnosticFloatingError",
+        "DiagnosticFloatingWarn",
+        "DiagnosticFloatingHint",
+        "DiagnosticFloatingOk",
+    }
+
+    for _, group in pairs(groups) do
+        local cmd = string.format("hi %s guibg=NONE", group)
+        vim.cmd(cmd)
+    end
+end
+
 return M

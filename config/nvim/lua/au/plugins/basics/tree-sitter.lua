@@ -88,17 +88,6 @@ return {
         end,
     },
 
-    -- code context using tree-sitter
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = true,
-        keys = {
-            { "<leader>tc", "<cmd>TSContextToggle<cr>", desc = "Toggle TSContext" },
-        },
-    },
-
     -- comment enhanced using tree-sitter
     {
         "JoosepAlviste/nvim-ts-context-commentstring",

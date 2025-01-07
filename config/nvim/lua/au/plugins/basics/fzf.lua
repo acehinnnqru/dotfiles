@@ -1,12 +1,23 @@
 local find_files = function()
     require("fzf-lua").files({ cwd = require("au.utils").get_root() })
 end
+
 return {
     -- fzf-lua
     {
         "ibhagwan/fzf-lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
+            winopts = {
+                backdrop = 100,
+            },
+            fzf_opts = {},
+            files = {
+                rg_opts = [[--color=never --files --hidden --follow -g "!.git" -g "!node_modules" -g "!.direnv"]],
+                cwd_prompt = false,
+                git_icons = false,
+                file_icons = false,
+            },
             grep = {
                 rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e --glob '!{node_modules,.git,.direnv,go.sum}'",
             },

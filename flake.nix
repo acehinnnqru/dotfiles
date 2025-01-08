@@ -43,7 +43,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users."${username}" = {
-              imports = hmModules;
+              imports = [./nix/home] ++ hmModules;
             };
 
             home-manager.backupFileExtension = "backup";
@@ -55,16 +55,5 @@
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;
-
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#{hostname}
-    darwinConfigurations = {
-      "acehinnnqru-mbp" = mkDarwin {
-        username = "acehinnnqru";
-        hmModules = [
-          ./nix/home
-        ];
-      };
-    };
   };
 }

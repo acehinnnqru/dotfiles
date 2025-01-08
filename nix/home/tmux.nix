@@ -20,9 +20,7 @@
         extraConfig = ''
           # save sessions every 5 mins
           set -g @continuum-restore 'on'
-          set -g @continuum-boot 'on'
           set -g @continuum-save-interval '15'
-          set -g @continuum-boot-options 'ghostty'
         '';
       }
     ];

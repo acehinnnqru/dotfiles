@@ -13,7 +13,9 @@ return {
             -- See the full "keymap" documentation for information on defining your own keymap.
             keymap = {
                 preset = "none",
+                ["<Up>"] = { "select_prev", "fallback" },
                 ["<Down>"] = { "select_next", "fallback" },
+                ["<C-e>"] = {},
                 ["<Tab>"] = {
                     function(cmp)
                         if cmp.snippet_active() then
@@ -39,7 +41,17 @@ return {
             },
 
             completion = {
-                list = { selection = "preselect" },
+                keyword = {
+                    range = "full",
+                },
+                list = {
+                    selection = { preselect = true, auto_insert = false },
+                    cycle = {
+                        from_bottom = true,
+                        from_top = true,
+                    },
+                },
+
                 menu = { border = "padded" },
                 documentation = { window = { border = "padded" } },
             },

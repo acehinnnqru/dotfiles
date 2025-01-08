@@ -54,6 +54,8 @@
         specialArgs = {inherit inputs username;};
       };
   in {
+    packages.aarch64-darwin.mkDarwin = mkDarwin;
+
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#{hostname}
     darwinConfigurations = {

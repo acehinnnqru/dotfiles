@@ -29,6 +29,7 @@
     mkDarwin = {
       username,
       hmModules,
+      extraimports,
     }:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -51,7 +52,7 @@
           }
         ];
 
-        specialArgs = {inherit inputs username;};
+        specialArgs = {inherit inputs username extraimports;};
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;

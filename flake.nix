@@ -56,5 +56,13 @@
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;
+
+    darwinConfigurations = {
+      "acehinnnqru-mbp" = mkDarwin {
+        username = "acehinnnqru";
+        hmModules = [];
+        extraimports = [];
+      };
+    };
   };
 }

@@ -9,6 +9,8 @@ cursor-style-blink = true
 window-padding-balance = true
 window-padding-x = 5
 macos-titlebar-style = hidden
+background-opacity = 0.93
+background-blur-radius = 20
 
 # font
 font-size = 14.7

@@ -36,7 +36,7 @@ function M.set_g_opts(opts)
     end
 end
 
-M.root_patterns = { ".git" }
+M.root_patterns = { ".git", ".envrc", ".direnv" }
 
 -- returns the root directory based on:
 -- * lsp workspace folders
@@ -140,6 +140,7 @@ function M.set_colorscheme(theme)
         "LspInlayHint",
         "FloatShadow",
         "FloatShadowThrough",
+        "StatusLine",
 
         -- diagnostics
         "DiagnosticFloatingInfo",

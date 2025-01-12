@@ -19,7 +19,7 @@ return {
                 file_icons = false,
             },
             grep = {
-                rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e --glob '!{node_modules,.git,.direnv,go.sum}'",
+                rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!{node_modules,.git,.direnv,go.sum}' -e ",
             },
         },
         keys = {

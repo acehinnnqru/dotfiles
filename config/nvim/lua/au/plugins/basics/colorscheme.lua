@@ -4,7 +4,11 @@ return {
     {
         "EdenEast/nightfox.nvim",
         priority = 1000,
-        opts = {},
+        opts = {
+            options = {
+                transparent = true,
+            },
+        },
         config = function(_, opts)
             require("nightfox").setup(opts)
             utils.set_colorscheme("nordfox")

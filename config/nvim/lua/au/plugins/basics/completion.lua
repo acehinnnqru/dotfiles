@@ -45,7 +45,14 @@ return {
                     range = "full",
                 },
                 list = {
-                    selection = { preselect = true, auto_insert = false },
+                    selection = {
+                        preselect = function(ctx)
+                            return ctx.mode ~= "cmdline"
+                        end,
+                        auto_insert = function(ctx)
+                            return ctx.mode ~= "cmdline"
+                        end,
+                    },
                     cycle = {
                         from_bottom = true,
                         from_top = true,
@@ -62,7 +69,6 @@ return {
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
-                cmdline = {},
             },
         },
         opts_extend = { "sources.default" },

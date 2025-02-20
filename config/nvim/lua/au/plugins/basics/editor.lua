@@ -289,6 +289,13 @@ return {
         end,
         opts = {
             popup_border_style = "rounded",
+            default_component_configs = {
+                git_status = {
+                    symbols = {
+                        unstaged = "",
+                    },
+                },
+            },
             filesystem = {
                 filtered_items = {
                     hide_dotfiles = false,

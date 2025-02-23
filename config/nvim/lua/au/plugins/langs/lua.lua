@@ -24,39 +24,42 @@ return {
     -- correctly setup lspconfig
     {
         "neovim/nvim-lspconfig",
-        dependencies = { { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } } },
-        opts = {
-            servers = {
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            runtime = {
-                                version = "LuaJIT",
-                                path = vim.split(package.path, ";"),
+        opts = function(_, opts)
+            if opts.servers == nil then
+                opts.servers = {}
+            end
+            opts.servers["lua_ls"] = {
+                settings = {
+                    Lua = {
+                        runtime = {
+                            version = "LuaJIT",
+                            path = vim.split(package.path, ";"),
+                        },
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                        workspace = {
+                            library = {
+                                vim.fn.expand("$VIMRUNTIME/lua"),
+                                vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                                vim.fn.expand("~/.local/share/$NVIM_APPNAME/lazy"),
+                                "${3rd}/luv/library",
                             },
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            workspace = {
-                                library = {
-                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                                },
-                                checkThirdParty = false,
-                                ignoreDir = { ".git", "dist", "node_modules", "build", ".direnv" }
-                            },
-                            telemetry = {
-                                enable = false,
-                            },
-                            hint = {
-                                enable = true,
-                                setType = true,
-                                arrayIndex = "Disable",
-                            },
+                            checkThirdParty = false,
+                            ignoreDir = { ".git", "dist", "node_modules", "build", ".direnv", ".envrc" },
+                        },
+                        telemetry = {
+                            enable = false,
+                        },
+                        hint = {
+                            enable = true,
+                            setType = true,
+                            arrayIndex = "Disable",
                         },
                     },
                 },
-            },
-        },
+            }
+            return opts
+        end,
     },
 }

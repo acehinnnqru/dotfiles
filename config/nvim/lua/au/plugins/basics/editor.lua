@@ -26,7 +26,6 @@ return {
             vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
         end,
         opts = {
-            log_level = "error",
             auto_session_suppress_dirs = { "~/", "/" },
             pre_save_cmds = {
                 -- close some plugins before saving session
@@ -272,7 +271,7 @@ return {
             {
                 "<leader>E",
                 function()
-                    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+                    require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
                 end,
                 desc = "Explorer NeoTree (cwd)",
             },

@@ -49,6 +49,9 @@
     enableZshIntegration = true;
     settings = {
       add_newline = false;
+      time = {
+        disabled = false;
+      };
     };
   };
 

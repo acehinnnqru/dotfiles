@@ -51,6 +51,7 @@
       add_newline = false;
       time = {
         disabled = false;
+        format = "[$time]($style) ";
       };
     };
   };

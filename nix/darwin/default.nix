@@ -57,7 +57,7 @@
   };
 
   # ability to use TouchID for sudo auth
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Trusted users (set in trusted-users ) can always connect to the Nix daemon.
   # If set to true, Nix will ignore the allowSubstitutes attribute in derivations

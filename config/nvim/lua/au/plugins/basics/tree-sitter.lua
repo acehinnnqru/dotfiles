@@ -10,6 +10,7 @@ return {
                 "gitignore",
                 "comment",
                 "regex",
+                "diff",
             },
             auto_install = true,
             sync_install = false,

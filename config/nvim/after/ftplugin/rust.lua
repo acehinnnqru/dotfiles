@@ -6,3 +6,5 @@ vim.keymap.set("n", "<leader>cpm", "<cmd>RustLsp parentModule<cr>", { desc = "Pa
 vim.keymap.set("n", "<leader>cmd", "<cmd>RustLsp moveItem up<cr>", { desc = "Move Item Down", buffer = buffer })
 vim.keymap.set("n", "<leader>cmu", "<cmd>RustLsp moveItem down<cr>", { desc = "Move Item Up", buffer = buffer })
 vim.keymap.set("n", "<leader>cjl", "<cmd>RustLsp joinLines<cr>", { desc = "Join Lines", buffer = buffer })
+
+require("mini.pairs").unmap("i", "'", "''")

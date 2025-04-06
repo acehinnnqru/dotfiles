@@ -87,11 +87,15 @@ function KM.diagnostic_goto(next, severity)
     local count = next and 1 or -1
     severity = severity and vim.diagnostic.severity[severity] or nil
     return function()
+        -- only jump to the pos, but not open float window
         vim.diagnostic.jump({
             count = count,
-            float = true,
             severity = severity,
         })
+
+        -- hover here
+        ---@diagnostic disable-next-line
+        require("hover").hover(nil)
     end
 end
 

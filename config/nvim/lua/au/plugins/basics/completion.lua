@@ -60,7 +60,9 @@ return {
                 },
 
                 menu = { border = "padded" },
-                documentation = { window = { border = "padded" } },
+                documentation = {
+                    auto_show = true,
+                },
             },
 
             signature = { enabled = true, window = { border = "single" } },

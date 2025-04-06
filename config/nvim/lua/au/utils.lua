@@ -134,6 +134,7 @@ function M.set_colorscheme(theme)
         -- neo-tree
         "NeoTreeNormal",
         "NeoTreeFloatNormal",
+        "NeoTreeWinSeparator",
 
         "NormalFloat",
         "LspFloatWinNormal",

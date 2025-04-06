@@ -52,8 +52,8 @@ function KM.on_attach(client, buffer)
     self:map("gI", "lua vim.lsp.buf.implementation()", { desc = "Goto Implementation" })
     self:map("gT", "lua vim.lsp.buf.type_definition()", { desc = "Goto Type Definition" })
 
-    self:map("K", "lua vim.lsp.buf.hover()", { desc = "Hover" })
-    self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help" })
+    -- self:map("K", "lua vim.lsp.buf.hover()", { desc = "Hover" })
+    -- self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help" })
 
     self:map("<leader>rl", "LspRestart", { desc = "Restart Lsp", mode = { "n" } })
 end
@@ -193,5 +193,36 @@ return {
         keys = {
             { "<leader>co", "<cmd>AerialToggle<cr>", desc = "Toggle Aerial(Code Outline) Window " },
         },
+    },
+
+    {
+        "lewis6991/hover.nvim",
+        opts = {
+            init = function()
+                -- Require providers
+                require("hover.providers.lsp")
+                -- require('hover.providers.gh')
+                -- require('hover.providers.gh_user')
+                -- require('hover.providers.jira')
+                -- require('hover.providers.dap')
+                -- require('hover.providers.fold_preview')
+                require("hover.providers.diagnostic")
+                -- require('hover.providers.man')
+                -- require('hover.providers.dictionary')
+            end,
+            preview_opts = {
+                border = "single",
+            },
+            -- Whether the contents of a currently open hover window should be moved
+            -- to a :h preview-window when pressing the hover keymap.
+            preview_window = false,
+            title = true,
+        },
+        config = function(_, opts)
+            require("hover").setup(opts)
+
+            vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+            vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+        end,
     },
 }

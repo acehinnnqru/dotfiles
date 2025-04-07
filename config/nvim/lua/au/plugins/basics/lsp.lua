@@ -201,6 +201,24 @@ return {
 
     {
         "lewis6991/hover.nvim",
+        keys = {
+            {
+                "K",
+                function()
+                    ---@diagnostic disable-next-line
+                    require("hover").hover(nil)
+                end,
+                desc = "Hover",
+            },
+            {
+                "gK",
+                function()
+                    ---@diagnostic disable-next-line
+                    require("hover").hover_select(nil)
+                end,
+                desc = "Hover Select",
+            },
+        },
         opts = {
             init = function()
                 -- Require providers
@@ -222,11 +240,5 @@ return {
             preview_window = false,
             title = true,
         },
-        config = function(_, opts)
-            require("hover").setup(opts)
-
-            vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
-            vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-        end,
     },
 }

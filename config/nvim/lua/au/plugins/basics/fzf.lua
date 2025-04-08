@@ -21,6 +21,14 @@ return {
             grep = {
                 rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!{node_modules,.git,.direnv,go.sum}' -e ",
             },
+            keymap = {
+                fzf = {
+                    true,
+                    ["ctrl-d"] = "preview-page-down",
+                    ["ctrl-u"] = "preview-page-up",
+                    ["ctrl-q"] = "select-all+accept",
+                },
+            },
         },
         keys = {
             { "<leader>fz", "<cmd>FzfLua builtin<cr>", desc = "FzfLua Builtin" },

@@ -52,9 +52,6 @@ function KM.on_attach(client, buffer)
     self:map("gI", "lua vim.lsp.buf.implementation()", { desc = "Goto Implementation" })
     self:map("gT", "lua vim.lsp.buf.type_definition()", { desc = "Goto Type Definition" })
 
-    -- self:map("K", "lua vim.lsp.buf.hover()", { desc = "Hover" })
-    -- self:map("gK", "lua vim.lsp.buf.signature_help()", { desc = "Signature Help" })
-
     self:map("<leader>rl", "LspRestart", { desc = "Restart Lsp", mode = { "n" } })
 end
 

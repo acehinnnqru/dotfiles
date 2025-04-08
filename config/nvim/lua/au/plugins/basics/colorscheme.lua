@@ -11,7 +11,7 @@ return {
         },
         config = function(_, opts)
             require("nightfox").setup(opts)
-            utils.set_colorscheme("nordfox")
+            utils.set_colorscheme("nightfox")
         end,
     },
 }

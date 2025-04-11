@@ -5,6 +5,7 @@
     enable = true;
 
     enableCompletion = true;
+    completionInit = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 

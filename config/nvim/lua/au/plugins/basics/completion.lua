@@ -15,7 +15,6 @@ return {
                 preset = "none",
                 ["<Up>"] = { "select_prev", "fallback" },
                 ["<Down>"] = { "select_next", "fallback" },
-                ["<C-e>"] = {},
                 ["<Tab>"] = {
                     function(cmp)
                         if cmp.snippet_active() then

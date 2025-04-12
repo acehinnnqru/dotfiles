@@ -41,7 +41,6 @@ return {
                         workspace = {
                             library = {
                                 vim.fn.expand("$VIMRUNTIME/lua"),
-                                vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
                                 vim.fn.expand("~/.local/share/$NVIM_APPNAME/lazy"),
                                 "${3rd}/luv/library",
                             },

@@ -15,25 +15,11 @@ return {
 
     {
         "mrcjkb/rustaceanvim",
-        version = "^4",
+        version = "^6",
         ft = { "rust" },
         command = "RustLsp",
         config = function()
             vim.g.rustaceanvim = {
-                tools = {
-                    on_initialized = function()
-                        vim.cmd([[
-                            augroup RustLSP
-                            autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-                            autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-                            autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-                            augroup END
-                            ]])
-                    end,
-                    inlay_hints = {
-                        auto = false,
-                    },
-                },
                 server = {
                     settings = {
                         ["rust-analyzer"] = {

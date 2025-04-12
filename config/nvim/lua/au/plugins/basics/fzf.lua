@@ -2,6 +2,7 @@ local find_files = function()
     require("fzf-lua").files({ cwd = require("au.utils").get_root() })
 end
 
+---@type [LazyPluginSpec]
 return {
     -- fzf-lua
     {

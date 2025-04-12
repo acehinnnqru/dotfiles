@@ -1,3 +1,4 @@
+---@type [LazyPluginSpec]
 return {
     {
         "Saghen/blink.cmp",

@@ -4,6 +4,7 @@ if not utils.is_lang_enabled("GO") then
     return {}
 end
 
+---@type [LazyPluginSpec]
 return {
     {
         "nvim-treesitter/nvim-treesitter",

@@ -4,6 +4,7 @@ if not utils.is_lang_enabled("RUST") then
     return {}
 end
 
+---@type [LazyPluginSpec]
 return {
     -- modified treesitter config
     {
@@ -15,9 +16,7 @@ return {
 
     {
         "mrcjkb/rustaceanvim",
-        version = "^6",
         ft = { "rust" },
-        command = "RustLsp",
         config = function()
             vim.g.rustaceanvim = {
                 server = {

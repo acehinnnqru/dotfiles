@@ -4,6 +4,7 @@ if not utils.is_lang_enabled("LUA") then
     return {}
 end
 
+---@type [LazyPluginSpec]
 return {
     {
         "nvimtools/none-ls.nvim",

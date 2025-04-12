@@ -4,6 +4,7 @@ if not utils.is_lang_enabled("JUST") then
     return {}
 end
 
+---@type [LazyPluginSpec]
 return {
     {
         "IndianBoy42/tree-sitter-just",

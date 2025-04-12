@@ -4,6 +4,7 @@ if not utils.is_lang_enabled("SQL") then
     return {}
 end
 
+---@type [LazyPluginSpec]
 return {
     {
         "nvimtools/none-ls.nvim",

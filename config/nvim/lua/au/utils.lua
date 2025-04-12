@@ -1,6 +1,6 @@
 local M = {}
 
-local vim_opt = vim.opt
+local vim_opt = vim.o
 function M.set_vim_opts(opts)
     for k, v in pairs(opts) do
         vim_opt[k] = v

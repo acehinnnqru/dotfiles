@@ -23,7 +23,7 @@ return {
 
     -- pop menu, aka completion menu
     pumheight = 10,
-    completeopt = { "menu", "menuone" },
+    completeopt = "menu,menuone",
 
     -- file options
     fileencoding = "utf-8",

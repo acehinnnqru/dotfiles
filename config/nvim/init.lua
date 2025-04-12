@@ -13,7 +13,8 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-vim.opt.rtp:prepend(lazypath)
+
+vim.o.runtimepath = table.concat({ vim.o.runtimepath, lazypath }, ",")
 
 -- determine plugins to load based on current environment.
 --      environment choices: nvim, vscode, gui

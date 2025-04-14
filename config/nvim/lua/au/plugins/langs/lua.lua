@@ -4,6 +4,9 @@ if not utils.is_lang_enabled("LUA") then
     return {}
 end
 
+local nvim_app_env = os.getenv("NVIM_APPNAME")
+local nvim_app = nvim_app_env and nvim_app_env or "nvim"
+
 ---@type [LazyPluginSpec]
 return {
     {
@@ -42,7 +45,7 @@ return {
                         workspace = {
                             library = {
                                 vim.fn.expand("$VIMRUNTIME/lua"),
-                                vim.fn.expand("~/.local/share/$NVIM_APPNAME/lazy"),
+                                vim.fn.expand("~/.local/share/" .. nvim_app .. "/lazy"),
                                 "${3rd}/luv/library",
                             },
                             checkThirdParty = false,

@@ -225,6 +225,9 @@ return {
                 desc = "Hover Select",
             },
         },
+
+        ---@module 'hover.config'
+        ---@type Hover.UserConfig
         opts = {
             init = function()
                 -- Require providers

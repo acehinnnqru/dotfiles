@@ -45,14 +45,6 @@ return {
                     range = "full",
                 },
                 list = {
-                    selection = {
-                        preselect = function(ctx)
-                            return ctx.mode ~= "cmdline"
-                        end,
-                        auto_insert = function(ctx)
-                            return ctx.mode ~= "cmdline"
-                        end,
-                    },
                     cycle = {
                         from_bottom = true,
                         from_top = true,

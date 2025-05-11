@@ -259,7 +259,7 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        branch = "v2.x",
+        branch = "v3.x",
         cmd = "Neotree",
         keys = {
             {
@@ -290,9 +290,25 @@ return {
         opts = {
             popup_border_style = "rounded",
             default_component_configs = {
+                icon = {
+                    folder_closed = "+",
+                    folder_open = "-",
+                    folder_empty = "!",
+                    folder_empty_open = "!",
+                    default = "",
+                    provider = function() end,
+                },
                 git_status = {
                     symbols = {
+                        added = "",
+                        deleted = "",
+                        modified = "",
+                        renamed = "",
+                        untracked = "",
+                        ignored = "",
                         unstaged = "",
+                        staged = "",
+                        conflict = "",
                     },
                 },
             },
@@ -302,7 +318,9 @@ return {
                     hide_gitignored = false,
                 },
                 bind_to_cwd = false,
-                follow_current_file = true,
+                follow_current_file = {
+                    enabled = true,
+                },
                 commands = {
                     -- over write default 'delete' command to 'trash'.
                     delete = function(state)

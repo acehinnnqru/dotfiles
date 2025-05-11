@@ -20,6 +20,7 @@ return {
                 file_icons = false,
             },
             grep = {
+                file_icons = false,
                 rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!{node_modules,.git,.direnv,go.sum}' -e ",
             },
             keymap = {

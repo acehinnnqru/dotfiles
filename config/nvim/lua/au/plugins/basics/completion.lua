@@ -35,7 +35,7 @@ return {
                 -- Sets the fallback highlight groups to nvim-cmp's highlight groups
                 -- Useful for when your theme doesn't support blink.cmp
                 -- Will be removed in a future release
-                use_nvim_cmp_as_default = true,
+                use_nvim_cmp_as_default = false,
                 -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
                 -- Adjusts spacing to ensure icons are aligned
                 nerd_font_variant = "mono",
@@ -52,7 +52,19 @@ return {
                     },
                 },
 
-                menu = { border = "padded" },
+                menu = {
+                    border = "padded",
+                    draw = {
+                        columns = { { "kind" }, { "label", "label_description", gap = 1 } },
+                        components = {
+                            kind = {
+                                text = function(ctx)
+                                    return string.lower(ctx.kind)
+                                end,
+                            },
+                        },
+                    },
+                },
                 documentation = {
                     auto_show = true,
                 },

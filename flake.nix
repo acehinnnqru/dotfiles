@@ -61,7 +61,11 @@
       "acehinnnqru-mbp" = mkDarwin {
         username = "acehinnnqru";
         hmModules = [];
-        extraimports = [];
+        extraimports = [
+          {
+            system.primaryUser = "acehinnnqru";
+          }
+        ];
       };
     };
   };

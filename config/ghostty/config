@@ -19,6 +19,10 @@ font-size = 14.7
 keybind = global:ctrl+t=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
+quick-terminal-autohide = true
+
+auto-update = off
+macos-option-as-alt = left
 
 link-url = true
 

@@ -34,6 +34,7 @@
     ripgrep
     eza
     bat
+    watchexec
 
     # workspace
     tmux

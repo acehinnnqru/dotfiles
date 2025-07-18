@@ -31,6 +31,7 @@ return {
                             check = {
                                 enable = true,
                                 command = "clippy",
+                                allTargets = true,
                             },
                             files = {
                                 excludeDirs = { ".direnv", ".envrc", ".git", ".idea" },

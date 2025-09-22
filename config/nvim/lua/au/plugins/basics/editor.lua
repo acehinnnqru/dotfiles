@@ -181,7 +181,7 @@ return {
         "keaising/im-select.nvim",
         lazy = false,
         opts = {
-            set_previous_events = {},
+            set_previous_events = { "InsertEnter" },
         },
         config = function(_, opts)
             require("im_select").setup(opts)

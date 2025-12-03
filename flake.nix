@@ -60,6 +60,8 @@
       username,
       hmModules,
       system ? "x86_64-linux",
+      envVars ? {},
+      initExtra ? "",
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -69,7 +71,7 @@
         modules = [
           ./nix/home
         ] ++ hmModules;
-        extraSpecialArgs = {inherit username;};
+        extraSpecialArgs = {inherit username envVars initExtra;};
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;

@@ -1,5 +1,5 @@
 {
-  description = "Cross-platform system flake (macOS & Linux)";
+  description = "Cross-platform dotfiles flake (macOS & Linux with Home Manager)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -54,41 +54,27 @@
 
         specialArgs = {inherit inputs username extraimports;};
       };
-    # use username and hmModules to generate nixosSystem config
-    mkNixOS = {
+    # use username and hmModules to generate standalone Home Manager config
+    # for non-NixOS Linux systems (Ubuntu, Debian, etc.)
+    mkHome = {
       username,
       hmModules,
-      extraimports,
       system ? "x86_64-linux",
     }:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = overlays;
+        };
         modules = [
-          ./nix/nixos
-
-          {
-            nixpkgs.overlays = overlays;
-          }
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."${username}" = {
-              imports = [./nix/home] ++ hmModules;
-            };
-
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username;};
-          }
-        ];
-
-        specialArgs = {inherit inputs username extraimports;};
+          ./nix/home
+        ] ++ hmModules;
+        extraSpecialArgs = {inherit username;};
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;
-    packages.x86_64-linux.mkNixOS = mkNixOS;
-    packages.aarch64-linux.mkNixOS = mkNixOS;
+    packages.x86_64-linux.mkHome = mkHome;
+    packages.aarch64-linux.mkHome = mkHome;
 
     darwinConfigurations = {
       "acehinnnqru-mbp" = mkDarwin {
@@ -100,6 +86,17 @@
           }
         ];
       };
+    };
+
+    # Standalone Home Manager configurations for non-NixOS Linux systems
+    # Usage: home-manager switch --flake "github:acehinnnqru/dotfiles#<hostname>"
+    homeConfigurations = {
+      # Example: Add your remote hostname here
+      # "remote-host" = mkHome {
+      #   username = "acehinnnqru";
+      #   hmModules = [];
+      #   system = "x86_64-linux";  # or "aarch64-linux"
+      # };
     };
   };
 }

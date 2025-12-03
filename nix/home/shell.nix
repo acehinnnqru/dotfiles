@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, envVars ? {}, initExtra ? "", ...}: {
   programs.gpg.enable = true;
 
   programs.zsh = {
@@ -28,6 +28,12 @@
         };
       }
     ];
+
+    envExtra = pkgs.lib.concatStringsSep "\n" (
+      pkgs.lib.mapAttrsToList (name: value: "export ${name}=${pkgs.lib.escapeShellArg value}") envVars
+    );
+
+    initExtra = initExtra;
   };
 
   programs.eza = {

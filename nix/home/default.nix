@@ -66,16 +66,19 @@
     EDITOR = "nvim";
   };
 
-  home.file = {
-    ".config/tmux".source = ../../config/tmux;
-    ".config/tmux".recursive = true;
-    ".config/nvim".source = ../../config/nvim;
-    ".config/nvim".recursive = true;
-    ".config/ghostty".source = ../../config/ghostty;
-    ".config/ghostty".recursive = true;
-    ".config/karabiner".source = ../../config/karabiner;
-    ".config/karabiner".recursive = true;
-  };
+  home.file =
+    {
+      ".config/tmux".source = ../../config/tmux;
+      ".config/tmux".recursive = true;
+      ".config/nvim".source = ../../config/nvim;
+      ".config/nvim".recursive = true;
+    }
+    // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+      ".config/ghostty".source = ../../config/ghostty;
+      ".config/ghostty".recursive = true;
+      ".config/karabiner".source = ../../config/karabiner;
+      ".config/karabiner".recursive = true;
+    };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

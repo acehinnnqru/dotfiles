@@ -180,6 +180,10 @@ return {
     {
         "keaising/im-select.nvim",
         lazy = false,
+        enabled = function()
+            -- only enabled on macOS
+            return vim.loop.os_uname().sysname == "Darwin"
+        end,
         opts = {
             set_previous_events = { "InsertEnter" },
         },

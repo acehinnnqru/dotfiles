@@ -1,5 +1,5 @@
 {
-  description = "Example Darwin system flake";
+  description = "Cross-platform system flake (macOS & Linux)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -54,8 +54,41 @@
 
         specialArgs = {inherit inputs username extraimports;};
       };
+    # use username and hmModules to generate nixosSystem config
+    mkNixOS = {
+      username,
+      hmModules,
+      extraimports,
+      system ? "x86_64-linux",
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./nix/nixos
+
+          {
+            nixpkgs.overlays = overlays;
+          }
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users."${username}" = {
+              imports = [./nix/home] ++ hmModules;
+            };
+
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {inherit username;};
+          }
+        ];
+
+        specialArgs = {inherit inputs username extraimports;};
+      };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;
+    packages.x86_64-linux.mkNixOS = mkNixOS;
+    packages.aarch64-linux.mkNixOS = mkNixOS;
 
     darwinConfigurations = {
       "acehinnnqru-mbp" = mkDarwin {

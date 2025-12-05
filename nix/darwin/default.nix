@@ -91,7 +91,7 @@
 
   # homebrew support, only use casks
   homebrew.enable = true;
-  homebrew.onActivation.cleanup = "zap";
+  homebrew.onActivation.cleanup = "none";
   homebrew.taps = [
     "daipeihust/tap"
     "laishulu/homebrew"

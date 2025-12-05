@@ -144,7 +144,11 @@ return {
     -- which key
     {
         "folke/which-key.nvim",
-        opts = {},
+        opts = {
+            icons = {
+                mappings = false,
+            },
+        },
         config = function(_, opts)
             local wk = require("which-key")
             wk.setup(opts)

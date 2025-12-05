@@ -48,8 +48,8 @@ return {
         },
         config = true,
         keys = {
-            { "<leader>qs", "<cmd>SessionSave<cr>", desc = "Save Session" },
-            { "<leader>qd", "<cmd>SessionDelete<cr>", desc = "Delete Session" },
+            { "<leader>qs", "<cmd>AutoSession save<cr>", desc = "Save Session" },
+            { "<leader>qd", "<cmd>AutoSession delete<cr>", desc = "Delete Session" },
         },
     },
 

@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("GO") then
     return {}
 end
 
+vim.lsp.enable('gopls')
+
 ---@type [LazyPluginSpec]
 return {
     {

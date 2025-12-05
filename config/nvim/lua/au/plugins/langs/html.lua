@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("HTML") then
     return {}
 end
 
+vim.lsp.enable('html')
+
 ---@type [LazyPluginSpec]
 return {
     {

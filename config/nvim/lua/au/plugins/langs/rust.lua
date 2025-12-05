@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("RUST") then
     return {}
 end
 
+vim.lsp.enable('rust_analyzer')
+
 ---@type [LazyPluginSpec]
 return {
     -- modified treesitter config

@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("CSS") then
     return {}
 end
 
+vim.lsp.enable('cssls')
+
 ---@type [LazyPluginSpec]
 return {
     {

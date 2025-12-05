@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("TOML") then
     return {}
 end
 
+vim.lsp.enable('taplo')
+
 ---@type [LazyPluginSpec]
 return {
     {

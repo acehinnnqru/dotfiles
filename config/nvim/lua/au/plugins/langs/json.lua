@@ -1,3 +1,5 @@
+vim.lsp.enable('jsonls')
+
 ---@type [LazyPluginSpec]
 return {
     {

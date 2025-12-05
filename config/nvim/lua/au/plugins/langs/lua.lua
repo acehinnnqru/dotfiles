@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("LUA") then
     return {}
 end
 
+vim.lsp.enable('lua_ls')
+
 local nvim_app_env = os.getenv("NVIM_APPNAME")
 local nvim_app = nvim_app_env and nvim_app_env or "nvim"
 

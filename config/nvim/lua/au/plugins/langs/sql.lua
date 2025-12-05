@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("SQL") then
     return {}
 end
 
+vim.lsp.enable('sqlls')
+
 ---@type [LazyPluginSpec]
 return {
     {

@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("TS") then
     return {}
 end
 
+vim.lsp.enable('ts_ls')
+
 ---@type [LazyPluginSpec]
 return {
     {

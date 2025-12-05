@@ -4,6 +4,8 @@ if not utils.is_lang_enabled("NIX") then
     return {}
 end
 
+vim.lsp.enable('nil_ls')
+
 ---@type [LazyPluginSpec]
 return {
     {

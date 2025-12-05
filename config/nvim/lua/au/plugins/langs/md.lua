@@ -1,3 +1,5 @@
+vim.lsp.enable('marksman')
+
 ---@type [LazyPluginSpec]
 return {
     {

@@ -1,3 +1,5 @@
+vim.lsp.enable('yamlls')
+
 ---@type [LazyPluginSpec]
 return {
     {

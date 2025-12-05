@@ -30,6 +30,8 @@
       username,
       hmModules,
       extraimports,
+      envVars ? {},
+      initExtra ? "",
     }:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -48,7 +50,7 @@
             };
 
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username;};
+            home-manager.extraSpecialArgs = {inherit username envVars initExtra;};
           }
         ];
 

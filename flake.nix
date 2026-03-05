@@ -12,6 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    rime-ice = {
+      url = "github:iDvel/rime-ice";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -20,6 +24,7 @@
     nixpkgs,
     home-manager,
     neovim-nightly-overlay,
+    rime-ice,
     ...
   }: let
     overlays = [
@@ -46,11 +51,16 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users."${username}" = {
-              imports = [./nix/home] ++ hmModules;
+              imports =
+                [
+                  ./nix/home
+                  ./nix/darwin/rime.nix
+                ]
+                ++ hmModules;
             };
 
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username envVars initExtra;};
+            home-manager.extraSpecialArgs = {inherit username envVars initExtra rime-ice;};
           }
         ];
 
@@ -70,9 +80,11 @@
           inherit system;
           overlays = overlays;
         };
-        modules = [
-          ./nix/home
-        ] ++ hmModules;
+        modules =
+          [
+            ./nix/home
+          ]
+          ++ hmModules;
         extraSpecialArgs = {inherit username envVars initExtra;};
       };
   in {
@@ -87,6 +99,7 @@
         extraimports = [
           {
             system.primaryUser = "acehinnnqru";
+            users.users.acehinnnqru.uid = 501;
           }
         ];
       };

@@ -7,4 +7,8 @@
     name = "ghostty@tip";
     greedy = true;
   }
+  {
+    name = "squirrel-app";
+    greedy = true;
+  }
 ]

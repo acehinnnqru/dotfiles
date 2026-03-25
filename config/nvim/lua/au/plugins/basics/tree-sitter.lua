@@ -3,7 +3,7 @@ return {
     -- tree-sitter
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
+        branch = "main",
         build = ":TSUpdate",
         event = "VeryLazy",
         opts = {
@@ -99,6 +99,7 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
 

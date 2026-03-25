@@ -2,7 +2,9 @@
   description = "Cross-platform dotfiles flake (macOS & Linux with Home Manager)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/master";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,7 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rime-ice = {
       url = "github:iDvel/rime-ice";
       flake = false;
@@ -100,6 +105,17 @@
           {
             system.primaryUser = "acehinnnqru";
             users.users.acehinnnqru.uid = 501;
+          }
+        ];
+      };
+      "rqc" = mkDarwin {
+        username = "rq.chen";
+        hmModules = [];
+        extraimports = [
+          {
+            system.primaryUser = "rq.chen";
+            users.users."rq.chen".uid = 501;
+            ids.gids.nixbld = 350;
           }
         ];
       };

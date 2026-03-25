@@ -6,6 +6,7 @@
   imports = [
     ./shell.nix
     ./tmux.nix
+    ./git.nix
   ];
   home.username = "${username}";
   home.homeDirectory = pkgs.lib.mkForce (
@@ -39,6 +40,8 @@
     # workspace
     tmux
     direnv
+    
+    tree-sitter
   ];
 
   home.shellAliases =

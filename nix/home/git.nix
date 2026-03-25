@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   programs.git = {
     enable = true;
+    signing = {
+        format = "openpgp";
+    };
     settings = {
         user = {
             name = "acehinnnqru";
@@ -13,7 +16,7 @@
             cookiefile = "~/.gitcookies";
         };
 
-        [filter "lfs"] = {
+        filter.lfs = {
             clean = "git-lfs clean -- %f";
             smudge = "git-lfs smudge -- %f";
             process = "git-lfs filter-process";

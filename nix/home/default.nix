@@ -42,6 +42,9 @@
     direnv
     
     tree-sitter
+
+    # for rust cache
+    sccache
   ];
 
   home.shellAliases =

@@ -11,4 +11,7 @@
     name = "squirrel-app";
     greedy = true;
   }
+  {
+    name = "shottr";
+  }
 ]

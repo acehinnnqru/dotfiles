@@ -108,17 +108,6 @@
           }
         ];
       };
-      "rqc" = mkDarwin {
-        username = "rq.chen";
-        hmModules = [];
-        extraimports = [
-          {
-            system.primaryUser = "rq.chen";
-            users.users."rq.chen".uid = 501;
-            ids.gids.nixbld = 350;
-          }
-        ];
-      };
     };
 
     # Standalone Home Manager configurations for non-NixOS Linux systems

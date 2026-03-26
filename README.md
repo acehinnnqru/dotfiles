@@ -74,3 +74,56 @@ After that, you can run the following command to switch the configuration:
 ```bash
 make switch-linux hostname=xxx
 ```
+
+# Create a new flake based on this one
+
+1. Create a new flake.nix file in the root directory.
+
+```nix
+{
+  description = "devices' setup flake";
+
+  inputs = {
+    base = {
+      url = "github:acehinnnqru/dotfiles/master";
+    };
+  };
+
+  outputs = inputs @ {
+    self,
+    base,
+    ...
+  }: let
+    mkDarwin = base.packages.aarch64-darwin.mkDarwin;
+  in {
+    darwinConfigurations = {
+      "rqc" = mkDarwin {
+        username = "rq.chen";
+        hmModules = [];
+        extraimports = [
+          {
+            system.primaryUser = "rq.chen";
+            users.users."rq.chen".uid = 501;
+            ids.gids.nixbld = 350;
+          }
+        ];
+      };
+    };
+
+    # Standalone Home Manager configurations for non-NixOS Linux systems
+    # Usage: home-manager switch --flake "github:acehinnnqru/dotfiles#<hostname>"
+    homeConfigurations = {
+      # Example: Add your remote hostname here
+      # "remote-host" = mkHome {
+      #   username = "acehinnnqru";
+      #   hmModules = [];
+      #   system = "x86_64-linux";  # or "aarch64-linux"
+      # };
+    };
+  };
+}
+```
+
+3. Copy the [Makefile](./Makefile) to the new flake directory.
+
+4. Use the Makefile to build and switch the configuration.

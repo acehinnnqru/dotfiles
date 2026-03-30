@@ -4,17 +4,10 @@ if not utils.has_command("taplo") then
     return {}
 end
 
-vim.lsp.enable('taplo')
+vim.lsp.enable("taplo")
 
 ---@type [LazyPluginSpec]
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "toml" })
-        end,
-    },
-
     {
         "nvimtools/none-ls.nvim",
         opts = function(_, opts)

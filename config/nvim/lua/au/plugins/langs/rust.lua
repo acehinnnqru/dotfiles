@@ -4,18 +4,10 @@ if not utils.has_command("rust-analyzer") then
     return {}
 end
 
-vim.lsp.enable('rust_analyzer')
+vim.lsp.enable("rust_analyzer")
 
 ---@type [LazyPluginSpec]
 return {
-    -- modified treesitter config
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "ron", "toml", "rust" })
-        end,
-    },
-
     {
         "mrcjkb/rustaceanvim",
         ft = { "rust" },

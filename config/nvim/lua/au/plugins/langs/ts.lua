@@ -4,16 +4,10 @@ if not utils.has_command("tsserver") then
     return {}
 end
 
-vim.lsp.enable('ts_ls')
+vim.lsp.enable("ts_ls")
 
 ---@type [LazyPluginSpec]
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "javascript", "typescript" })
-        end,
-    },
     {
         "nvimtools/none-ls.nvim",
         opts = function(_, opts)

@@ -4,16 +4,10 @@ if not utils.has_command("cssls") then
     return {}
 end
 
-vim.lsp.enable('cssls')
+vim.lsp.enable("cssls")
 
 ---@type [LazyPluginSpec]
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "css" })
-        end,
-    },
     {
         "nvimtools/none-ls.nvim",
         opts = function(_, opts)

@@ -4,7 +4,7 @@ if not utils.has_command("clangd") then
     return {}
 end
 
-vim.lsp.enable('clangd')
+vim.lsp.enable("clangd")
 
 ---@type [LazyPluginSpec]
 return {

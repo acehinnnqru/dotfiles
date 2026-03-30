@@ -4,7 +4,7 @@ if not utils.has_command("zls") then
     return {}
 end
 
-vim.lsp.enable('zls')
+vim.lsp.enable("zls")
 
 ---@type [LazyPluginSpec]
 return {

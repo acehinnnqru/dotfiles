@@ -4,7 +4,7 @@ if not utils.has_command("nix") or not utils.has_command("nil") then
     return {}
 end
 
-vim.lsp.enable('nil_ls')
+vim.lsp.enable("nil_ls")
 
 ---@type [LazyPluginSpec]
 return {

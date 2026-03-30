@@ -4,16 +4,10 @@ if not utils.has_command("gopls") then
     return {}
 end
 
-vim.lsp.enable('gopls')
+vim.lsp.enable("gopls")
 
 ---@type [LazyPluginSpec]
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "gomod", "go" })
-        end,
-    },
     {
         "nvimtools/none-ls.nvim",
         opts = function(_, opts)

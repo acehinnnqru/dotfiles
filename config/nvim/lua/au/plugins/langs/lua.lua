@@ -4,7 +4,7 @@ if not utils.has_command("lua-language-server") then
     return {}
 end
 
-vim.lsp.enable('lua_ls')
+vim.lsp.enable("lua_ls")
 
 local nvim_app_env = os.getenv("NVIM_APPNAME")
 local nvim_app = nvim_app_env and nvim_app_env or "nvim"
@@ -20,14 +20,6 @@ return {
         end,
     },
 
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "lua", "vimdoc", "luadoc" })
-        end,
-    },
-
-    -- correctly setup lspconfig
     {
         "neovim/nvim-lspconfig",
         opts = function(_, opts)

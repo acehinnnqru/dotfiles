@@ -4,7 +4,7 @@ if not utils.has_command("sqlls") then
     return {}
 end
 
-vim.lsp.enable('sqlls')
+vim.lsp.enable("sqlls")
 
 ---@type [LazyPluginSpec]
 return {

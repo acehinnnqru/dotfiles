@@ -6,106 +6,405 @@ return {
         branch = "main",
         build = ":TSUpdate",
         event = "VeryLazy",
-        opts = {
-            ensure_installed = {
-                "gitignore",
-                "comment",
-                "regex",
-                "diff",
-            },
-            auto_install = true,
-            sync_install = false,
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = true,
-            },
-            incremental_selection = {
-                enable = true,
-            },
-            disable = function(_, buf)
-                local max_filesize = 100 * 1024 -- 100 KB
-                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                if ok and stats and stats.size > max_filesize then
-                    return true
-                end
-            end,
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true,
-                    keymaps = {
-                        ["aa"] = { query = "@parameter.outer", desc = "a argument" },
-                        ["ia"] = { query = "@parameter.inner", desc = "inner part of a argument" },
-                        ["af"] = { query = "@function.outer", desc = "a function region" },
-                        ["if"] = { query = "@function.inner", desc = "inner part of a function region" },
-                        ["ac"] = { query = "@class.outer", desc = "a of a class" },
-                        ["ic"] = { query = "@class.inner", desc = "inner part of a class region" },
-                        ["al"] = { query = "@loop.outer", desc = "a loop" },
-                        ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
-                    },
-                },
-            },
-            nvim_next = {
-                enable = true,
-                textobjects = {
-                    move = {
-                        enable = true,
-                        set_jumps = true,
-                        goto_next_start = {
-                            ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
-                            ["]f"] = { query = "@function.outer", desc = "Next function start" },
-                            ["]c"] = { query = "@class.outer", desc = "Next class start" },
-                            ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
-                        },
-                        goto_next_end = {
-                            ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
-                            ["]F"] = { query = "@function.outer", desc = "Next function end" },
-                            ["]C"] = { query = "@class.outer", desc = "Next class end" },
-                            ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
-                        },
-                        goto_previous_start = {
-                            ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
-                            ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-                            ["[c"] = { query = "@class.outer", desc = "Previous class start" },
-                            ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
-                        },
-                        goto_previous_end = {
-                            ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
-                            ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-                            ["[C"] = { query = "@class.outer", desc = "Previous class end" },
-                            ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
-                        },
-                    },
-                },
-            },
-        },
-        config = function(_, opts)
-            require("nvim-next.integrations").treesitter_textobjects()
-
-            require("nvim-treesitter.configs").setup(opts)
-            require("ts_context_commentstring").setup({})
-            vim.g.skip_ts_context_commentstring_module = true
+        config = function(_, _)
+            vim.api.nvim_create_autocmd("FileType", {
+                desc = "Enable treesitter-based features for supported filetypes",
+                callback = function(args)
+                    local bufnr = args.buf
+                    local filetype = args.match
+                    local lang = vim.treesitter.language.get_lang(filetype)
+                    if lang and vim.treesitter.language.add(lang) then
+                        -- Highlighting
+                        vim.treesitter.start(bufnr, lang)
+                        -- Folds
+                        vim.wo[0][0].foldmethod = "expr"
+                        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                        -- Indentation
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
+            })
         end,
-    },
-
-    -- comment enhanced using tree-sitter
-    {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        lazy = true,
     },
 
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         branch = "main",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            select = {
+                lookahead = true,
+                include_surrounding_whitespace = true,
+            },
+            move = {
+                set_jumps = true,
+            },
+        },
+        keys = function()
+            local ts = vim._defer_require("nvim-treesitter-textobjects", {
+                repeatable_move = {}, ---@module "nvim-treesitter-textobjects.repeatable_move"
+                select = {}, ---@module "nvim-treesitter-textobjects.select"
+                move = {}, ---@module "nvim-treesitter-textobjects.move"
+            })
+
+            return {
+                ---
+                --- Repeatable
+                ---
+                {
+                    ";",
+                    function()
+                        ts.repeatable_move.repeat_last_move()
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next last move",
+                },
+                {
+                    ",",
+                    function()
+                        ts.repeatable_move.repeat_last_move_opposite()
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Prev last move",
+                },
+                {
+                    "f",
+                    function()
+                        return ts.repeatable_move.builtin_f_expr()
+                    end,
+                    expr = true,
+                    mode = { "n", "x", "o" },
+                    desc = "Move to next char",
+                },
+                {
+                    "F",
+                    function()
+                        return ts.repeatable_move.builtin_F_expr()
+                    end,
+                    expr = true,
+                    mode = { "n", "x", "o" },
+                    desc = "Move to prev char",
+                },
+                {
+                    "t",
+                    function()
+                        return ts.repeatable_move.builtin_t_expr()
+                    end,
+                    expr = true,
+                    mode = { "n", "x", "o" },
+                    desc = "Move before next char",
+                },
+                {
+                    "T",
+                    function()
+                        return ts.repeatable_move.builtin_T_expr()
+                    end,
+                    expr = true,
+                    mode = { "n", "x", "o" },
+                    desc = "Move before prev char",
+                },
+                --
+                -- Select
+                --
+                {
+                    "aa",
+                    function()
+                        ts.select.select_textobject("@parameter.outer")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "a argument",
+                },
+                {
+                    "ia",
+                    function()
+                        ts.select.select_textobject("@parameter.inner")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "inner part of a argument",
+                },
+                {
+                    "af",
+                    function()
+                        ts.select.select_textobject("@function.outer")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "a function region",
+                },
+                {
+                    "if",
+                    function()
+                        ts.select.select_textobject("@function.inner")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "inner part of a function region",
+                },
+                {
+                    "ac",
+                    function()
+                        ts.select.select_textobject("@class.outer")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "a of a class",
+                },
+                {
+                    "ic",
+                    function()
+                        ts.select.select_textobject("@class.inner")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "inner part of a class region",
+                },
+                {
+                    "aj",
+                    function()
+                        ts.select.select_textobject("@conditional.outer")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "a judge",
+                },
+                {
+                    "ij",
+                    function()
+                        ts.select.select_textobject("@conditional.inner")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "inner part of a judge region",
+                },
+                {
+                    "al",
+                    function()
+                        ts.select.select_textobject("@loop.outer")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "a loop",
+                },
+                {
+                    "il",
+                    function()
+                        ts.select.select_textobject("@loop.inner")
+                    end,
+                    mode = { "x", "o" },
+                    desc = "inner part of a loop",
+                },
+                --
+                -- Move
+                --
+                {
+                    "]a",
+                    function()
+                        ts.move.goto_next_start("@parameter.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next argument start",
+                },
+                {
+                    "]A",
+                    function()
+                        ts.move.goto_next_end("@parameter.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next argument end",
+                },
+                {
+                    "[a",
+                    function()
+                        ts.move.goto_previous_start("@parameter.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous argument start",
+                },
+                {
+                    "[A",
+                    function()
+                        ts.move.goto_previous_end("@parameter.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous argument end",
+                },
+                {
+                    "]f",
+                    function()
+                        ts.move.goto_next_start("@function.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next function start",
+                },
+                {
+                    "]F",
+                    function()
+                        ts.move.goto_next_end("@function.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next function end",
+                },
+                {
+                    "[f",
+                    function()
+                        ts.move.goto_previous_start("@function.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous function start",
+                },
+                {
+                    "[F",
+                    function()
+                        ts.move.goto_previous_end("@function.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous function end",
+                },
+                {
+                    "]c",
+                    function()
+                        ts.move.goto_next_start("@class.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next class start",
+                },
+                {
+                    "]C",
+                    function()
+                        ts.move.goto_next_end("@class.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next class end",
+                },
+                {
+                    "[c",
+                    function()
+                        ts.move.goto_previous_start("@class.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous class start",
+                },
+                {
+                    "[C",
+                    function()
+                        ts.move.goto_previous_end("@class.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous class end",
+                },
+                {
+                    "]j",
+                    function()
+                        ts.move.goto_next_start("@conditional.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next judge start",
+                },
+                {
+                    "]J",
+                    function()
+                        ts.move.goto_next_end("@conditional.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next judge end",
+                },
+                {
+                    "[j",
+                    function()
+                        ts.move.goto_previous_start("@conditional.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous judge start",
+                },
+                {
+                    "[J",
+                    function()
+                        ts.move.goto_previous_end("@conditional.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous judge end",
+                },
+                {
+                    "]l",
+                    function()
+                        ts.move.goto_next_start("@loop.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next loop start",
+                },
+                {
+                    "]L",
+                    function()
+                        ts.move.goto_next_end("@loop.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next loop end",
+                },
+                {
+                    "[l",
+                    function()
+                        ts.move.goto_previous_start("@loop.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous loop start",
+                },
+                {
+                    "[L",
+                    function()
+                        ts.move.goto_previous_end("@loop.outer")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous loop end",
+                },
+                {
+                    "[n",
+                    function()
+                        ts.move.goto_previous_start("@number.inner")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous number",
+                },
+                {
+                    "]n",
+                    function()
+                        ts.move.goto_next_start("@number.inner")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next number",
+                },
+                {
+                    "[N",
+                    function()
+                        ts.move.goto_previous_end("@number.inner")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Previous number",
+                },
+                {
+                    "]N",
+                    function()
+                        ts.move.goto_next_end("@number.inner")
+                    end,
+                    mode = { "n", "x", "o" },
+                    desc = "Next number",
+                },
+            }
+        end,
     },
 
     {
-        "ghostbuster91/nvim-next",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        "Wansmer/treesj",
+        keys = {
+            {
+                "gJ",
+                function()
+                    require("treesj").join()
+                end,
+                desc = "Join lines",
+            },
+            {
+                "gS",
+                function()
+                    require("treesj").split()
+                end,
+                desc = "Split lines",
+            },
+        },
+        opts = {
+            use_default_keymaps = false,
+        },
     },
 
     -- re-declare mini.comment to add tree-sitter support
@@ -113,13 +412,7 @@ return {
     {
         "echasnovski/mini.comment",
         event = "VeryLazy",
-        opts = {
-            hooks = {
-                pre = function()
-                    require("ts_context_commentstring.internal").update_commentstring(nil)
-                end,
-            },
-        },
+        opts = {},
         config = function(_, opts)
             require("mini.comment").setup(opts)
         end,

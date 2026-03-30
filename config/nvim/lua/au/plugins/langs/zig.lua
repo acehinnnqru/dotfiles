@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
-if not utils.is_lang_enabled("ZIG") then
+if not utils.has_command("zls") then
     return {}
 end
 

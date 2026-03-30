@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
-if not utils.is_lang_enabled("TS") then
+if not utils.has_command("tsserver") then
     return {}
 end
 

@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
-if not utils.is_lang_enabled("LUA") then
+if not utils.has_command("lua-language-server") then
     return {}
 end
 

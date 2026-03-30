@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
-if not utils.is_lang_enabled("JUST") then
+if not utils.has_command("just") then
     return {}
 end
 

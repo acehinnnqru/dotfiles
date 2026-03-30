@@ -99,14 +99,15 @@ function M.lsp_on_attach(on_attach)
     })
 end
 
-function M.is_lang_enabled(lang)
-    local envkey = "AU_LANG_" .. lang
-    local enabled = os.getenv(envkey)
-    if enabled == nil then
+function M.has_command(command)
+    local sys_command = "which " .. command
+    local handle = io.popen(sys_command)
+    if handle == nil then
         return false
     end
-
-    return enabled ~= ""
+    local result = handle:read("*a")
+    handle:close()
+    return result ~= ""
 end
 
 function M.exists_command(command)

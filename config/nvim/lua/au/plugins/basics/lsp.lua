@@ -21,7 +21,7 @@ function KM.on_attach(client, buffer)
 
     -- code cmds
     self:map("<leader>cd", "lua vim.diagnostic.open_float()", { desc = "Line Diagnostics" })
-    self:map("<leader>cl", "LspInfo", { desc = "Lsp Info" })
+    self:map("<leader>cl", "checkhealth vim.lsp", { desc = "check health of lsp" })
     self:map("<leader>ca", require("actions-preview").code_actions, { desc = "Code Action", mode = { "n", "v" } })
     self:map("<leader>cf", format, { desc = "Format Document" })
     self:map("<leader>cf", format, { desc = "Format Range", mode = "v" })

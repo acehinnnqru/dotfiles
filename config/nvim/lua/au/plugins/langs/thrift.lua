@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
-if not utils.is_lang_enabled("THRIFT") then
+if not utils.has_command("thriftls") then
     return {}
 end
 

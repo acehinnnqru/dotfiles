@@ -1,4 +1,5 @@
-HOST ?= $(shell hostname)
+# hostname should trimmed the last '.local'
+HOST ?= $(shell hostname | sed 's/\.local//')
 
 fresh-build-macos:
 	which nix

@@ -17,6 +17,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rt = {
+      url = "github:acehinnnqru/rt/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rime-ice = {
       url = "github:iDvel/rime-ice";
       flake = false;
@@ -29,11 +33,15 @@
     nixpkgs,
     home-manager,
     neovim-nightly-overlay,
+    rt,
     rime-ice,
     ...
   }: let
     overlays = [
       neovim-nightly-overlay.overlays.default
+      (final: prev: {
+        rt = rt.packages.${prev.system}.rt;
+      })
     ];
     # use username and hmModules to generate darwinSystem config
     mkDarwin = {

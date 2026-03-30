@@ -45,6 +45,9 @@
 
     # for rust cache
     sccache
+
+    # custom
+    rt
   ];
 
   home.shellAliases =

@@ -21,8 +21,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = function(_, opts)
-            vim.notify("loaded")
-
             require("au.utils").lsp_on_attach(function(client, _)
                 if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
                     local semantic = client.config.capabilities.textDocument.semanticTokens

@@ -20,4 +20,7 @@
   {
     name = "cursor";
   }
+  {
+    name = "appcleaner";
+  }
 ]

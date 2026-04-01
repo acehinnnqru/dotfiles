@@ -17,4 +17,7 @@
   {
     name = "telegram";
   }
+  {
+    name = "cursor";
+  }
 ]

@@ -14,4 +14,7 @@
   {
     name = "shottr";
   }
+  {
+    name = "telegram";
+  }
 ]

@@ -15,7 +15,7 @@
     name = "shottr";
   }
   {
-    name = "telegram-desktop";
+    name = "telegram";
   }
   {
     name = "cursor";

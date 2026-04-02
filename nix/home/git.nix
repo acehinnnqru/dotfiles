@@ -40,7 +40,7 @@
         };
     };
 
-    ignore = [
+    ignores = [
       ".envrc"
       ".direnv/"
     ];

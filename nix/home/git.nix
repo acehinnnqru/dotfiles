@@ -39,6 +39,11 @@
             fetch.prune = true;
         };
     };
+
+    ignore = [
+      ".envrc"
+      ".direnv/"
+    ];
     
     includes = [
         {

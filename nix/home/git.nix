@@ -24,7 +24,7 @@
         };
 
         core = {
-            excludesfile = "~/.gitignore";
+            excludesfile = "~/.config/git/ignore";
         };
 
         init = {

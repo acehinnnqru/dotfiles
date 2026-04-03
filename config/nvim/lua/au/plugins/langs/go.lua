@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("gopls")
 
+utils.install_ts({ "go" })
+
 ---@type [LazyPluginSpec]
 return {
     {

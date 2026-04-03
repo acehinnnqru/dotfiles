@@ -158,4 +158,15 @@ function M.set_colorscheme(theme)
     end
 end
 
+---@param langs string[]
+function M.install_ts(langs)
+    local ts = require("nvim-treesitter")
+    local installed = ts.get_installed()
+    for _, lang in ipairs(langs) do
+        if not installed[lang] then
+            ts.install(lang)
+        end
+    end
+end
+
 return M

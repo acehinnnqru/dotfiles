@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("lua_ls")
 
+utils.install_ts({ "lua" })
+
 local nvim_app_env = os.getenv("NVIM_APPNAME")
 local nvim_app = nvim_app_env and nvim_app_env or "nvim"
 

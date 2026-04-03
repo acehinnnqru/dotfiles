@@ -1,4 +1,8 @@
+local utils = require("au.utils")
+
 vim.lsp.enable("jsonls")
+
+utils.install_ts({ "json" })
 
 ---@type [LazyPluginSpec]
 return {

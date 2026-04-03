@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("sqlls")
 
+utils.install_ts({ "sql" })
+
 ---@type [LazyPluginSpec]
 return {
     {

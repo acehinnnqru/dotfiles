@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("rust_analyzer")
 
+utils.install_ts({ "rust" })
+
 ---@type [LazyPluginSpec]
 return {
     {

@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("taplo")
 
+utils.install_ts({ "toml" })
+
 ---@type [LazyPluginSpec]
 return {
     {

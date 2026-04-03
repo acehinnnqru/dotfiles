@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("cssls")
 
+utils.install_ts({ "css" })
+
 ---@type [LazyPluginSpec]
 return {
     {

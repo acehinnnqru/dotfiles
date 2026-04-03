@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("ts_ls")
 
+utils.install_ts({ "javascript", "typescript", "tsx" })
+
 ---@type [LazyPluginSpec]
 return {
     {

@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("thriftls")
 
+utils.install_ts({ "thrift" })
+
 ---@type [LazyPluginSpec]
 return {
     {

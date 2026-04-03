@@ -4,6 +4,8 @@ if not utils.has_command("just") then
     return {}
 end
 
+utils.install_ts({ "just" })
+
 ---@type [LazyPluginSpec]
 return {
     {

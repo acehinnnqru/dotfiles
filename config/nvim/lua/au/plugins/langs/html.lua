@@ -6,6 +6,8 @@ end
 
 vim.lsp.enable("html")
 
+utils.install_ts({ "html" })
+
 ---@type [LazyPluginSpec]
 return {
     {

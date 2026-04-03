@@ -1,5 +1,38 @@
+local function parse_location(query)
+    local line, col
+    line, col = query:match(":(%d+):(%d+)$")
+    if line then return tonumber(line), tonumber(col) end
+    line = query:match(":(%d+)$")
+    if line then return tonumber(line), nil end
+    line = query:match("#L(%d+)$")
+    if line then return tonumber(line), nil end
+    return nil, nil
+end
+
 local find_files = function()
-    require("fzf-lua").files({ cwd = require("au.utils").get_root() })
+    local fzf_lua = require("fzf-lua")
+
+    fzf_lua.files({
+        cwd = require("au.utils").get_root(),
+        keymap = {
+            fzf = {
+                ["change"] = [[transform-search:echo {q} | sed -E 's/:[0-9]*:[0-9]*$//;s/:[0-9]*$//;s/#L[0-9]*$//']],
+            },
+        },
+        actions = {
+            ["default"] = function(selected, opts)
+                if not selected or #selected == 0 then return end
+                local query = opts.last_query or ""
+                local line, col = parse_location(query)
+                require("fzf-lua.actions").file_edit(selected, opts)
+                if line then
+                    line = math.min(line, vim.api.nvim_buf_line_count(0))
+                    pcall(vim.api.nvim_win_set_cursor, 0, { line, (col or 1) - 1 })
+                    vim.cmd("normal! zz")
+                end
+            end,
+        },
+    })
 end
 
 ---@type [LazyPluginSpec]
@@ -40,8 +73,10 @@ return {
                 find_files,
                 desc = "Find Files (root dir)",
             },
-            { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Find text in project" },
+            { "<leader>/", "<cmd>FzfLua live_grep_native<cr>", desc = "Find text in project" },
             { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
+
+            { "<leader>;", "<cmd>FzfLua resume<cr>", desc = "Resume Last Fzf Search" },
 
             -- search
             { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Git Files" },

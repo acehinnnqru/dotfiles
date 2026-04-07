@@ -23,4 +23,7 @@
   {
     name = "appcleaner";
   }
+  {
+    name = "font-ibm-plex-mono";
+  }
 ]

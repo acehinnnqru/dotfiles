@@ -26,4 +26,12 @@ macos-option-as-alt = left
 
 link-url = true
 
+font-family = "IBM Plex Mono"
+font-family = "PingFang SC"
+font-feature = -liga
+font-feature = -calt
+font-feature = -dlig
+
+font-size = 15.7
+
 config-file = "local-config"

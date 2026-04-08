@@ -6,8 +6,6 @@ end
 
 vim.lsp.enable("nil_ls")
 
-utils.install_ts({ "nix" })
-
 ---@type [LazyPluginSpec]
 return {
     {

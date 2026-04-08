@@ -12,8 +12,12 @@ return {
                 callback = function(args)
                     local bufnr = args.buf
                     local filetype = args.match
-                    local lang = vim.treesitter.language.get_lang(filetype)
-                    if lang and vim.treesitter.language.add(lang) then
+                    local lang, ok = require("au.utils").if_enable_ts(filetype)
+                    if not ok then
+                        return
+                    end
+
+                    if vim.treesitter.language.add(lang) then
                         -- Highlighting
                         vim.treesitter.start(bufnr, lang)
                         -- Folds

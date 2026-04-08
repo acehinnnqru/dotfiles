@@ -158,6 +158,20 @@ function M.set_colorscheme(theme)
     end
 end
 
+---@return string?
+---@return boolean
+function M.if_enable_ts(filetype)
+    local ts = require("nvim-treesitter")
+    local lang = vim.treesitter.language.get_lang(filetype)
+    local installed = ts.get_installed()
+
+    if installed[lang] then
+        return lang, true
+    end
+
+    return nil, false
+end
+
 ---@param langs string[]
 function M.install_ts(langs)
     local ts = require("nvim-treesitter")

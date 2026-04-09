@@ -26,4 +26,7 @@
   {
     name = "font-ibm-plex-mono";
   }
+  {
+    name = "numi";
+  }
 ]

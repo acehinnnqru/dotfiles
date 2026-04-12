@@ -48,6 +48,7 @@
       username,
       hmModules,
       extraimports,
+      systemPackagesFunc ? (_: []),
       envVars ? {},
       initExtra ? "",
     }:
@@ -77,7 +78,7 @@
           }
         ];
 
-        specialArgs = {inherit inputs username extraimports;};
+        specialArgs = {inherit inputs username extraimports systemPackagesFunc;};
       };
     # use username and hmModules to generate standalone Home Manager config
     # for non-NixOS Linux systems (Ubuntu, Debian, etc.)
@@ -115,6 +116,7 @@
             users.users.acehinnnqru.uid = 501;
           }
         ];
+        systemPackagesFunc = pkgs: with pkgs; [];
       };
     };
 

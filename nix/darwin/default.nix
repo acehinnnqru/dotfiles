@@ -27,7 +27,6 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
-  # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
@@ -79,6 +78,8 @@
   # enable nix auto gc
   # default interval: at 3:15 of every Sunday
   nix.gc.automatic = true;
+
+  environment.shells = [pkgs.zsh];
 
   users = {
     users = {

@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  homePackagesFunc,
   ...
 }: {
   imports = [
@@ -15,40 +16,42 @@
     else "/Users/${username}"
   );
 
-  home.packages = with pkgs; [
-    gnupg
-    git
-    ## editor
-    vim
-    neovim
+  home.packages = with pkgs;
+    [
+      gnupg
+      git
+      ## editor
+      vim
+      neovim
 
-    ## make life better
-    zoxide
-    starship
-    tokei
+      ## make life better
+      zoxide
+      starship
+      tokei
 
-    ## dev
-    # utils
-    fzf
-    lazygit
-    sesh
-    ripgrep
-    eza
-    bat
-    watchexec
+      ## dev
+      # utils
+      fzf
+      lazygit
+      sesh
+      ripgrep
+      eza
+      bat
+      watchexec
 
-    # workspace
-    tmux
-    direnv
-    
-    tree-sitter
+      # workspace
+      tmux
+      direnv
 
-    # for rust cache
-    sccache
+      tree-sitter
 
-    # custom
-    rt
-  ];
+      # for rust cache
+      sccache
+
+      # custom
+      rt
+    ]
+    ++ (homePackagesFunc pkgs);
 
   home.shellAliases =
     {

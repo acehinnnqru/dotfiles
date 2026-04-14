@@ -9,7 +9,7 @@
     ./git.nix
   ];
   home.username = "${username}";
-  home.homeDirectory = pkgs.lib.mkForce (
+  home.homeDirectory = pkgs.lib.mkDefault (
     if pkgs.stdenv.isLinux
     then "/home/${username}"
     else "/Users/${username}"

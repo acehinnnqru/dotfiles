@@ -29,4 +29,7 @@
   {
     name = "numi";
   }
+  {
+    name = "kap";
+  }
 ]

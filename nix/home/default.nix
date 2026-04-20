@@ -38,6 +38,7 @@
       eza
       bat
       watchexec
+      curl
 
       # workspace
       tmux

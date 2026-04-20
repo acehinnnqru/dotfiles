@@ -71,8 +71,8 @@
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   ];
   nix.settings.trusted-substituters = [
-    "nix-community.cachix.org"
-    "cache.nixos.org"
+    "https://nix-community.cachix.org"
+    "https://cache.nixos.org"
   ];
 
   # enable nix auto gc

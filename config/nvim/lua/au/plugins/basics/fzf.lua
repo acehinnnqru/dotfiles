@@ -1,11 +1,17 @@
 local function parse_location(query)
     local line, col
     line, col = query:match(":(%d+):(%d+)$")
-    if line then return tonumber(line), tonumber(col) end
+    if line then
+        return tonumber(line), tonumber(col)
+    end
     line = query:match(":(%d+)$")
-    if line then return tonumber(line), nil end
+    if line then
+        return tonumber(line), nil
+    end
     line = query:match("#L(%d+)$")
-    if line then return tonumber(line), nil end
+    if line then
+        return tonumber(line), nil
+    end
     return nil, nil
 end
 
@@ -21,7 +27,9 @@ local find_files = function()
         },
         actions = {
             ["default"] = function(selected, opts)
-                if not selected or #selected == 0 then return end
+                if not selected or #selected == 0 then
+                    return
+                end
                 local query = opts.last_query or ""
                 local line, col = parse_location(query)
                 require("fzf-lua.actions").file_edit(selected, opts)
@@ -79,7 +87,8 @@ return {
             { "<leader>;", "<cmd>FzfLua resume<cr>", desc = "Resume Last Fzf Search" },
 
             -- search
-            { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Git Files" },
+            { "<leader>fgf", "<cmd>FzfLua git_files<cr>", desc = "Git Files" },
+            { "<leader>fgh", "<cmd>FzfLua git_hunks<cr>", desc = "Git Hunks" },
             { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Open Buffers" },
 
             { "<leader>fk", "<cmd>FzfLua keymaps<cr>", desc = "Keymaps" },

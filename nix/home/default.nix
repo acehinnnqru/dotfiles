@@ -6,8 +6,8 @@
   ...
 }: let
   brewCompletions = builtins.readFile (pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/Homebrew/brew/refs/heads/main/completions/zsh/_brew";
-    sha256 = "04drn687pmp9ar93l9ccmdxxl96083vcwnjzb5qd1x4vly3shn9i";
+    url = "https://raw.githubusercontent.com/Homebrew/brew/dc7337a90f7c5e8addcd39284329ee28a67bdb8d/completions/zsh/_brew";
+    sha256 = "01rgqa5kzhkr0bqnsz85g3hqvm0nbs34imnr151wp4wadrl1334k";
   });
 in {
   imports = [

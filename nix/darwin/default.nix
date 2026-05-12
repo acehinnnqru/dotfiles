@@ -60,6 +60,8 @@
 
   # ability to use TouchID for sudo auth
   security.pam.services.sudo_local.touchIdAuth = true;
+  # for enabling TouchID in tmux
+  security.pam.services.sudo_local.reattach = true;
 
   # Trusted users (set in trusted-users ) can always connect to the Nix daemon.
   # If set to true, Nix will ignore the allowSubstitutes attribute in derivations

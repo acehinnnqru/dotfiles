@@ -14,6 +14,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    initExtraBeforeCompInit = ''
+      fpath=(~/.zsh/completions $fpath)
+    '';
+
     oh-my-zsh = {
       enable = true;
       plugins = [

@@ -9,6 +9,9 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +33,7 @@
   outputs = inputs @ {
     self,
     nix-darwin,
+    nix-homebrew,
     nixpkgs,
     home-manager,
     neovim-nightly-overlay,
@@ -55,6 +59,23 @@
     }:
       nix-darwin.lib.darwinSystem {
         modules = [
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              # Install Homebrew under the default prefix
+              enable = true;
+
+              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+              enableRosetta = true;
+
+              # User owning the Homebrew prefix
+              user = "yourname";
+
+              # Automatically migrate existing Homebrew installations
+              autoMigrate = true;
+            };
+          }
+
           ./nix/darwin
 
           {

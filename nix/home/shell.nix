@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   envVars ? {},
   initExtra ? "",
   ...
@@ -14,7 +15,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    initExtraBeforeCompInit = ''
+    initContent = lib.mkOrder 500 ''
       fpath=(~/.zsh/completions $fpath)
     '';
 

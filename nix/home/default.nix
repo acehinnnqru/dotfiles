@@ -96,7 +96,7 @@ in {
       ".config/ghostty".recursive = true;
       ".config/karabiner".source = ../../config/karabiner;
       ".config/karabiner".recursive = true;
-      ".zsh/completions/_brew".text = brewCompletions;
+      "/opt/homebrew/share/zsh/site-functions/_brew".text = brewCompletions;
     };
 
   # This value determines the Home Manager release that your

@@ -3,7 +3,12 @@
   username,
   homePackagesFunc,
   ...
-}: {
+}: let
+  brewCompletions = builtins.readFile (pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/Homebrew/brew/refs/heads/main/completions/zsh/_brew";
+    sha256 = "04drn687pmp9ar93l9ccmdxxl96083vcwnjzb5qd1x4vly3shn9i";
+  });
+in {
   imports = [
     ./shell.nix
     ./tmux.nix
@@ -91,6 +96,7 @@
       ".config/ghostty".recursive = true;
       ".config/karabiner".source = ../../config/karabiner;
       ".config/karabiner".recursive = true;
+      ".zsh/completions/_brew".text = brewCompletions;
     };
 
   # This value determines the Home Manager release that your

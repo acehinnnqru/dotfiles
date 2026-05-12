@@ -1,4 +1,9 @@
-{pkgs, envVars ? {}, initExtra ? "", ...}: {
+{
+  pkgs,
+  envVars ? {},
+  initExtra ? "",
+  ...
+}: {
   programs.gpg.enable = true;
 
   programs.zsh = {

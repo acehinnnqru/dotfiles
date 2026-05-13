@@ -2,53 +2,55 @@
   programs.git = {
     enable = true;
     signing = {
-        format = "openpgp";
+      format = "openpgp";
     };
     settings = {
-        user = {
-            name = "acehinnnqru";
-            email = "acehinnnqru@gmail.com";
-        };
-        commit = {
-            gpgsign = true;
-        };
-        http = {
-            cookiefile = "~/.gitcookies";
-        };
+      user = {
+        name = "acehinnnqru";
+        email = "acehinnnqru@gmail.com";
+      };
+      commit = {
+        gpgsign = true;
+      };
+      http = {
+        cookiefile = "~/.gitcookies";
+      };
 
-        filter.lfs = {
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-            required = true;
-        };
+      filter.lfs = {
+        clean = "git-lfs clean -- %f";
+        smudge = "git-lfs smudge -- %f";
+        process = "git-lfs filter-process";
+        required = true;
+      };
 
-        core = {
-            excludesfile = "~/.config/git/ignore";
-        };
+      core = {
+        excludesfile = "~/.config/git/ignore";
+      };
 
-        init = {
-            defaultBranch = "main";
-        };
+      init = {
+        defaultBranch = "main";
+      };
 
-        extraConfig = {
-            init.defaultBranch = "main";
-            push.autoSetupRemote = true;
-            push.default = "current";
-            pull.rebase = true;
-            fetch.prune = true;
-        };
+      extraConfig = {
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        push.default = "current";
+        pull.rebase = true;
+        fetch.prune = true;
+      };
     };
 
     ignores = [
       ".envrc"
       ".direnv/"
+      ".DS_Store"
+      "Thumbs.db"
     ];
-    
+
     includes = [
-        {
-            path = "~/.gitconfig.local";
-        }
+      {
+        path = "~/.gitconfig.local";
+      }
     ];
   };
 }

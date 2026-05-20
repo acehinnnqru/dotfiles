@@ -7,12 +7,18 @@ return {
         build = ":TSUpdate",
         event = "VeryLazy",
         config = function(_, _)
+            local install_ts = require("au.utils").install_ts
+
+            -- make sure
+            install_ts({ "diff" })
+
+            local is_enable_ts = require("au.utils").if_enable_ts
             vim.api.nvim_create_autocmd("FileType", {
                 desc = "Enable treesitter-based features for supported filetypes",
                 callback = function(args)
                     local bufnr = args.buf
                     local filetype = args.match
-                    local lang, ok = require("au.utils").if_enable_ts(filetype)
+                    local lang, ok = is_enable_ts(filetype)
                     if not ok then
                         return
                     end

@@ -189,7 +189,7 @@ return {
             return vim.loop.os_uname().sysname == "Darwin"
         end,
         opts = {
-            set_previous_events = { "InsertEnter" },
+            set_previous_events = { "InsertEnter", "FocusGained" },
         },
         config = function(_, opts)
             require("im_select").setup(opts)

@@ -4,8 +4,6 @@ if not utils.has_command("rust-analyzer") then
     return {}
 end
 
-vim.lsp.enable("rust_analyzer")
-
 utils.install_ts({ "rust" })
 
 ---@type [LazyPluginSpec]
@@ -13,10 +11,12 @@ return {
     {
         "mrcjkb/rustaceanvim",
         ft = { "rust" },
+        version = "^9",
         config = function()
             vim.g.rustaceanvim = {
                 server = {
                     settings = {
+                        -- rustaceanvim would automaticly set the built-in lsp
                         ["rust-analyzer"] = {
                             cargo = {
                                 allFeatures = true,

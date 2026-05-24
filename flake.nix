@@ -118,9 +118,9 @@
         extraSpecialArgs = {inherit username;};
       };
   in {
-    packages.aarch64-darwin.mkDarwin = mkDarwin;
-    packages.x86_64-linux.mkHome = mkHome;
-    packages.aarch64-linux.mkHome = mkHome;
+    lib = {
+      inherit mkDarwin mkHome;
+    };
 
     darwinConfigurations = {
       "acehinnnqru-mbp" = mkDarwin {

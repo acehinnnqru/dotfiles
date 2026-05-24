@@ -52,8 +52,6 @@
       username,
       hmModules,
       extraimports,
-      envVars ? {},
-      initExtra ? "",
     }:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -94,7 +92,7 @@
             };
 
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username envVars initExtra rime-ice;};
+            home-manager.extraSpecialArgs = {inherit username rime-ice;};
           }
         ];
 
@@ -106,8 +104,6 @@
       username,
       hmModules,
       system ? "x86_64-linux",
-      envVars ? {},
-      initExtra ? "",
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -119,7 +115,7 @@
             ./nix/home
           ]
           ++ hmModules;
-        extraSpecialArgs = {inherit username envVars initExtra;};
+        extraSpecialArgs = {inherit username;};
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;

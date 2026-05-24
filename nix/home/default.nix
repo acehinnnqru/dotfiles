@@ -2,7 +2,6 @@
   pkgs,
   lib,
   username,
-  homePackagesFunc,
   ...
 }: let
   brewCompletions = builtins.readFile (pkgs.fetchurl {
@@ -57,8 +56,7 @@ in {
 
       # custom
       rt
-    ]
-    ++ (homePackagesFunc pkgs);
+    ];
 
   home.shellAliases =
     {

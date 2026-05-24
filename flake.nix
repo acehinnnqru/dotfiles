@@ -52,10 +52,8 @@
       username,
       hmModules,
       extraimports,
-      systemPackagesFunc ? (_: []),
       envVars ? {},
       initExtra ? "",
-      homePackagesFunc ? (_: []),
     }:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -96,11 +94,11 @@
             };
 
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username envVars initExtra rime-ice homePackagesFunc;};
+            home-manager.extraSpecialArgs = {inherit username envVars initExtra rime-ice;};
           }
         ];
 
-        specialArgs = {inherit inputs username extraimports systemPackagesFunc homePackagesFunc;};
+        specialArgs = {inherit inputs username extraimports;};
       };
     # use username and hmModules to generate standalone Home Manager config
     # for non-NixOS Linux systems (Ubuntu, Debian, etc.)
@@ -110,7 +108,6 @@
       system ? "x86_64-linux",
       envVars ? {},
       initExtra ? "",
-      homePackagesFunc ? (_: []),
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -122,7 +119,7 @@
             ./nix/home
           ]
           ++ hmModules;
-        extraSpecialArgs = {inherit username envVars initExtra homePackagesFunc;};
+        extraSpecialArgs = {inherit username envVars initExtra;};
       };
   in {
     packages.aarch64-darwin.mkDarwin = mkDarwin;
@@ -139,7 +136,6 @@
             users.users.acehinnnqru.uid = 501;
           }
         ];
-        systemPackagesFunc = pkgs: with pkgs; [];
       };
     };
 

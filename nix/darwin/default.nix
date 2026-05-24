@@ -4,19 +4,14 @@
   inputs,
   username,
   extraimports,
-  systemPackagesFunc,
   ...
 }: {
   imports =
     []
     ++ extraimports;
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    (systemPackagesFunc pkgs)
-    ++ [
-    ];
+  environment.systemPackages = [
+  ];
 
   # Auto upgrade nix package and the daemon service.
   nix.enable = true;

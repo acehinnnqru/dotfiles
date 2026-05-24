@@ -51,7 +51,7 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "rg --files --hidden --glob '!.git/' --glob '!node_modules/' --glob '!.direnv/'";
+    defaultCommand = "rg --files --hidden --glob '!.git/' --glob '!node_modules/' --glob '!.direnv/' --glob '!/nix'";
   };
 
   programs.starship = {

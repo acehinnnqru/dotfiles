@@ -31,12 +31,17 @@
         defaultBranch = "main";
       };
 
-      extraConfig = {
-        init.defaultBranch = "main";
-        push.autoSetupRemote = true;
-        push.default = "current";
-        pull.rebase = true;
-        fetch.prune = true;
+      push = {
+        autoSetupRemote = true;
+        default = "current";
+      };
+
+      pull = {
+        rebase = true;
+      };
+
+      fetch = {
+        prune = true;
       };
     };
 

@@ -102,8 +102,8 @@
     "daipeihust/tap"
     "laishulu/homebrew"
   ];
-  homebrew.global.autoUpdate = true;
-  homebrew.onActivation.autoUpdate = true;
+  homebrew.global.autoUpdate = false;
+  homebrew.onActivation.autoUpdate = false;
   homebrew.onActivation.upgrade = true;
   homebrew.casks = import ./casks.nix;
   homebrew.brews = import ./brews.nix;

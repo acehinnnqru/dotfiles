@@ -32,4 +32,7 @@
   {
     name = "kap";
   }
+  {
+    name = "raycast";
+  }
 ]

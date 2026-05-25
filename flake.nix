@@ -51,52 +51,54 @@
     mkDarwin = {
       username,
       hmModules,
-      extraimports,
+      darwinModules,
     }:
       nix-darwin.lib.darwinSystem {
-        modules = [
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              # Install Homebrew under the default prefix
-              enable = true;
+        modules =
+          [
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                # Install Homebrew under the default prefix
+                enable = true;
 
-              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-              enableRosetta = false;
+                # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+                enableRosetta = false;
 
-              # User owning the Homebrew prefix
-              user = username;
+                # User owning the Homebrew prefix
+                user = username;
 
-              # Automatically migrate existing Homebrew installations
-              autoMigrate = true;
-            };
-          }
+                # Automatically migrate existing Homebrew installations
+                autoMigrate = true;
+              };
+            }
 
-          ./nix/darwin
+            ./nix/darwin
 
-          {
-            nixpkgs.overlays = overlays;
-          }
+            {
+              nixpkgs.overlays = overlays;
+            }
 
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."${username}" = {
-              imports =
-                [
-                  ./nix/home
-                  ./nix/darwin/rime.nix
-                ]
-                ++ hmModules;
-            };
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users."${username}" = {
+                imports =
+                  [
+                    ./nix/home
+                    ./nix/darwin/rime.nix
+                  ]
+                  ++ hmModules;
+              };
 
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit username rime-ice;};
-          }
-        ];
+              home-manager.backupFileExtension = "backup";
+              home-manager.extraSpecialArgs = {inherit username rime-ice;};
+            }
+          ]
+          ++ darwinModules;
 
-        specialArgs = {inherit inputs username extraimports;};
+        specialArgs = {inherit inputs username;};
       };
     # use username and hmModules to generate standalone Home Manager config
     # for non-NixOS Linux systems (Ubuntu, Debian, etc.)
@@ -126,11 +128,13 @@
       "acehinnnqru-mbp" = mkDarwin {
         username = "acehinnnqru";
         hmModules = [];
-        extraimports = [
-          {
-            system.primaryUser = "acehinnnqru";
-            users.users.acehinnnqru.uid = 501;
-          }
+        darwinModules = [
+          (
+            {...}: {
+              system.primaryUser = "acehinnnqru";
+              users.users.acehinnnqru.uid = 501;
+            }
+          )
         ];
       };
     };

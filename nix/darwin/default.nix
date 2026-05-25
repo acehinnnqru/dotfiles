@@ -3,13 +3,8 @@
   lib,
   inputs,
   username,
-  extraimports,
   ...
 }: {
-  imports =
-    []
-    ++ extraimports;
-
   environment.systemPackages = [
   ];
 

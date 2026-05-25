@@ -21,42 +21,41 @@ in {
     else "/Users/${username}"
   );
 
-  home.packages = with pkgs;
-    [
-      gnupg
-      git
-      ## editor
-      vim
-      neovim
+  home.packages = with pkgs; [
+    gnupg
+    git
+    ## editor
+    vim
+    neovim
 
-      ## make life better
-      zoxide
-      starship
-      tokei
+    ## make life better
+    zoxide
+    starship
+    tokei
 
-      ## dev
-      # utils
-      fzf
-      lazygit
-      sesh
-      ripgrep
-      eza
-      bat
-      watchexec
-      curl
+    ## dev
+    # utils
+    fzf
+    lazygit
+    sesh
+    ripgrep
+    eza
+    bat
+    watchexec
+    curl
 
-      # workspace
-      tmux
-      direnv
+    # workspace
+    tmux
+    direnv
 
-      tree-sitter
+    tree-sitter
 
-      # for rust cache
-      sccache
+    # for rust cache
+    sccache
 
-      # custom
-      rt
-    ];
+    # custom
+    rt
+  ];
 
   home.shellAliases =
     {

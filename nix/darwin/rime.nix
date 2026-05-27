@@ -21,8 +21,8 @@ in {
         menu:
           page_size: 7
         switcher/hotkeys/=:
+        "ascii_composer/switch_key/Shift_L": noop
         ascii_composer/good_old_caps_lock: false
-        switch_key/Shift_L: noop
         key_binder/select_last_character: ""
         key_binder/select_first_character: ""
         key_binder/bindings:
@@ -40,6 +40,8 @@ in {
         melt_eng/enable_user_dict: true
         key_binder/search: ";"
         speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;
+
+        engine/processors/@1:
     '';
     force = true;
   };
@@ -65,13 +67,6 @@ in {
   home.file."${rimeConfigDir}/squirrel.custom.yaml" = {
     text = ''
       patch:
-        app_options:
-          com.raycast.macos:
-            ascii_mode: false
-          com.microsoft.VSCode:
-            ascii_mode: false   # disable default english mode
-          com.mitchellh.ghostty:
-            ascii_mode: false
         style/color_scheme: native
         style/color_scheme_dark: native
         style/candidate_list_layout: linear  # stacked | linear

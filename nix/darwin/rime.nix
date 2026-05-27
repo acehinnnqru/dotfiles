@@ -16,7 +16,7 @@ in {
   home.file."${rimeConfigDir}/default.custom.yaml" = {
     text = ''
       patch:
-        version: 1
+        version: "1.0"
         schema_list:
           - schema: double_pinyin_flypy
         menu:
@@ -37,7 +37,7 @@ in {
   home.file."${rimeConfigDir}/double_pinyin_flypy.custom.yaml" = {
     text = ''
       patch:
-        version: 1
+        version: "1.0"
         translator/preedit_format/=:
           - xform/(?<=[A-Z])\s(?=[A-Z])//  # remove the spaces between upper chars
         melt_eng/enable_user_dict: true

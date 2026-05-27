@@ -16,13 +16,15 @@ in {
   home.file."${rimeConfigDir}/default.custom.yaml" = {
     text = ''
       patch:
+        __version: 1
         schema_list:
           - schema: double_pinyin_flypy
         menu:
           page_size: 7
         switcher/hotkeys/=:
-        "ascii_composer/switch_key/Shift_L": noop
+        ascii_composer/switch_key/Shift_L: noop
         ascii_composer/good_old_caps_lock: false
+        punctuator/digit_separators: ""
         key_binder/select_last_character: ""
         key_binder/select_first_character: ""
         key_binder/bindings:

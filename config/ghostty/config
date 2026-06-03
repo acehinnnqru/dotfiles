@@ -16,7 +16,6 @@ background-blur-radius = 20
 font-size = 14.7
 
 # quick terminal
-keybind = global:ctrl+t=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
 quick-terminal-autohide = true

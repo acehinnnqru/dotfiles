@@ -6,6 +6,9 @@ end
 
 vim.lsp.enable("ts_ls")
 
+utils.enable_or_ignore_lsp("oxfmt", "oxfmt")
+utils.enable_or_ignore_lsp("oxlint", "oxlint")
+
 utils.install_ts({ "javascript", "typescript", "tsx" })
 
 ---@type [LazyPluginSpec]
@@ -14,7 +17,9 @@ return {
         "nvimtools/none-ls.nvim",
         opts = function(_, opts)
             local nls = require("null-ls")
-            table.insert(opts.sources, nls.builtins.formatting.prettierd)
+            if utils.has_command("prettierd") then
+                table.insert(opts.sources, nls.builtins.formatting.prettierd)
+            end
         end,
     },
     {

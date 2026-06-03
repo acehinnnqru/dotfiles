@@ -99,6 +99,29 @@ function M.lsp_on_attach(on_attach)
     })
 end
 
+---@param command string The command the check if exists
+---@param lsp string The lsp to enable if the command exists
+function M.enable_or_ignore_lsp(command, lsp)
+    if not M.has_command(command) then
+        return
+    end
+
+    vim.lsp.enable(lsp)
+end
+
+---@param commands string[] The commands to check
+---@return boolean
+function M.has_any_command(commands)
+    for _, command in ipairs(commands) do
+        if M.has_command(command) then
+            return true
+        end
+    end
+
+    return false
+end
+
+---@param command string The command to check
 function M.has_command(command)
     local sys_command = "which " .. command
     local handle = io.popen(sys_command)
@@ -108,23 +131,6 @@ function M.has_command(command)
     local result = handle:read("*a")
     handle:close()
     return result ~= ""
-end
-
-function M.exists_command(command)
-    local sys_command = "which " .. command
-
-    local handle = io.popen(sys_command)
-    if handle == nil then
-        return false
-    end
-
-    local result = handle:read("*a")
-    handle:close()
-    if result == "" then
-        return false
-    else
-        return true
-    end
 end
 
 function M.set_colorscheme(theme)

@@ -18,6 +18,7 @@ return {
                 callback = function(args)
                     local bufnr = args.buf
                     local filetype = args.match
+
                     local lang, ok = is_enable_ts(filetype)
                     if not ok then
                         return

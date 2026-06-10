@@ -55,10 +55,15 @@ function KM.on_attach(client, buffer)
     self:map("<leader>rl", "LspRestart", { desc = "Restart Lsp", mode = { "n" } })
 end
 
-function KM.new(client, buffer)
-    return setmetatable({ client = client, buffer = buffer }, { __index = KM })
+---@param client vim.lsp.Client?
+---@param bufnr integer
+function KM.new(client, bufnr)
+    return setmetatable({ client = client, buffer = bufnr }, { __index = KM })
 end
 
+---@param lhs string mode
+---@param rhs function|string
+---@param opts table
 function KM:map(lhs, rhs, opts)
     opts = opts or {}
     vim.keymap.set(
@@ -70,6 +75,7 @@ function KM:map(lhs, rhs, opts)
     )
 end
 
+---@return function
 function KM.definition_goto()
     local function on_list(options)
         vim.fn.setqflist({}, " ", options)
@@ -80,14 +86,17 @@ function KM.definition_goto()
     end
 end
 
+---@param next boolean
+---@param severity? string
+---@return function
 function KM.diagnostic_goto(next, severity)
     local count = next and 1 or -1
-    severity = severity and vim.diagnostic.severity[severity] or nil
+    local severityNo = severity and vim.diagnostic.severity[severity] or nil
     return function()
         -- only jump to the pos, but not open float window
         local diag = vim.diagnostic.jump({
             count = count,
-            severity = severity,
+            severity = severityNo,
         })
 
         -- if has not diag, do nothing

@@ -1,6 +1,7 @@
 local M = {}
 
 local vim_opt = vim.o
+---@param opts table
 function M.set_vim_opts(opts)
     for k, v in pairs(opts) do
         vim_opt[k] = v
@@ -8,13 +9,11 @@ function M.set_vim_opts(opts)
 end
 
 local keymap_set = vim.keymap.set
+
+--- Sets a list of keymaps using `vim.keymap.set`.
 ---
--- Sets a list of keymaps using `vim.keymap.set`.
---
--- @function set_keymaps
--- @tparam { {string, string, string} | {string, string, string, table} }[] keymaps A list of keymaps to set, where each keymap is a table of the form {mode, lhs, rhs} or {mode, lhs, rhs, opts}
--- @tparam[opt] table opts Optional default options for all keymaps
---
+---@param keymaps {[1]: string, [2]: string, [3]: string, [4]: table?}[]
+---@param opts any
 function M.set_keymaps(keymaps, opts)
     for _, map in ipairs(keymaps) do
         local mode, lhs, rhs, options
@@ -29,20 +28,13 @@ function M.set_keymaps(keymaps, opts)
     end
 end
 
-function M.set_g_opts(opts)
-    local g = vim.g
-    for k, v in pairs(opts) do
-        g[k] = v
-    end
-end
-
 M.root_patterns = { ".git", ".envrc", ".direnv" }
 
--- returns the root directory based on:
--- * lsp workspace folders
--- * lsp root_dir
--- * root pattern of filename of the current buffer
--- * root pattern of cwd
+--- returns the root directory based on:
+--- * lsp workspace folders
+--- * lsp root_dir
+--- * root pattern of filename of the current buffer
+--- * root pattern of cwd
 ---@return string
 function M.get_root()
     ---@type string?
@@ -89,12 +81,13 @@ function M.get_root()
     return root
 end
 
+---@param on_attach fun(client: vim.lsp.Client?, bufnr: integer)
 function M.lsp_on_attach(on_attach)
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
-            local buffer = args.buf
+            local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
-            on_attach(client, buffer)
+            on_attach(client, bufnr)
         end,
     })
 end
@@ -122,6 +115,7 @@ function M.has_any_command(commands)
 end
 
 ---@param command string The command to check
+---@return boolean
 function M.has_command(command)
     local sys_command = "which " .. command
     local handle = io.popen(sys_command)
@@ -133,6 +127,7 @@ function M.has_command(command)
     return result ~= ""
 end
 
+---@param theme string
 function M.set_colorscheme(theme)
     vim.cmd("colorscheme " .. theme)
 
@@ -164,18 +159,18 @@ function M.set_colorscheme(theme)
     end
 end
 
----@return string?
+---@return string
 ---@return boolean
 function M.if_enable_ts(filetype)
     local ts = require("nvim-treesitter")
     local lang = vim.treesitter.language.get_lang(filetype)
     local installed = ts.get_installed()
 
-    if installed[lang] then
+    if lang ~= nil and installed[lang] then
         return lang, true
     end
 
-    return nil, false
+    return "", false
 end
 
 ---@param langs string[]

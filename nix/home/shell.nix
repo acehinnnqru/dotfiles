@@ -13,6 +13,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    profileExtra = ''
+      touch ~/.zprofile.local
+      source ~/.zprofile.local
+    '';
+
     initContent = lib.mkOrder 500 ''
       fpath=(~/.zsh/completions $fpath)
     '';

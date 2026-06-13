@@ -32,14 +32,6 @@ return {
                 end
             end)
 
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "html,typescript,typescriptreact,javascript,javascriptreact,css,less,vue",
-                callback = function()
-                    vim.opt_local.shiftwidth = 2
-                    vim.opt_local.tabstop = 2
-                end,
-            })
-
             if opts.servers == nil then
                 opts.servers = {}
             end

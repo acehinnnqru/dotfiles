@@ -11,7 +11,7 @@ utils.install_ts({ "lua" })
 local nvim_app_env = os.getenv("NVIM_APPNAME")
 local nvim_app = nvim_app_env and nvim_app_env or "nvim"
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",
@@ -33,7 +33,10 @@ return {
                     Lua = {
                         runtime = {
                             version = "LuaJIT",
-                            path = vim.split(package.path, ";"),
+                            path = {
+                                "lua/?.lua",
+                                "lua/?/init.lua",
+                            },
                         },
                         diagnostics = {
                             globals = { "vim" },

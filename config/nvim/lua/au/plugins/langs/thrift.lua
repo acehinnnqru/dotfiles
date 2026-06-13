@@ -8,7 +8,7 @@ vim.lsp.enable("thriftls")
 
 utils.install_ts({ "thrift" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",

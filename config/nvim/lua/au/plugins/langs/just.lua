@@ -6,7 +6,7 @@ end
 
 utils.install_ts({ "just" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "NoahTheDuke/vim-just",

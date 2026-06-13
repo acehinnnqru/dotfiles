@@ -8,7 +8,7 @@ vim.lsp.enable("clangd")
 
 utils.install_ts({"c", "cpp"})
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",

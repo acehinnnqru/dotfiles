@@ -1,4 +1,4 @@
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     -- welcome page
     {

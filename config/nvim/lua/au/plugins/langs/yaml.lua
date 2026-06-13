@@ -4,7 +4,7 @@ vim.lsp.enable("yamlls")
 
 utils.install_ts({ "yaml" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",

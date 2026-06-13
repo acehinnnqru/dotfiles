@@ -8,7 +8,7 @@ vim.lsp.enable("gopls")
 
 utils.install_ts({ "go" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

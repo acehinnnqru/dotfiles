@@ -110,7 +110,7 @@ function KM.diagnostic_goto(next, severity)
     end
 end
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     -- nvim-lspconfig: the main lsp manager
     {

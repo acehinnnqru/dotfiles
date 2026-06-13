@@ -8,7 +8,7 @@ vim.lsp.enable("cssls")
 
 utils.install_ts({ "css" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

@@ -10,7 +10,7 @@ utils.enable_or_ignore_lsp("oxfmt", "oxfmt")
 
 utils.install_ts({ "html" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

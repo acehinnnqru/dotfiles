@@ -1,6 +1,6 @@
 local utils = require("au.utils")
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "EdenEast/nightfox.nvim",

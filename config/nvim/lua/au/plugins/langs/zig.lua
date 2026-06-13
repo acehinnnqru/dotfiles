@@ -8,7 +8,7 @@ vim.lsp.enable("zls")
 
 utils.install_ts({ "zig" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",

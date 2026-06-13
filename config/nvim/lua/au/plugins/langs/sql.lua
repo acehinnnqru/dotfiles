@@ -8,7 +8,7 @@ vim.lsp.enable("sqlls")
 
 utils.install_ts({ "sql" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

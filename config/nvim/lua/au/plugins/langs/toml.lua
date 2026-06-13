@@ -8,7 +8,7 @@ vim.lsp.enable("taplo")
 
 utils.install_ts({ "toml" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

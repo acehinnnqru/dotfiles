@@ -6,7 +6,7 @@ end
 
 utils.install_ts({ "rust" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "mrcjkb/rustaceanvim",

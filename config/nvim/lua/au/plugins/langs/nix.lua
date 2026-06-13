@@ -6,7 +6,7 @@ end
 
 vim.lsp.enable("nil_ls")
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

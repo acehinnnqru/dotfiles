@@ -11,7 +11,7 @@ utils.enable_or_ignore_lsp("oxlint", "oxlint")
 
 utils.install_ts({ "javascript", "typescript", "tsx" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "nvimtools/none-ls.nvim",

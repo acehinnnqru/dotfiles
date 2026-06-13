@@ -43,7 +43,7 @@ local find_files = function()
     })
 end
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     -- fzf-lua
     {

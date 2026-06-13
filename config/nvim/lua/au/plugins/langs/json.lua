@@ -4,7 +4,7 @@ vim.lsp.enable("jsonls")
 
 utils.install_ts({ "json" })
 
----@type [LazyPluginSpec]
+---@type LazyPluginSpec[]
 return {
     {
         "neovim/nvim-lspconfig",

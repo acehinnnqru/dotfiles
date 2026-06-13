@@ -6,7 +6,7 @@ end
 
 vim.lsp.enable("clangd")
 
-utils.install_ts({"c", "cpp"})
+utils.install_ts({ "c", "cpp" })
 
 ---@type LazyPluginSpec[]
 return {

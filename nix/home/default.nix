@@ -79,6 +79,7 @@ in {
 
   home.sessionVariables = {
     FZF_CTRL_T_COMMAND = "";
+    FZF_ALT_C_COMMAND = "";
     EDITOR = "nvim";
   };
 

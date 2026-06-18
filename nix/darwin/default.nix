@@ -88,12 +88,6 @@
   # homebrew support, only use casks
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "none";
-  homebrew.trust = {
-    taps = [
-      "daipeihust/tap"
-      "laishulu/homebrew"
-    ];
-  };
   homebrew.taps = [
     "daipeihust/tap"
     "laishulu/homebrew"

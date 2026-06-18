@@ -36,3 +36,5 @@ font-size = 15.7
 config-file = "local-config"
 
 confirm-close-surface = false
+
+clipboard-paste-protection = false

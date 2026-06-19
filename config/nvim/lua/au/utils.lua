@@ -12,7 +12,7 @@ local keymap_set = vim.keymap.set
 
 --- Sets a list of keymaps using `vim.keymap.set`.
 ---
----@param keymaps {[1]: string, [2]: string, [3]: string, [4]: table?}[]
+---@param keymaps {[1]: string|table, [2]: string, [3]: string|function, [4]: table?}[]
 ---@param opts any
 function M.set_keymaps(keymaps, opts)
     for _, map in ipairs(keymaps) do

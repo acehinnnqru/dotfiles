@@ -65,7 +65,23 @@ return {
                 sections = {
                     lualine_a = {},
                     lualine_b = {},
-                    lualine_c = { "filename", diff, diagnostics },
+                    lualine_c = {
+                        {
+                            function()
+                                if not vim.bo.modifiable then
+                                    return "[LOCK]"
+                                elseif vim.bo.readonly then
+                                    return "[RO]"
+                                else
+                                    return ""
+                                end
+                            end,
+                            padding = { left = 0, right = 1 },
+                        },
+                        "filename",
+                        diff,
+                        diagnostics,
+                    },
                     lualine_x = {},
                     lualine_y = {},
                     lualine_z = {},

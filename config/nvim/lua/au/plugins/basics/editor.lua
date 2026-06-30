@@ -1,3 +1,5 @@
+local utils = require("au.utils")
+
 ---@type LazyPluginSpec[]
 return {
     -- better fold
@@ -184,10 +186,7 @@ return {
     {
         "keaising/im-select.nvim",
         lazy = false,
-        enabled = function()
-            -- only enabled on macOS
-            return vim.loop.os_uname().sysname == "Darwin"
-        end,
+        enabled = utils.is_darwin,
         opts = {
             set_previous_events = { "InsertEnter" },
             set_default_events = { "InsertLeave", "CmdlineLeave", "UIEnter", "VimEnter", "FocusGained" },
@@ -341,7 +340,12 @@ return {
                                 return
                             end
 
-                            vim.fn.system({ "trash", vim.fn.fnameescape(path) })
+                            if utils.is_darwin() then
+                                vim.fn.system({ "trash", vim.fn.fnameescape(path) })
+                            elseif utils.is_linux() then
+                                vim.fn.system({ "trashy", vim.fn.fnameescape(path) })
+                            end
+
                             require("neo-tree.sources.manager").refresh(state.name)
                         end)
                     end,

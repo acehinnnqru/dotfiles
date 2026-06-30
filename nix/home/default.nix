@@ -57,7 +57,7 @@ in {
       # custom
       rt
     ]
-    ++ pkgs.lib.optionalAttrs pkgs.stdenv.isLinux
+    ++ pkgs.lib.optionals pkgs.stdenv.isLinux
     [
       trashy
     ];

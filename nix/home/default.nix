@@ -57,7 +57,7 @@ in {
       # custom
       rt
     ]
-    ++ pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin
+    ++ pkgs.lib.optionalAttrs pkgs.stdenv.isLinux
     [
       trashy
     ];

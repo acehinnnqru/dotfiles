@@ -26,6 +26,10 @@ return {
             require("au.utils").lsp_on_attach(function(client, _)
                 if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
                     local semantic = client.config.capabilities.textDocument.semanticTokens
+                    if semantic == nil then
+                        return
+                    end
+
                     client.server_capabilities.semanticTokensProvider = {
                         full = true,
                         legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },

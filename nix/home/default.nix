@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   username,
   ...
 }: let
@@ -77,7 +76,7 @@ in {
       vim = "nvim";
       v = "nvim";
     }
-    // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+    // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       rm = "trash";
     };
 
@@ -94,7 +93,7 @@ in {
       ".config/nvim".source = ../../config/nvim;
       ".config/nvim".recursive = true;
     }
-    // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+    // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       ".config/ghostty".source = ../../config/ghostty;
       ".config/ghostty".recursive = true;
       ".config/karabiner".source = ../../config/karabiner;

@@ -50,9 +50,6 @@ in {
 
       tree-sitter
 
-      # for rust cache
-      sccache
-
       # custom
       rt
     ]

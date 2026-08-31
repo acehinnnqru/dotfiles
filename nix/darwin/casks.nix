@@ -12,9 +12,6 @@
     greedy = true;
   }
   {
-    name = "shottr";
-  }
-  {
     name = "telegram";
   }
   {
@@ -30,9 +27,9 @@
     name = "numi";
   }
   {
-    name = "kap";
+    name = "raycast";
   }
   {
-    name = "raycast";
+    name = "macshot";
   }
 ]

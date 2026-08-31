@@ -10,6 +10,9 @@ return {
     { "n", "x", '"_x', { noremap = true } },
     { "n", "X", '"_X', { noremap = true } },
 
+    -- use P instead of p in visual mode
+    { "v", "p", "P", { noremap = true } },
+
     -- window navigation
     { "n", "<C-h>", "<C-w>h", { desc = "Go to left window" } },
     { "n", "<C-j>", "<C-w>j", { desc = "Go to lower window" } },

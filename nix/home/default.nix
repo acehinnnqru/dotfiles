@@ -15,7 +15,7 @@ in {
   ];
   home.username = "${username}";
   home.homeDirectory = pkgs.lib.mkDefault (
-    if pkgs.stdenv.isLinux
+    if pkgs.stdenv.hostPlatform.isLinux
     then "/home/${username}"
     else "/Users/${username}"
   );

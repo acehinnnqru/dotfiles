@@ -22,7 +22,7 @@ local find_files = function()
         cwd = require("au.utils").get_root(),
         keymap = {
             fzf = {
-                ["change"] = [[transform-search:echo {q} | sed -E 's/:[0-9]*:[0-9]*$//;s/:[0-9]*$//;s/#L[0-9]*$//']],
+                ["change"] = [[transform-search:echo {q} | sed -E 's/^\.\///;s/:[0-9]*:[0-9]*$//;s/:[0-9]*$//;s/#L[0-9]*$//']],
             },
         },
         actions = {

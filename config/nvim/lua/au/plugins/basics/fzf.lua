@@ -1,4 +1,5 @@
 local function parse_location(query)
+    query = query:gsub("^%s+", ""):gsub("%s+$", "")
     local line, col
     line, col = query:match(":(%d+):(%d+)$")
     if line then

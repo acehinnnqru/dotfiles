@@ -7,5 +7,8 @@
     enable = true;
     lsp.package = pkgs.nil;
   };
-  git-hooks.hooks.alejandra.enable = true;
+
+  packages = [
+    pkgs.alejandra
+  ];
 }

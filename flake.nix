@@ -48,6 +48,7 @@
     rt,
     rime-ice,
     devenv,
+    git-hooks,
     ...
   }: let
     overlays = [

@@ -234,6 +234,8 @@
     stdlib = ''
       eval "$(devenv direnvrc)"
     '';
+
+    silent = true;
   };
 
   programs.devenv = {

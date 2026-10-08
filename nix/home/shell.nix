@@ -230,11 +230,13 @@
     nix-direnv = {
       enable = true;
     };
+
+    stdlib = ''
+      eval "$(devenv direnvrc)"
+    '';
   };
 
   programs.devenv = {
     enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
   };
 }

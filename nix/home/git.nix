@@ -50,6 +50,7 @@
       ".direnv/"
       ".DS_Store"
       "Thumbs.db"
+      ".devenv/"
     ];
 
     includes = [

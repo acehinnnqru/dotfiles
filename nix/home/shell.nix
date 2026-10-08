@@ -231,14 +231,6 @@
       enable = true;
     };
 
-    stdlib = ''
-      eval "$(devenv direnvrc)"
-    '';
-
     silent = true;
-  };
-
-  programs.devenv = {
-    enable = true;
   };
 }

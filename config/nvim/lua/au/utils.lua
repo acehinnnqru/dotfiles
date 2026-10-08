@@ -28,7 +28,7 @@ function M.set_keymaps(keymaps, opts)
     end
 end
 
-M.root_patterns = { ".envrc", ".direnv", ".git", "flake.nix", "devenv.nix" }
+M.root_patterns = { ".envrc", ".direnv", ".git", "flake.nix" }
 
 --- returns the root directory based on:
 --- * lsp workspace folders

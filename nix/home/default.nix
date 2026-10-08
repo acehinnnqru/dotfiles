@@ -28,6 +28,9 @@ in {
       vim
       neovim
 
+      ## for develop shell
+      devenv
+
       ## make life better
       zoxide
       starship

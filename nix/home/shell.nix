@@ -232,10 +232,9 @@
     };
   };
 
-  programs.zellij = {
+  programs.devenv = {
     enable = true;
-    settings = {
-      theme = "nightfox";
-    };
+    enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 }

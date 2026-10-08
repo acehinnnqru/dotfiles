@@ -28,6 +28,10 @@
       url = "github:iDvel/rime-ice";
       flake = false;
     };
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -39,6 +43,7 @@
     neovim-nightly-overlay,
     rt,
     rime-ice,
+    devenv,
     ...
   }: let
     overlays = [
@@ -149,5 +154,19 @@
       #   system = "x86_64-linux";  # or "aarch64-linux"
       # };
     };
+
+    devShells =
+      nixpkgs.lib.genAttrs
+      ["x86_64-linux" "aarch64-linux" "aarch64-darwin"]
+      (
+        system: let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          default = devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [./devenv.nix];
+          };
+        }
+      );
   };
 }

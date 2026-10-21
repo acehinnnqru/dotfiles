@@ -93,7 +93,7 @@
     "laishulu/homebrew"
   ];
   homebrew.global.autoUpdate = false;
-  homebrew.onActivation.autoUpdate = false;
+  homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;
   homebrew.casks = import ./casks.nix;
   homebrew.brews = import ./brews.nix;

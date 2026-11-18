@@ -2,6 +2,9 @@
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+if vim.env.SSH_CONNECTION or vim.env.SSH_TTY then
+    vim.g.clipboard = "osc52"
+end
 
 local utils = require("au.utils")
 

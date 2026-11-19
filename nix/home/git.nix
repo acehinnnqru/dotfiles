@@ -40,6 +40,11 @@
         rebase = true;
       };
 
+      rerere = {
+        enabled = true;
+        autoUpdate = true;
+      };
+
       fetch = {
         prune = true;
       };

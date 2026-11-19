@@ -85,7 +85,7 @@ make switch-linux hostname=xxx
 
   inputs = {
     base = {
-      url = "github:acehinnnqru/dotfiles/master";
+      url = "github:acehinnnqru/dotfiles";
     };
   };
 

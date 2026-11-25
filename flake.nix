@@ -70,6 +70,8 @@
 
                 # Automatically migrate existing Homebrew installations
                 autoMigrate = true;
+
+                trust.formulae = ["laishulu/homebrew/macism"];
               };
             }
 

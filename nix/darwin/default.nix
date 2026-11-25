@@ -88,9 +88,6 @@
   # homebrew support, only use casks
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "none";
-  homebrew.trust.formulae = [
-    "laishulu/homebrew/macism"
-  ];
   homebrew.global.autoUpdate = false;
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;

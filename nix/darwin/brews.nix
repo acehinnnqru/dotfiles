@@ -1,6 +1,5 @@
 [
-  "macism"
+  "laishulu/homebrew/macism"
   "trash"
   "pinentry-mac"
-  "im-select"
 ]

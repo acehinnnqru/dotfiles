@@ -186,6 +186,7 @@ return {
     {
         "keaising/im-select.nvim",
         lazy = false,
+        -- mac uses macism but not im-select
         enabled = utils.is_darwin,
         opts = {
             set_previous_events = { "InsertEnter" },
